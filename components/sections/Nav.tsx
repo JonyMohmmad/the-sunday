@@ -50,9 +50,9 @@ export default function Nav() {
             <Link
               href="/"
               className="font-display text-lg font-bold tracking-tight text-primary hover:text-accent transition-colors duration-150"
-              aria-label="[COMPANY_NAME] — Home"
+              aria-label="The Sunday — Home"
             >
-              [COMPANY_NAME]
+              The Sunday
             </Link>
 
             {/* Desktop links */}

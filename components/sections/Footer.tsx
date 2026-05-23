@@ -12,9 +12,9 @@ export default function Footer() {
             <Link
               href="/"
               className="font-display text-base font-bold text-primary hover:text-accent transition-colors duration-150"
-              aria-label="[COMPANY_NAME] — Home"
+              aria-label="The Sunday — Home"
             >
-              [COMPANY_NAME]
+              The Sunday
             </Link>
             <p className="text-xs text-muted mt-1">
               Shopify conversion redesigns for fashion DTC brands.
@@ -63,7 +63,7 @@ export default function Footer() {
 
         <div className="mt-8 pt-6 border-t border-[#232327] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
           <p className="text-xs text-muted">
-            © {new Date().getFullYear()} [COMPANY_NAME]. All rights reserved.
+            © {new Date().getFullYear()} The Sunday. All rights reserved.
           </p>
           <p className="text-xs text-muted">
             Built by engineers, for brands that move fast.
