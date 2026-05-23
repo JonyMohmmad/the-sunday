@@ -4,46 +4,64 @@ import { Button } from '@/components/ui/Button';
 
 const plans = [
   {
-    name: 'Conversion Redesign',
-    price: 'from $2,500',
+    name: 'MVP Studio',
+    price: 'from $8,500',
     frequency: 'one-time · fixed scope',
-    description: 'A full Shopify store redesign built to convert. Fixed price, fixed timeline, no surprises.',
+    description: 'Go from idea to live product in 4 weeks. Core features only — no bloat, no scope creep. The fastest path to real user feedback.',
     highlighted: false,
     features: [
-      'Full store audit & conversion analysis',
-      'Complete Figma prototype (all screens)',
-      'Shopify theme build — clean, no bloat',
-      'Mobile-first, Lighthouse 90+ target',
-      'Homepage, PDPs, collection, cart & checkout',
-      '30-day post-launch monitoring',
-      'Weekly Loom video updates throughout',
+      'Product discovery workshop',
+      'Full Figma prototype (all screens)',
+      'Full-stack web app build',
+      'Auth, basic user management',
+      'Deploy to production (Vercel / AWS)',
+      '30-day post-launch support',
+      'Handover docs & recorded walkthroughs',
     ],
-    cta: 'Get a free store teardown',
-    ctaHref: '#',
+    cta: 'Start your MVP',
+    ctaHref: '/teardown',
   },
   {
-    name: 'Growth Retainer',
-    price: 'from $800/mo',
-    frequency: 'ongoing · cancel anytime',
-    description: 'Continuous CRO, landing pages, drop pages, and speed optimisation. Your store keeps improving every month.',
+    name: 'SaaS Build',
+    price: 'from $18,000',
+    frequency: 'one-time · full product',
+    description: 'A complete, production-ready SaaS. Multi-tenant architecture, billing, dashboards, admin panel — the full stack your business needs.',
     highlighted: true,
     features: [
-      'Monthly conversion experiments',
-      'New landing & drop pages as needed',
-      'A/B test design and analysis',
-      'Ongoing speed & Core Web Vitals tuning',
-      'Email → store landing page builds',
-      'Priority response & Slack access',
-      'Monthly performance report',
+      'Everything in MVP Studio',
+      'Multi-tenant SaaS architecture',
+      'Stripe billing & subscription management',
+      'Role-based access control',
+      'Admin dashboard & analytics',
+      'API documentation',
+      '60-day post-launch support',
     ],
-    cta: 'Talk to us about retainer',
-    ctaHref: '#',
+    cta: 'Build your SaaS',
+    ctaHref: '/teardown',
+  },
+  {
+    name: 'Scale Retainer',
+    price: 'from $4,000/mo',
+    frequency: 'ongoing · cancel anytime',
+    description: 'Continuous product development. New features every sprint, performance monitoring, and a dedicated engineering team — on demand.',
+    highlighted: false,
+    features: [
+      'Dedicated sprint capacity (2-week cycles)',
+      'New features shipped every sprint',
+      'Performance & uptime monitoring',
+      'Priority Slack & video support',
+      'Monthly product strategy session',
+      'Architecture review & refactoring',
+      'Unlimited bug fixes',
+    ],
+    cta: 'Talk about a retainer',
+    ctaHref: '/teardown',
   },
 ];
 
 function CheckIcon() {
   return (
-    <svg className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+    <svg className="w-4 h-4 flex-shrink-0 mt-0.5 text-[#3B3FE4]" viewBox="0 0 16 16" fill="none" aria-hidden="true">
       <path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
@@ -51,64 +69,69 @@ function CheckIcon() {
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="py-24 lg:py-32 border-t border-[#232327]" aria-labelledby="pricing-heading">
+    <section id="pricing" className="py-24 lg:py-32 bg-[#F7F7F8] border-t border-[#E4E4E7]" aria-labelledby="pricing-heading">
       <Container>
         <AnimatedReveal className="max-w-2xl mb-14">
-          <p className="text-xs font-semibold tracking-widest uppercase text-muted mb-4 flex items-center gap-2">
-            <span className="w-4 h-px bg-accent" />
+          <p className="text-xs font-semibold tracking-widest uppercase text-[#3B3FE4] mb-4 flex items-center gap-2">
+            <span className="w-4 h-px bg-[#3B3FE4]" />
             Pricing
           </p>
           <h2
             id="pricing-heading"
             className="font-display text-4xl lg:text-5xl font-bold text-primary tracking-tight leading-none mb-4"
           >
-            Straightforward pricing.
+            Clear pricing.
             <br />
-            <span className="text-muted">No discovery-call games.</span>
+            <span className="text-muted">No hidden fees, ever.</span>
           </h2>
         </AnimatedReveal>
 
-        <StaggerReveal className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <StaggerReveal className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
           {plans.map((plan) => (
             <article
               key={plan.name}
-              className={`relative rounded-xl p-8 flex flex-col gap-6 transition-colors duration-200 ${
+              className={`relative rounded-2xl p-8 flex flex-col gap-6 transition-all duration-200 ${
                 plan.highlighted
-                  ? 'bg-surface border-2 border-accent/40 hover:border-accent/70'
-                  : 'bg-surface border border-[#232327] hover:border-[#3a3a3e]'
+                  ? 'bg-[#09090B] border-2 border-[#09090B] shadow-xl'
+                  : 'bg-white border border-[#E4E4E7] hover:border-[#3B3FE4]/30 hover:shadow-md'
               }`}
             >
               {plan.highlighted && (
                 <div className="absolute -top-3 left-8">
-                  <span className="bg-accent text-[#0A0A0B] text-xs font-bold px-3 py-1 rounded-full tracking-wide">
-                    Popular
+                  <span className="bg-accent text-[#09090B] text-xs font-bold px-3 py-1 rounded-full tracking-wide">
+                    Most Popular
                   </span>
                 </div>
               )}
 
               <div>
-                <h3 className="font-display text-xl font-bold text-primary tracking-tight mb-1">
+                <h3 className={`font-display text-xl font-bold tracking-tight mb-1 ${plan.highlighted ? 'text-white' : 'text-primary'}`}>
                   {plan.name}
                 </h3>
                 <div className="flex items-baseline gap-2 mt-3 mb-1">
-                  <span className="font-display text-3xl font-bold text-primary">{plan.price}</span>
+                  <span className={`font-display text-3xl font-bold ${plan.highlighted ? 'text-white' : 'text-primary'}`}>
+                    {plan.price}
+                  </span>
                 </div>
-                <span className="text-xs text-muted">{plan.frequency}</span>
+                <span className={`text-xs ${plan.highlighted ? 'text-white/50' : 'text-muted'}`}>{plan.frequency}</span>
               </div>
 
-              <p className="text-muted text-sm leading-relaxed">{plan.description}</p>
+              <p className={`text-sm leading-relaxed ${plan.highlighted ? 'text-white/70' : 'text-muted'}`}>
+                {plan.description}
+              </p>
 
               <ul className="flex flex-col gap-3" role="list">
                 {plan.features.map((f) => (
-                  <li key={f} className="flex items-start gap-3 text-sm text-primary/90">
-                    <CheckIcon />
+                  <li key={f} className={`flex items-start gap-3 text-sm ${plan.highlighted ? 'text-white/85' : 'text-primary/90'}`}>
+                    <svg className={`w-4 h-4 flex-shrink-0 mt-0.5 ${plan.highlighted ? 'text-accent' : 'text-[#3B3FE4]'}`} viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                      <path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
                     {f}
                   </li>
                 ))}
               </ul>
 
               <div className="mt-auto pt-2">
-                {/* TODO: Replace # with real Cal.com / Calendly link */}
                 <Button
                   href={plan.ctaHref}
                   variant={plan.highlighted ? 'primary' : 'ghost'}
@@ -123,8 +146,8 @@ export default function Pricing() {
 
         <AnimatedReveal delay={0.15} className="text-center">
           <p className="text-sm text-muted">
-            <span className="text-accent font-semibold">Founder's pricing</span> for our first cohort of brands.
-            Rates go up once we have 3 case studies published.
+            <span className="text-[#3B3FE4] font-semibold">Founder pricing</span> for our first cohort of clients.
+            Rates increase once we publish 5 case studies.
           </p>
         </AnimatedReveal>
       </Container>

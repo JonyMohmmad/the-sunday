@@ -17,20 +17,20 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'The Sunday — Shopify Conversion Redesigns for Fashion Brands',
+  title: 'The Sunday — SaaS & Web App Development Studio',
   description:
-    'We redesign Shopify stores for DTC streetwear, anime, and lifestyle fashion brands. Faster load times, higher conversion, launched in 3 weeks.',
+    'We build SaaS products and web applications for startups and growing businesses. Premium engineering and product design, shipped in weeks.',
   keywords: [
-    'Shopify redesign',
-    'DTC fashion',
-    'streetwear ecommerce',
-    'conversion rate optimization',
-    'Shopify agency',
+    'SaaS development',
+    'web app development',
+    'MVP development',
+    'product design',
+    'software studio',
   ],
   openGraph: {
-    title: 'The Sunday — Shopify Conversion Redesigns',
+    title: 'The Sunday — SaaS & Web App Studio',
     description:
-      'We turn your Instagram audience into Shopify buyers. Conversion-focused redesigns for fashion brands, shipped in 3 weeks.',
+      'We build software products that scale. Premium engineering and design in one studio — from MVP to full SaaS.',
     type: 'website',
     locale: 'en_US',
     // TODO: Replace with real domain and OG image

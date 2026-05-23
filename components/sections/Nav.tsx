@@ -120,7 +120,7 @@ export default function Nav() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-30 bg-[#0A0A0B] flex flex-col items-center justify-center"
+            className="fixed inset-0 z-30 bg-white flex flex-col items-center justify-center"
             role="dialog"
             aria-modal="true"
             aria-label="Mobile navigation"
@@ -137,7 +137,7 @@ export default function Nav() {
                     <Link
                       href={link.href}
                       onClick={closeMenu}
-                      className="font-display text-4xl font-bold text-primary hover:text-accent transition-colors duration-150"
+                      className="font-display text-4xl font-bold text-primary hover:text-[#3B3FE4] transition-colors duration-150"
                     >
                       {link.label}
                     </Link>

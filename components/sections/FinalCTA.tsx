@@ -6,57 +6,49 @@ export default function FinalCTA() {
   return (
     <section
       id="contact"
-      className="relative py-32 lg:py-40 overflow-hidden border-t border-[#232327]"
+      className="relative py-32 lg:py-40 overflow-hidden border-t border-[#E4E4E7]"
       aria-labelledby="cta-heading"
+      style={{
+        background: 'linear-gradient(135deg, #3B3FE4 0%, #7C3AED 100%)',
+      }}
     >
-      {/* Accent glow */}
+      {/* Subtle lime glow */}
       <div
         className="absolute inset-0 pointer-events-none"
         aria-hidden="true"
         style={{
-          background:
-            'radial-gradient(ellipse 80% 60% at 50% 50%, rgba(204,255,0,0.07) 0%, transparent 70%)',
-        }}
-      />
-
-      {/* Top border with glow */}
-      <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-px pointer-events-none"
-        aria-hidden="true"
-        style={{
-          background: 'linear-gradient(90deg, transparent, rgba(204,255,0,0.5), transparent)',
+          background: 'radial-gradient(ellipse 60% 50% at 80% 20%, rgba(204,255,0,0.15) 0%, transparent 60%)',
         }}
       />
 
       <Container className="relative text-center">
         <AnimatedReveal>
-          <p className="text-xs font-semibold tracking-widest uppercase text-muted mb-6 flex items-center justify-center gap-2">
-            <span className="w-4 h-px bg-accent" />
-            Free, no-strings teardown
-            <span className="w-4 h-px bg-accent" />
+          <p className="text-xs font-semibold tracking-widest uppercase text-white/60 mb-6 flex items-center justify-center gap-2">
+            <span className="w-4 h-px bg-white/40" />
+            Free strategy call · No commitment
+            <span className="w-4 h-px bg-white/40" />
           </p>
 
           <h2
             id="cta-heading"
-            className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-primary tracking-tight leading-none mb-6 max-w-3xl mx-auto"
+            className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-none mb-6 max-w-3xl mx-auto"
           >
-            Want to see what we'd change
+            Ready to ship
             <br />
-            <span className="text-accent">about your store?</span>
+            <span className="text-accent">your product?</span>
           </h2>
 
-          <p className="text-muted text-lg leading-relaxed max-w-xl mx-auto mb-10">
-            Free, no-strings teardown of one section of your Shopify store.
-            We'll show you exactly what's costing you sales — whether you hire us or not.
+          <p className="text-white/70 text-lg leading-relaxed max-w-xl mx-auto mb-10">
+            Book a free 30-minute strategy call. We'll map out your product, identify the core feature set,
+            and tell you exactly what it will take to build it — whether you hire us or not.
           </p>
 
-          {/* TODO: Replace # with real Cal.com / Calendly link */}
-          <Button href="#" size="lg" className="text-base px-10 py-5">
-            Get your free teardown
+          <Button href="/teardown" size="lg" className="text-base px-10 py-5 bg-white text-[#3B3FE4] hover:bg-white/90">
+            Book a free strategy call
           </Button>
 
-          <p className="text-xs text-muted mt-6">
-            No pitch, no pressure. Just a specific, honest look at your store.
+          <p className="text-xs text-white/50 mt-6">
+            No pitch. No pressure. Just an honest conversation about your product.
           </p>
         </AnimatedReveal>
       </Container>

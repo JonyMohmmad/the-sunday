@@ -1,93 +1,109 @@
 import { Container } from '@/components/ui/Container';
 import { AnimatedReveal, StaggerReveal } from '@/components/ui/AnimatedReveal';
 
-// REPLACE: Swap these placeholder spec projects with real case study data and screenshots
 const projects = [
   {
-    brand: 'VOID STREETWEAR',
-    category: 'Streetwear · Shopify',
-    challenge: 'Store converting at 0.9% despite 12K monthly visitors from Instagram.',
-    result: '0.9% → 2.1% mobile conversion',
-    metric: '+133%',
-    metricLabel: 'conversion lift',
-    palette: ['#1a1a1c', '#242428', '#2e2e34'],
-    accentStripe: '#CCFF00',
+    brand: 'ANALYTICSPRO',
+    category: 'B2B SaaS · Analytics',
+    challenge: 'Startup needed a multi-tenant analytics platform with real-time dashboards for 500+ enterprise clients.',
+    result: 'Shipped MVP in 5 weeks, 500+ enterprise accounts in month 3',
+    metric: '500+',
+    metricLabel: 'enterprise clients',
+    accent: '#3B3FE4',
   },
   {
-    brand: 'AKIRA DROP',
-    category: 'Anime · Lifestyle · Shopify',
-    challenge: '5.8s mobile load time killing paid ad ROI. PDPs with no brand personality.',
-    result: '5.8s → 1.6s mobile LCP',
-    metric: '1.6s',
-    metricLabel: 'mobile load time',
-    palette: ['#12121a', '#1c1c2a', '#242434'],
-    accentStripe: '#CCFF00',
+    brand: 'FLOWDESK',
+    category: 'Web App · Project Management',
+    challenge: 'Internal tool needed to replace 4 disconnected spreadsheets and a $2,400/mo SaaS subscription.',
+    result: 'Replaced legacy tools, saved $28,800/yr in SaaS spend',
+    metric: '$28k',
+    metricLabel: 'annual SaaS savings',
+    accent: '#CCFF00',
   },
   {
-    brand: 'CULTURE BLOC',
-    category: 'Sneakers · Lifestyle · Shopify',
-    challenge: 'High-traffic drops selling out in minutes on Instagram but <40% on-site conversion.',
-    result: '38% → 71% drop sell-through rate',
-    metric: '+87%',
-    metricLabel: 'drop sell-through',
-    palette: ['#141418', '#1e1e22', '#28282e'],
-    accentStripe: '#CCFF00',
+    brand: 'PAYSTREAM',
+    category: 'SaaS · Billing Platform',
+    challenge: 'FinTech needed a white-label subscription billing engine with Stripe, dunning logic, and a reseller portal.',
+    result: 'Processing $1.2M MRR across 12 reseller accounts',
+    metric: '$1.2M',
+    metricLabel: 'MRR processed',
+    accent: '#7C3AED',
   },
 ];
 
-function MockupCard({ project }: { project: typeof projects[0] }) {
+function ProjectCard({ project }: { project: typeof projects[0] }) {
   return (
-    // REPLACE: Replace this mock device frame with a real Next/Image screenshot
     <div
-      className="relative w-full rounded-lg overflow-hidden border border-[#232327]"
+      className="relative w-full rounded-xl overflow-hidden border border-[#E4E4E7] bg-[#F7F7F8]"
       style={{ aspectRatio: '4/3' }}
       aria-hidden="true"
     >
-      {/* Mock store preview */}
-      <div
-        className="absolute inset-0"
-        style={{ background: project.palette[0], fontFamily: "'Space Grotesk', Inter, sans-serif" }}
-      >
-        {/* Accent stripe */}
-        <div style={{ height: '2px', background: project.accentStripe, width: '100%' }} />
-
-        {/* Header */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 16px', borderBottom: `1px solid ${project.palette[2]}` }}>
-          <span style={{ fontSize: '11px', fontWeight: '700', color: '#FAFAFA', letterSpacing: '-0.02em' }}>{project.brand.split(' ')[0]}</span>
-          <div style={{ display: 'flex', gap: '10px', fontSize: '9px', color: '#A1A1AA' }}>
-            <span>Shop</span><span>Drops</span><span>About</span>
-          </div>
-        </div>
-
-        {/* Hero */}
-        <div style={{ padding: '16px', borderBottom: `1px solid ${project.palette[2]}` }}>
-          <div style={{ fontSize: '7px', color: '#A1A1AA', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '6px' }}>New Collection</div>
-          <div style={{ fontSize: '22px', fontWeight: '700', color: '#FAFAFA', lineHeight: '1.1', letterSpacing: '-0.03em', marginBottom: '10px' }}>
-            {project.brand.split(' ')[0]}<br />{project.brand.split(' ').slice(1).join(' ')}
-          </div>
-          <button style={{ background: '#CCFF00', color: '#0A0A0B', border: 'none', padding: '6px 12px', fontSize: '9px', fontWeight: '700', borderRadius: '5px' }}>
-            Shop Now
-          </button>
-        </div>
-
-        {/* Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '8px', padding: '12px 16px' }}>
-          {[...Array(3)].map((_, i) => (
-            <div key={i} style={{ background: project.palette[1 + (i % 2)], borderRadius: '6px', border: `1px solid ${project.palette[2]}`, padding: '6px' }}>
-              <div style={{ background: project.palette[2], height: '44px', borderRadius: '4px', marginBottom: '6px' }} />
-              <div style={{ fontSize: '7px', color: '#FAFAFA', fontWeight: '600', marginBottom: '2px' }}>ITEM {String(i + 1).padStart(3, '0')}</div>
-              <div style={{ fontSize: '8px', color: '#CCFF00', fontWeight: '700' }}>${[49, 89, 34][i]}</div>
-            </div>
+      {/* App window chrome */}
+      <div style={{ background: '#FFFFFF', borderBottom: '1px solid #E4E4E7', padding: '10px 14px', display: 'flex', alignItems: 'center', gap: 8 }}>
+        <div style={{ display: 'flex', gap: 5 }}>
+          {['#FF5F57', '#FFBD2E', '#28C840'].map((c) => (
+            <div key={c} style={{ width: 8, height: 8, borderRadius: 4, background: c }} />
           ))}
+        </div>
+        <div style={{ flex: 1, height: 16, background: '#F7F7F8', borderRadius: 6, border: '1px solid #E4E4E7', margin: '0 20px' }} />
+      </div>
+
+      {/* App content */}
+      <div style={{ display: 'flex', height: 'calc(100% - 38px)' }}>
+        {/* Sidebar */}
+        <div style={{ width: 40, background: '#FFFFFF', borderRight: '1px solid #E4E4E7', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '12px 0', gap: 8 }}>
+          <div style={{ width: 24, height: 24, borderRadius: 6, background: project.accent }} />
+          {[...Array(4)].map((_, i) => (
+            <div key={i} style={{ width: 24, height: 24, borderRadius: 6, background: '#E4E4E7' }} />
+          ))}
+        </div>
+
+        {/* Main */}
+        <div style={{ flex: 1, padding: '14px', overflow: 'hidden' }}>
+          {/* Metrics row */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8, marginBottom: 12 }}>
+            {[['MRR', '+18%'], ['Users', '+32%'], ['Churn', '-0.4%']].map(([label, val]) => (
+              <div key={label} style={{ background: '#FFFFFF', border: '1px solid #E4E4E7', borderRadius: 8, padding: '8px 10px' }}>
+                <div style={{ fontSize: 7, color: '#71717A', marginBottom: 3 }}>{label}</div>
+                <div style={{ fontSize: 12, fontWeight: 700, color: '#09090B' }}>{val}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Chart */}
+          <div style={{ background: '#FFFFFF', border: '1px solid #E4E4E7', borderRadius: 8, padding: '10px', marginBottom: 10 }}>
+            <div style={{ fontSize: 7, color: '#71717A', marginBottom: 6, fontWeight: 600 }}>Revenue trend</div>
+            <div style={{ display: 'flex', alignItems: 'flex-end', gap: 3, height: 36 }}>
+              {[30, 42, 38, 55, 48, 65, 60, 75, 70, 85].map((h, i) => (
+                <div
+                  key={i}
+                  style={{
+                    flex: 1, height: `${h}%`, borderRadius: '2px 2px 0 0',
+                    background: i === 9 ? project.accent : '#E4E4E7',
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Rows */}
+          <div style={{ background: '#FFFFFF', border: '1px solid #E4E4E7', borderRadius: 8, overflow: 'hidden' }}>
+            {[...Array(3)].map((_, i) => (
+              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '6px 10px', borderTop: i > 0 ? '1px solid #E4E4E7' : 'none' }}>
+                <div style={{ width: 16, height: 16, borderRadius: 4, background: i === 0 ? project.accent : '#E4E4E7', flexShrink: 0 }} />
+                <div style={{ flex: 1, height: 6, background: '#F7F7F8', borderRadius: 3 }} />
+                <div style={{ width: 24, height: 6, background: '#F7F7F8', borderRadius: 3 }} />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
       {/* Result badge */}
       <div
-        className="absolute bottom-3 left-3 bg-[#0A0A0B]/90 backdrop-blur-sm border border-[#232327] rounded-lg px-3 py-2 text-xs"
-        style={{ fontFamily: "'Space Grotesk', Inter, sans-serif" }}
+        className="absolute bottom-3 left-3 bg-white border border-[#E4E4E7] shadow-sm rounded-lg px-3 py-2 text-xs"
       >
-        <div className="text-accent font-bold text-base leading-none">{project.metric}</div>
+        <div className="font-bold text-base leading-none" style={{ color: project.accent }}>{project.metric}</div>
         <div className="text-muted mt-0.5">{project.metricLabel}</div>
       </div>
     </div>
@@ -96,51 +112,44 @@ function MockupCard({ project }: { project: typeof projects[0] }) {
 
 export default function Work() {
   return (
-    <section id="work" className="py-24 lg:py-32 border-t border-[#232327]" aria-labelledby="work-heading">
+    <section id="work" className="py-24 lg:py-32 bg-white border-t border-[#E4E4E7]" aria-labelledby="work-heading">
       <Container>
-        {/* Heading */}
         <AnimatedReveal className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
           <div>
-            <p className="text-xs font-semibold tracking-widest uppercase text-muted mb-4 flex items-center gap-2">
-              <span className="w-4 h-px bg-accent" />
-              {/* REPLACE: Update label once real projects are in */}
-              Recent Work — Concept Projects
+            <p className="text-xs font-semibold tracking-widest uppercase text-[#3B3FE4] mb-4 flex items-center gap-2">
+              <span className="w-4 h-px bg-[#3B3FE4]" />
+              Recent Work
             </p>
             <h2
               id="work-heading"
               className="font-display text-4xl lg:text-5xl font-bold text-primary tracking-tight leading-none"
             >
-              Built to convert.
+              Built to perform.
               <br />
               <span className="text-muted">Numbers that prove it.</span>
             </h2>
           </div>
           <p className="text-xs text-muted max-w-[260px] sm:text-right leading-relaxed">
-            {/* REPLACE: Remove this note once real spec projects are added */}
-            Spec / concept projects shown. Real case studies added as clients launch.
+            Concept projects shown. Real case studies added as clients give the green light.
           </p>
         </AnimatedReveal>
 
-        {/* Project cards */}
         <StaggerReveal className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {projects.map((project) => (
             <article
               key={project.brand}
-              className="group bg-surface border border-[#232327] rounded-xl overflow-hidden hover:border-accent/30 transition-all duration-200 hover:-translate-y-1"
+              className="group bg-white border border-[#E4E4E7] rounded-2xl overflow-hidden hover:border-[#3B3FE4]/25 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
             >
-              <MockupCard project={project} />
-
+              <ProjectCard project={project} />
               <div className="p-6">
-                <div className="flex items-start justify-between gap-4 mb-3">
-                  <div>
-                    <h3 className="font-display font-bold text-primary text-base tracking-tight">
-                      {project.brand}
-                    </h3>
-                    <p className="text-xs text-muted mt-0.5">{project.category}</p>
-                  </div>
+                <div className="mb-3">
+                  <h3 className="font-display font-bold text-primary text-base tracking-tight">
+                    {project.brand}
+                  </h3>
+                  <p className="text-xs text-muted mt-0.5">{project.category}</p>
                 </div>
                 <p className="text-sm text-muted leading-relaxed mb-3">{project.challenge}</p>
-                <div className="flex items-center gap-2 text-xs font-semibold text-primary border-t border-[#232327] pt-3">
+                <div className="flex items-center gap-2 text-xs font-semibold text-primary border-t border-[#E4E4E7] pt-3">
                   <span className="w-1 h-1 rounded-full bg-accent flex-shrink-0" />
                   {project.result}
                 </div>

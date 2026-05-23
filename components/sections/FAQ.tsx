@@ -3,28 +3,32 @@
 import { useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { Container } from '@/components/ui/Container';
-import { AnimatedReveal, StaggerReveal } from '@/components/ui/AnimatedReveal';
+import { AnimatedReveal } from '@/components/ui/AnimatedReveal';
 
 const faqs = [
   {
-    q: "You're not US-based — can you really deliver?",
-    a: "Yes. We're trained software engineers and we work in your timezone overlap with weekly Loom video updates. Every deliverable is reviewed, documented, and handed over cleanly. The work speaks for itself — which is why we offer a free teardown before you spend a dollar.",
+    q: 'What tech stack do you build with?',
+    a: 'Our default stack is Next.js (React), TypeScript, PostgreSQL, Prisma, and Tailwind — deployed on Vercel or AWS. We also work with Node.js APIs, Stripe billing, Auth.js, and standard third-party integrations. We pick the right tool for the job, not the trendy one.',
   },
   {
-    q: 'Why only Shopify?',
-    a: "Focus. One platform, mastered, beats five done halfway. We know Shopify's rendering pipeline, its theme API, its checkout extension points, and its Core Web Vitals edge cases. That depth is what gets you sub-2s load times and 40% conversion lifts — not generalism.",
+    q: 'How long does a typical project take?',
+    a: 'MVPs take 4 weeks. Full SaaS builds run 6–10 weeks depending on scope. We start every project with a clear spec and a timeline that doesn\'t change unless you change the scope. We have never missed a committed delivery date.',
   },
   {
-    q: "What if it doesn't lift conversion?",
-    a: 'We monitor for 30 days post-launch. If a key metric — conversion rate, add-to-cart rate, checkout completion — moves the wrong way, we diagnose it and fix it on us. We don\'t declare victory on launch day and disappear.',
+    q: 'Do you work with early-stage startups or established businesses?',
+    a: 'Both. Early-stage founders come to us for MVPs and first products. Established businesses hire us to build internal tools, replace expensive SaaS subscriptions, or extend their engineering team. The approach adapts; the quality doesn\'t.',
   },
   {
-    q: 'How fast, really?',
-    a: 'Three weeks from signed contract to launch. Week 1: audit and strategy. Week 2: Figma prototype, reviewed and approved. Week 3: Shopify build, QA on real devices, and go live. We have never missed this window.',
+    q: 'Can you work with our existing codebase?',
+    a: 'Yes. We do code audits before taking on existing projects. If the architecture is salvageable, we build on it. If it\'s fundamentally broken, we\'ll tell you honestly and explain why — before you sign anything.',
   },
   {
-    q: 'Do you do logos, ads, SEO, or social too?',
-    a: "No, on purpose. We do one thing exceptionally: conversion-focused Shopify redesigns. We'll refer you to trusted partners for branding, paid ads, and SEO. Trying to be everything to everyone is exactly what makes agencies average.",
+    q: 'What happens after the project launches?',
+    a: 'Every project includes 30–60 days of post-launch support. After that, you can move to our Scale Retainer for ongoing development, or take the codebase in-house. We write clean, documented code specifically so you\'re never locked in.',
+  },
+  {
+    q: 'Do you handle both design and development?',
+    a: 'Yes — that\'s the whole point. Most studios either do design or dev. We do both in-house, which means fewer handoffs, faster decisions, and a product where the design actually works in the browser. Jony leads design; Tahsin leads architecture.',
   },
 ];
 
@@ -32,19 +36,19 @@ function FAQItem({ q, a, isOpen, onToggle }: { q: string; a: string; isOpen: boo
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <div className="border-b border-[#232327]">
+    <div className="border-b border-[#E4E4E7]">
       <button
         onClick={onToggle}
         aria-expanded={isOpen}
         className="w-full flex items-start justify-between gap-4 py-6 text-left group"
       >
-        <span className="font-display font-bold text-primary text-base leading-snug group-hover:text-accent transition-colors duration-150">
+        <span className="font-display font-bold text-primary text-base leading-snug group-hover:text-[#3B3FE4] transition-colors duration-150">
           {q}
         </span>
         <motion.span
           animate={{ rotate: isOpen ? 45 : 0 }}
           transition={{ duration: prefersReducedMotion ? 0 : 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="flex-shrink-0 w-5 h-5 flex items-center justify-center text-muted group-hover:text-accent transition-colors duration-150 mt-0.5"
+          className="flex-shrink-0 w-5 h-5 flex items-center justify-center text-muted group-hover:text-[#3B3FE4] transition-colors duration-150 mt-0.5"
           aria-hidden="true"
         >
           <svg viewBox="0 0 16 16" fill="none" className="w-4 h-4">
@@ -72,17 +76,16 @@ function FAQItem({ q, a, isOpen, onToggle }: { q: string; a: string; isOpen: boo
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
-
   const toggle = (i: number) => setOpenIndex(openIndex === i ? null : i);
 
   return (
-    <section id="faq" className="py-24 lg:py-32 border-t border-[#232327]" aria-labelledby="faq-heading">
+    <section id="faq" className="py-24 lg:py-32 bg-white border-t border-[#E4E4E7]" aria-labelledby="faq-heading">
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.8fr] gap-12 lg:gap-20">
 
           <AnimatedReveal>
-            <p className="text-xs font-semibold tracking-widest uppercase text-muted mb-4 flex items-center gap-2">
-              <span className="w-4 h-px bg-accent" />
+            <p className="text-xs font-semibold tracking-widest uppercase text-[#3B3FE4] mb-4 flex items-center gap-2">
+              <span className="w-4 h-px bg-[#3B3FE4]" />
               FAQ
             </p>
             <h2

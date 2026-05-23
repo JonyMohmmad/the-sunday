@@ -2,15 +2,13 @@
 
 /* ─── Design System Tokens ─────────────────────────────────────────────────── */
 @theme {
-  /* Colors */
-  --color-background: #0A0A0B;
-  --color-surface: #141416;
-  --color-border: #232327;
-  --color-primary: #FAFAFA;
-  --color-muted: #A1A1AA;
+  --color-background: #FFFFFF;
+  --color-surface: #F7F7F8;
+  --color-border: #E4E4E7;
+  --color-primary: #09090B;
+  --color-muted: #71717A;
   --color-accent: #CCFF00;
 
-  /* Fonts */
   --font-display: var(--font-space-grotesk), "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-inter), "Inter", ui-sans-serif, system-ui, sans-serif;
 }
@@ -26,44 +24,32 @@ html {
 }
 
 body {
-  background-color: #0A0A0B;
-  color: #FAFAFA;
+  background-color: #FFFFFF;
+  color: #09090B;
   font-family: var(--font-inter), Inter, ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
-/* ─── Noise Texture Overlay ────────────────────────────────────────────────── */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
-  opacity: 0.028;
-  pointer-events: none;
-  z-index: 9999;
-  mix-blend-mode: overlay;
-}
-
 /* ─── Focus States ─────────────────────────────────────────────────────────── */
 *:focus-visible {
-  outline: 2px solid #CCFF00;
+  outline: 2px solid #3B3FE4;
   outline-offset: 3px;
   border-radius: 4px;
 }
 
 /* ─── Selection ────────────────────────────────────────────────────────────── */
 ::selection {
-  background-color: rgba(204, 255, 0, 0.2);
-  color: #FAFAFA;
+  background-color: rgba(59, 63, 228, 0.12);
+  color: #09090B;
 }
 
 /* ─── Scrollbar ────────────────────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: #0A0A0B; }
-::-webkit-scrollbar-thumb { background: #232327; border-radius: 10px; }
-::-webkit-scrollbar-thumb:hover { background: #3a3a3e; }
+::-webkit-scrollbar-track { background: #F7F7F8; }
+::-webkit-scrollbar-thumb { background: #D4D4D8; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #A1A1AA; }
 
 /* ─── Marquee Animation ────────────────────────────────────────────────────── */
 @keyframes marquee {
@@ -72,7 +58,7 @@ body::after {
 }
 
 .marquee-track {
-  animation: marquee 28s linear infinite;
+  animation: marquee 32s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

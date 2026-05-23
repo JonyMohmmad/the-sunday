@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="border-t border-[#232327] py-10 relative z-10" role="contentinfo">
+    <footer className="border-t border-[#E4E4E7] py-10 bg-[#F7F7F8]" role="contentinfo">
       <Container>
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
 
@@ -11,23 +11,22 @@ export default function Footer() {
           <div>
             <Link
               href="/"
-              className="font-display text-base font-bold text-primary hover:text-accent transition-colors duration-150"
+              className="font-display text-base font-bold text-primary hover:text-[#3B3FE4] transition-colors duration-150"
               aria-label="The Sunday — Home"
             >
               The Sunday
             </Link>
             <p className="text-xs text-muted mt-1">
-              Shopify conversion redesigns for fashion DTC brands.
+              SaaS & web app studio for startups and growing businesses.
             </p>
           </div>
 
           {/* Links */}
           <nav aria-label="Footer navigation">
             <ul className="flex items-center gap-6" role="list">
-              {/* TODO: Replace # with real social profile links */}
               <li>
                 <a
-                  href="mailto:hello@[DOMAIN]"
+                  href="mailto:hello@thesunday.studio"
                   className="text-xs text-muted hover:text-primary transition-colors duration-150"
                   aria-label="Email us"
                 >
@@ -40,9 +39,9 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-xs text-muted hover:text-primary transition-colors duration-150"
-                  aria-label="Instagram (opens in new tab)"
+                  aria-label="Twitter / X (opens in new tab)"
                 >
-                  Instagram
+                  X
                 </a>
               </li>
               <li>
@@ -51,9 +50,20 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-xs text-muted hover:text-primary transition-colors duration-150"
-                  aria-label="X / Twitter (opens in new tab)"
+                  aria-label="LinkedIn (opens in new tab)"
                 >
-                  X
+                  LinkedIn
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs text-muted hover:text-primary transition-colors duration-150"
+                  aria-label="GitHub (opens in new tab)"
+                >
+                  GitHub
                 </a>
               </li>
             </ul>
@@ -61,12 +71,12 @@ export default function Footer() {
 
         </div>
 
-        <div className="mt-8 pt-6 border-t border-[#232327] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+        <div className="mt-8 pt-6 border-t border-[#E4E4E7] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
           <p className="text-xs text-muted">
             © {new Date().getFullYear()} The Sunday. All rights reserved.
           </p>
           <p className="text-xs text-muted">
-            Built by engineers, for brands that move fast.
+            Engineering and design. Both. Under one roof.
           </p>
         </div>
       </Container>
