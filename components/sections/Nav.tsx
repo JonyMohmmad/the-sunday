@@ -31,7 +31,7 @@ export default function Nav() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-40 bg-[#111113]">
+      <header className="fixed top-0 left-0 right-0 z-40 bg-[#3B3FE4]">
         <Container>
           <nav
             className="flex h-16 items-center justify-between"
@@ -55,7 +55,7 @@ export default function Nav() {
                     <Link
                       href={link.href}
                       className={`text-sm transition-colors duration-150 ${
-                        active ? 'text-accent font-semibold' : 'text-muted hover:text-primary'
+                        active ? 'text-accent font-semibold' : 'text-white/75 hover:text-white'
                       }`}
                     >
                       {link.label}
@@ -107,7 +107,7 @@ export default function Nav() {
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <path d={SCALLOP_PATH} fill="#111113" />
+            <path d={SCALLOP_PATH} fill="#3B3FE4" />
           </svg>
         </div>
       </header>
