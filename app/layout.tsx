@@ -17,7 +17,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: '[COMPANY_NAME] — Shopify Conversion Redesigns for Fashion Brands',
+  title: 'The Sunday — Shopify Conversion Redesigns for Fashion Brands',
   description:
     'We redesign Shopify stores for DTC streetwear, anime, and lifestyle fashion brands. Faster load times, higher conversion, launched in 3 weeks.',
   keywords: [
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     'Shopify agency',
   ],
   openGraph: {
-    title: '[COMPANY_NAME] — Shopify Conversion Redesigns',
+    title: 'The Sunday — Shopify Conversion Redesigns',
     description:
       'We turn your Instagram audience into Shopify buyers. Conversion-focused redesigns for fashion brands, shipped in 3 weeks.',
     type: 'website',
@@ -40,13 +40,13 @@ export const metadata: Metadata = {
         url: 'https://[DOMAIN]/og-image.png',
         width: 1200,
         height: 630,
-        alt: '[COMPANY_NAME] — Shopify Conversion Agency',
+        alt: 'The Sunday — Shopify Conversion Agency',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: '[COMPANY_NAME] — Shopify Conversion Redesigns',
+    title: 'The Sunday — Shopify Conversion Redesigns',
     description: 'Fashion brand Shopify redesigns that actually convert.',
   },
   robots: {
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
-  name: '[COMPANY_NAME]',
+  name: 'The Sunday',
   description:
     'Boutique Shopify redesign agency for DTC streetwear, anime, and lifestyle fashion brands.',
   url: 'https://[DOMAIN]',
