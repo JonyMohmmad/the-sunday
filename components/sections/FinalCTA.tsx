@@ -1,8 +1,14 @@
+'use client';
+
 import { Container } from '@/components/ui/Container';
 import { AnimatedReveal } from '@/components/ui/AnimatedReveal';
-import { Button } from '@/components/ui/Button';
+import { DualCTA } from '@/components/ui/DualCTA';
+import { AuditModal } from '@/components/ui/AuditModal';
+import { useAuditModal } from '@/lib/useAuditModal';
 
 export default function FinalCTA() {
+  const { isOpen, open, close } = useAuditModal();
+
   return (
     <section
       id="contact"
@@ -43,15 +49,17 @@ export default function FinalCTA() {
             and tell you exactly what it will take to build it — whether you hire us or not.
           </p>
 
-          <Button href="/teardown" size="lg" className="text-base px-10 py-5 bg-white text-[#3B3FE4] hover:bg-white/90">
-            Book a free strategy call
-          </Button>
+          <div className="flex justify-center">
+            <DualCTA source="final_cta" onAuditClick={open} size="lg" />
+          </div>
 
-          <p className="text-xs text-white/50 mt-6">
+          <p className="text-xs text-white/50 mt-8">
             No pitch. No pressure. Just an honest conversation about your product.
           </p>
         </AnimatedReveal>
       </Container>
+
+      <AuditModal isOpen={isOpen} onClose={close} />
     </section>
   );
 }

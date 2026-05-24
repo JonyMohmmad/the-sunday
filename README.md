@@ -39,6 +39,28 @@ Search for `// TODO` and `// REPLACE` comments throughout the codebase. Key item
 | Testimonial quotes | `Testimonials.tsx` | Replace placeholder quotes with verbatim client approval |
 | Video testimonial | `Testimonials.tsx` | Replace `href="#"` with real Loom/YouTube URL |
 | Clutch rating | `TrustBadges.tsx` | Replace placeholder with live Clutch widget script |
+| Cal.com URL | `lib/cta-config.ts` | Replace CAL_LINK with your real Cal.com booking URL |
+| Audit form action | `lib/cta-config.ts` | Replace AUDIT_FORM_ACTION with Loops/Mailchimp/ConvertKit URL |
+| ROI calculator % | `ROICalculator.tsx` | Adjust the 2.4× multiplier when you have real client average data |
+| Scroll banner | `ScrollDepthBanner.tsx` | Adjust trigger % (currently 60%) based on GA4 scroll data |
+
+---
+
+## Conversion Flows
+
+Two paths exist for every visitor:
+
+1. HIGH INTENT  → "Book a strategy call" (primary CTA, lime button)
+   Opens Cal.com booking page in a new tab.
+   UTM source tracked per placement via lib/cta-config.ts.
+
+2. LOW INTENT   → "Get a free store audit" (secondary CTA, ghost button)
+   Opens AuditModal overlay. Collects store URL + email.
+   Submits to AUDIT_FORM_ACTION (configure in lib/cta-config.ts).
+
+Mobile visitors see a sticky bottom bar after 400px scroll.
+Desktop visitors see a slide-down banner after 60% scroll depth.
+Both trigger the same two-path conversion system.
 
 ---
 

@@ -1,8 +1,11 @@
 'use client';
 
 import { motion, useReducedMotion } from 'framer-motion';
+import { useEffect } from 'react';
 import { Container } from '@/components/ui/Container';
-import { Button } from '@/components/ui/Button';
+import { DualCTA } from '@/components/ui/DualCTA';
+import { AuditModal } from '@/components/ui/AuditModal';
+import { useAuditModal } from '@/lib/useAuditModal';
 
 function AppMockup() {
   return (
@@ -131,10 +134,18 @@ function AppMockup() {
 
 export default function Hero() {
   const prefersReducedMotion = useReducedMotion();
+  const { isOpen, open, close } = useAuditModal();
+
+  // Task 9: listen for openAuditModal events dispatched by ScrollDepthBanner / MobileStickyBar
+  useEffect(() => {
+    const handler = () => open();
+    window.addEventListener('openAuditModal', handler);
+    return () => window.removeEventListener('openAuditModal', handler);
+  }, [open]);
 
   return (
     <section
-      id="hero"
+      id="home"
       className="relative min-h-screen flex items-center pt-28 pb-20 overflow-hidden bg-white"
       aria-label="Hero"
     >
@@ -204,18 +215,8 @@ export default function Hero() {
               initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, delay: 0.48, ease: [0.22, 1, 0.36, 1] }}
-              className="flex flex-wrap items-center gap-4"
             >
-              <Button href="/teardown" size="lg">
-                Start your project
-              </Button>
-              <a
-                href="/work"
-                className="text-sm text-muted hover:text-primary transition-colors duration-150 flex items-center gap-1.5 font-medium"
-              >
-                See our work
-                <span aria-hidden="true">→</span>
-              </a>
+              <DualCTA source="hero" onAuditClick={open} size="lg" />
             </motion.div>
 
             {/* Trust signals */}
@@ -248,6 +249,8 @@ export default function Hero() {
 
         </div>
       </Container>
+
+      <AuditModal isOpen={isOpen} onClose={close} />
     </section>
   );
 }

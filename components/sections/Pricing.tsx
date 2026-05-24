@@ -1,6 +1,11 @@
+'use client';
+
 import { Container } from '@/components/ui/Container';
 import { AnimatedReveal, StaggerReveal } from '@/components/ui/AnimatedReveal';
-import { Button } from '@/components/ui/Button';
+import { DualCTA } from '@/components/ui/DualCTA';
+import { AuditModal } from '@/components/ui/AuditModal';
+import { ROICalculator } from '@/components/ui/ROICalculator';
+import { useAuditModal } from '@/lib/useAuditModal';
 
 const plans = [
   {
@@ -18,8 +23,8 @@ const plans = [
       '30-day post-launch support',
       'Handover docs & recorded walkthroughs',
     ],
-    cta: 'Start your MVP',
-    ctaHref: '/teardown',
+    ctaSource: 'pricing_starter',
+    ctaLabel: undefined as string | undefined,
   },
   {
     name: 'SaaS Build',
@@ -36,8 +41,8 @@ const plans = [
       'API documentation',
       '60-day post-launch support',
     ],
-    cta: 'Build your SaaS',
-    ctaHref: '/teardown',
+    ctaSource: 'pricing_pro',
+    ctaLabel: "Book a call — let's scope it",
   },
   {
     name: 'Scale Retainer',
@@ -54,13 +59,14 @@ const plans = [
       'Architecture review & refactoring',
       'Unlimited bug fixes',
     ],
-    cta: 'Talk about a retainer',
-    ctaHref: '/teardown',
+    ctaSource: 'pricing_retainer',
+    ctaLabel: undefined as string | undefined,
   },
 ];
 
-
 export default function Pricing() {
+  const { isOpen, open, close } = useAuditModal();
+
   return (
     <section id="pricing" className="py-24 lg:py-32 bg-[#F7F7F8] border-t border-[#E4E4E7]" aria-labelledby="pricing-heading">
       <Container>
@@ -77,6 +83,17 @@ export default function Pricing() {
             <br />
             <span className="text-muted">No hidden fees, ever.</span>
           </h2>
+        </AnimatedReveal>
+
+        {/* ROI Calculator */}
+        <AnimatedReveal className="mb-14">
+          <h3 className="font-display text-xl font-bold text-primary mb-2">
+            Calculate your potential upside
+          </h3>
+          <p className="text-sm text-muted mb-8">
+            Adjust the sliders to see what our typical 2.4× CVR lift means for your store.
+          </p>
+          <ROICalculator />
         </AnimatedReveal>
 
         <StaggerReveal className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
@@ -113,7 +130,7 @@ export default function Pricing() {
                 {plan.description}
               </p>
 
-              <ul className="flex flex-col gap-3" role="list">
+              <ul className="flex flex-col gap-3 flex-1" role="list">
                 {plan.features.map((f) => (
                   <li key={f} className={`flex items-start gap-3 text-sm ${plan.highlighted ? 'text-white/85' : 'text-primary/90'}`}>
                     <svg className={`w-4 h-4 flex-shrink-0 mt-0.5 ${plan.highlighted ? 'text-accent' : 'text-[#3B3FE4]'}`} viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -125,13 +142,12 @@ export default function Pricing() {
               </ul>
 
               <div className="mt-auto pt-2">
-                <Button
-                  href={plan.ctaHref}
-                  variant={plan.highlighted ? 'primary' : 'ghost'}
-                  className="w-full justify-center"
-                >
-                  {plan.cta}
-                </Button>
+                <DualCTA
+                  source={plan.ctaSource}
+                  primaryLabel={plan.ctaLabel}
+                  onAuditClick={open}
+                  size="md"
+                />
               </div>
             </article>
           ))}
@@ -144,6 +160,8 @@ export default function Pricing() {
           </p>
         </AnimatedReveal>
       </Container>
+
+      <AuditModal isOpen={isOpen} onClose={close} />
     </section>
   );
 }

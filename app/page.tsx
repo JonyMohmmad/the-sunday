@@ -12,10 +12,12 @@ import Team from '@/components/sections/Team';
 import FAQ from '@/components/sections/FAQ';
 import FinalCTA from '@/components/sections/FinalCTA';
 import Footer from '@/components/sections/Footer';
+import { ClientProviders } from '@/components/ClientProviders';
 
 export default function Home() {
   return (
     <>
+      <ClientProviders />
       <Nav />
       <main>
         <Hero />

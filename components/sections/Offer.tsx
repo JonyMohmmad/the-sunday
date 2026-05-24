@@ -1,6 +1,10 @@
+'use client';
+
 import { Container } from '@/components/ui/Container';
 import { AnimatedReveal, StaggerReveal } from '@/components/ui/AnimatedReveal';
-import { Button } from '@/components/ui/Button';
+import { DualCTA } from '@/components/ui/DualCTA';
+import { AuditModal } from '@/components/ui/AuditModal';
+import { useAuditModal } from '@/lib/useAuditModal';
 
 const services = [
   {
@@ -34,6 +38,8 @@ const services = [
 ];
 
 export default function Offer() {
+  const { isOpen, open, close } = useAuditModal();
+
   return (
     <section id="offer" className="py-24 lg:py-32 bg-[#F7F7F8] border-t border-[#E4E4E7]" aria-labelledby="offer-heading">
       <Container>
@@ -82,12 +88,12 @@ export default function Offer() {
           ))}
         </StaggerReveal>
 
-        <AnimatedReveal delay={0.1} className="text-center">
-          <Button href="/teardown" size="lg">
-            Tell us what you&apos;re building
-          </Button>
+        <AnimatedReveal delay={0.1}>
+          <DualCTA source="offer" onAuditClick={open} size="md" />
         </AnimatedReveal>
       </Container>
+
+      <AuditModal isOpen={isOpen} onClose={close} />
     </section>
   );
 }
