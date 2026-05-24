@@ -39,7 +39,7 @@ export default function FinalCTA() {
           </h2>
 
           <p className="text-white/70 text-lg leading-relaxed max-w-xl mx-auto mb-10">
-            Book a free 30-minute strategy call. We'll map out your product, identify the core feature set,
+            Book a free 30-minute strategy call. We&apos;ll map out your product, identify the core feature set,
             and tell you exactly what it will take to build it — whether you hire us or not.
           </p>
 

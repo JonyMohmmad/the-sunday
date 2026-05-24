@@ -3,17 +3,27 @@
 import { useReducedMotion } from 'framer-motion';
 import { Container } from '@/components/ui/Container';
 import { AnimatedReveal, StaggerReveal } from '@/components/ui/AnimatedReveal';
+import { AnimatedCounter } from '@/components/ui/AnimatedCounter';
 
-const metrics = [
-  { value: '40+', label: 'products shipped' },
-  { value: '4 wks', label: 'average MVP delivery' },
-  { value: '99.9%', label: 'uptime delivered' },
+interface MetricItem {
+  end: number;
+  suffix: string;
+  label: string;
+  decimals: number;
+  prefix?: string;
+}
+
+const metrics: MetricItem[] = [
+  { end: 47, suffix: '+', label: 'stores optimised', decimals: 0 },
+  { end: 2.3, prefix: '$', suffix: 'M+', label: 'revenue generated', decimals: 1 },
+  { end: 3.1, suffix: '×', label: 'average CVR lift', decimals: 1 },
+  { end: 18, suffix: ' days', label: 'average delivery', decimals: 0 },
 ];
 
 const tags = [
-  'SaaS', 'Web App', 'Dashboard', 'API', 'Auth', 'Billing',
-  'Analytics', 'React', 'Next.js', 'Node.js', 'PostgreSQL', 'Stripe',
-  'AI Integration', 'Mobile', 'Real-time', 'Enterprise',
+  'Shopify Plus', 'CRO', 'Mobile UX', 'Checkout', 'Product Pages', 'Landing Pages',
+  'A/B Testing', 'Speed', 'Conversion', 'DTC', 'Fashion', 'Streetwear',
+  'Drop Campaigns', 'AOV', 'Cart Flows', 'Analytics',
 ];
 
 function Marquee() {
@@ -21,7 +31,8 @@ function Marquee() {
   const doubled = [...tags, ...tags];
 
   return (
-    <div className="overflow-hidden py-4" aria-hidden="true">
+    /* Pause animation on hover via animation-play-state */
+    <div className="marquee-wrapper overflow-hidden py-4" aria-hidden="true">
       <div
         className={`flex gap-4 whitespace-nowrap ${prefersReducedMotion ? '' : 'marquee-track'}`}
         style={{ width: 'max-content' }}
@@ -29,9 +40,10 @@ function Marquee() {
         {doubled.map((tag, i) => (
           <span
             key={i}
-            className="inline-flex items-center gap-2 text-sm font-medium text-muted border border-[#E4E4E7] rounded-full px-4 py-1.5 flex-shrink-0 bg-white"
+            className="inline-flex items-center gap-2 text-sm font-medium text-[#A1A1AA] rounded-full px-4 py-1.5 flex-shrink-0"
+            style={{ border: '1px solid #232327', background: '#141416' }}
           >
-            <span className="w-1 h-1 rounded-full bg-[#3B3FE4] flex-shrink-0" />
+            <span className="w-1 h-1 rounded-full bg-[#CCFF00] flex-shrink-0" />
             {tag}
           </span>
         ))}
@@ -42,19 +54,30 @@ function Marquee() {
 
 export default function ProofStrip() {
   return (
-    <section id="proof" className="py-20 bg-[#F7F7F8] border-y border-[#E4E4E7]" aria-labelledby="proof-heading">
+    <section
+      id="proof"
+      className="py-20 border-y"
+      style={{ background: '#0A0A0B', borderColor: '#232327' }}
+      aria-labelledby="proof-heading"
+    >
       <Container>
-        {/* Metrics */}
-        <StaggerReveal className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-[#E4E4E7] rounded-2xl overflow-hidden mb-16">
+        {/* Animated counters */}
+        <StaggerReveal className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-[#232327] rounded-2xl overflow-hidden mb-16">
           {metrics.map((m) => (
             <div
-              key={m.value}
-              className="bg-white px-8 py-10 flex flex-col gap-2 sm:items-center sm:text-center"
+              key={m.label}
+              className="px-8 py-10 flex flex-col gap-2 items-center text-center"
+              style={{ background: '#141416' }}
             >
-              <span className="font-display text-5xl lg:text-6xl font-bold tracking-tight leading-none text-[#3B3FE4]">
-                {m.value}
+              <span className="font-display text-5xl lg:text-6xl font-bold tracking-tight leading-none text-[#CCFF00]">
+                <AnimatedCounter
+                  end={m.end}
+                  prefix={m.prefix}
+                  suffix={m.suffix}
+                  decimals={m.decimals}
+                />
               </span>
-              <span className="text-sm text-muted">{m.label}</span>
+              <span className="text-sm text-[#A1A1AA]">{m.label}</span>
             </div>
           ))}
         </StaggerReveal>
@@ -66,8 +89,8 @@ export default function ProofStrip() {
 
         {/* Tagline */}
         <AnimatedReveal delay={0.2} className="mt-8 text-center">
-          <p id="proof-heading" className="text-muted text-sm tracking-wide">
-            Built for startups and businesses that take their software seriously.
+          <p id="proof-heading" className="text-[#A1A1AA] text-sm tracking-wide">
+            Built for Shopify brands that take their conversion rate seriously.
           </p>
         </AnimatedReveal>
       </Container>

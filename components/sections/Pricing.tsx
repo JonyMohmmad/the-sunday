@@ -59,13 +59,6 @@ const plans = [
   },
 ];
 
-function CheckIcon() {
-  return (
-    <svg className="w-4 h-4 flex-shrink-0 mt-0.5 text-[#3B3FE4]" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-      <path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
 
 export default function Pricing() {
   return (

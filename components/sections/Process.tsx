@@ -45,7 +45,7 @@ export default function Process() {
               <span className="text-muted">Zero ambiguity.</span>
             </h2>
             <p className="text-muted text-base leading-relaxed">
-              Every project follows the same proven process. You always know where we are, what comes next, and when you'll have something to show your users.
+              Every project follows the same proven process. You always know where we are, what comes next, and when you&apos;ll have something to show your users.
             </p>
           </AnimatedReveal>
 

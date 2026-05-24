@@ -35,6 +35,10 @@ Search for `// TODO` and `// REPLACE` comments throughout the codebase. Key item
 | OG image | `public/og-image.png` | Add a 1200x630 Open Graph share image |
 | Social links | `Footer.tsx` | Replace `href="#"` for Instagram and X |
 | Email | `Footer.tsx`, `layout.tsx` | Replace `hello@[DOMAIN]` |
+| Case study data | `Work.tsx` | Replace placeholder brand names + metrics with real client data |
+| Testimonial quotes | `Testimonials.tsx` | Replace placeholder quotes with verbatim client approval |
+| Video testimonial | `Testimonials.tsx` | Replace `href="#"` with real Loom/YouTube URL |
+| Clutch rating | `TrustBadges.tsx` | Replace placeholder with live Clutch widget script |
 
 ---
 

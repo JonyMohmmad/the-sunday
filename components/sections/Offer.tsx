@@ -84,7 +84,7 @@ export default function Offer() {
 
         <AnimatedReveal delay={0.1} className="text-center">
           <Button href="/teardown" size="lg">
-            Tell us what you're building
+            Tell us what you&apos;re building
           </Button>
         </AnimatedReveal>
       </Container>

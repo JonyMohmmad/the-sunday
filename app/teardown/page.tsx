@@ -31,13 +31,13 @@ export default function TeardownPage() {
               <span className="text-accent">store teardown.</span>
             </h1>
             <p className="text-muted text-lg leading-relaxed mb-10">
-              Share your store URL and we'll send you a loom walkthrough of exactly what's killing your conversion — for free, within 48 hours.
+              Share your store URL and we&apos;ll send you a loom walkthrough of exactly what&apos;s killing your conversion — for free, within 48 hours.
             </p>
 
             {submitted ? (
               <div className="border border-accent/30 bg-accent/5 rounded-xl p-8 text-center">
                 <div className="text-accent text-3xl mb-3">✓</div>
-                <h2 className="font-display text-xl font-bold text-primary mb-2">Got it — we'll be in touch.</h2>
+                <h2 className="font-display text-xl font-bold text-primary mb-2">Got it — we&apos;ll be in touch.</h2>
                 <p className="text-muted text-sm">Expect your teardown loom within 48 hours.</p>
               </div>
             ) : (
@@ -105,7 +105,7 @@ export default function TeardownPage() {
 
                 <div className="flex flex-col gap-2">
                   <label htmlFor="message" className="text-xs font-semibold text-muted uppercase tracking-widest">
-                    What's your biggest conversion problem? (optional)
+                    What&apos;s your biggest conversion problem? (optional)
                   </label>
                   <textarea
                     id="message"

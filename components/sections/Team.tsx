@@ -53,7 +53,7 @@ export default function Team() {
               <span className="text-muted">like founders.</span>
             </h2>
             <p className="text-muted text-base leading-relaxed mb-8">
-              We're Mahir, Tahsin, and Jony — software engineers who'd rather build real products than
+              We&apos;re Mahir, Tahsin, and Jony — software engineers who&apos;d rather build real products than
               write enterprise tickets. You work directly with the people building your software.
               No account managers, no juniors, no 12-week timelines.
             </p>
