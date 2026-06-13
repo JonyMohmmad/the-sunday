@@ -1,7 +1,8 @@
-import type { NextConfig } from "next";
+﻿import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // gray-matter and reading-time are CommonJS â€” transpile for ESM compatibility
+  transpilePackages: ['gray-matter', 'reading-time'],
 };
 
 export default nextConfig;

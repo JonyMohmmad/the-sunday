@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -26,10 +26,10 @@ export function MobileStickyBar({ onAuditClick }: MobileStickyBarProps) {
       <AnimatePresence>
         {visible && (
           <motion.div
-            initial={{ y: 80 }}
+            initial={{ y: '100%' }}
             animate={{ y: 0 }}
-            exit={{ y: 80 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+            exit={{ y: '100%' }}
+            transition={{ type: 'spring', duration: 0.4, bounce: 0.1 }}
             className="fixed bottom-0 left-0 right-0 z-40 flex gap-2 px-4 py-3"
             style={{ background: '#141416', borderTop: '1px solid #232327' }}
           >

@@ -1,96 +1,108 @@
-'use client';
+﻿'use client';
 
 import { Container } from '@/components/ui/Container';
-import { AnimatedReveal, StaggerReveal } from '@/components/ui/AnimatedReveal';
+import RevealOnScroll from '@/components/ui/RevealOnScroll';
+import StaggerGrid from '@/components/ui/StaggerGrid';
+import TextReveal from '@/components/ui/TextReveal';
 import { DualCTA } from '@/components/ui/DualCTA';
 import { AuditModal } from '@/components/ui/AuditModal';
 import { useAuditModal } from '@/lib/useAuditModal';
-
-const services = [
-  {
-    number: '01',
-    title: 'SaaS Development',
-    tag: 'Full product',
-    body: 'We design and build your entire SaaS product — auth, billing, user management, dashboards, APIs. Everything from database schema to deploy.',
-    highlights: ['Multi-tenant architecture', 'Stripe billing integration', 'Role-based access control', 'Admin dashboard'],
-  },
-  {
-    number: '02',
-    title: 'Web Application',
-    tag: 'Custom tools',
-    body: 'Internal tools, client portals, workflow automation, and business-critical web apps. Built for reliability and speed, not just for looks.',
-    highlights: ['Real-time data sync', 'API integrations', 'Responsive UI', 'Performance-first build'],
-  },
-  {
-    number: '03',
-    title: 'MVP Studio',
-    tag: '4-week delivery',
-    body: 'Validate your idea before you over-invest. A focused, shippable MVP with the core loop working — in 4 weeks, at a fixed price.',
-    highlights: ['Core feature set only', 'Figma prototype first', 'Launch-ready in 4 weeks', '30-day post-launch support'],
-  },
-  {
-    number: '04',
-    title: 'Product Design',
-    tag: 'UI/UX',
-    body: 'Design systems, user flows, and interface design that make complex software feel simple. We design and hand off Figma-ready for any dev team.',
-    highlights: ['Design system creation', 'User flow mapping', 'Component library', 'Dev-ready Figma files'],
-  },
-];
+import { COPY } from '@/lib/copy';
 
 export default function Offer() {
   const { isOpen, open, close } = useAuditModal();
+  const stages = COPY.offer.timeline_note.split(' → ');
 
   return (
-    <section id="offer" className="py-24 lg:py-32 bg-[#F7F7F8] border-t border-[#E4E4E7]" aria-labelledby="offer-heading">
+    <section
+      id="work"
+      className="py-24 lg:py-32"
+      style={{ background: '#FFFFFF', borderTop: '1px solid #E4E4E7' }}
+      aria-labelledby="offer-heading"
+    >
       <Container>
-        <AnimatedReveal className="max-w-2xl mb-16">
-          <p className="text-xs font-semibold tracking-widest uppercase text-[#3B3FE4] mb-4 flex items-center gap-2">
-            <span className="w-4 h-px bg-[#3B3FE4]" />
-            What We Build
-          </p>
-          <h2
-            id="offer-heading"
-            className="font-display text-4xl lg:text-5xl font-bold text-primary tracking-tight leading-none mb-4"
-          >
-            Software that ships.
-            <br />
-            <span className="text-muted">Designed to scale.</span>
-          </h2>
-          <p className="text-muted text-lg leading-relaxed">
-            Engineering and design under one roof means fewer handoffs, faster decisions, and a product
-            that actually works the way you imagined it.
-          </p>
-        </AnimatedReveal>
 
-        <StaggerReveal className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-14">
-          {services.map((s) => (
+        <div className="max-w-3xl mb-16">
+          <RevealOnScroll>
+            <p className="text-[11px] uppercase tracking-widest text-[#71717A] mb-4">
+              {COPY.offer.eyebrow}
+            </p>
+            <TextReveal
+              id="offer-heading"
+              as="h2"
+              text={COPY.offer.headline}
+              className="font-display font-bold text-[#3F3F46] tracking-tight leading-[1.05] mb-6"
+              style={{ fontSize: 'clamp(36px, 4vw, 52px)', fontWeight: 700 }}
+            />
+            <p className="text-[#71717A] text-base leading-relaxed">{COPY.offer.subhead}</p>
+          </RevealOnScroll>
+        </div>
+
+        <StaggerGrid className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
+          {COPY.offer.pillars.map((pillar) => (
             <article
-              key={s.number}
-              className="bg-white border border-[#E4E4E7] rounded-2xl p-7 hover:border-[#3B3FE4]/25 hover:shadow-md transition-all duration-200 group"
+              key={pillar.number}
+              className="relative p-6"
+              style={{ background: '#F7F7F8', border: '1px solid #E4E4E7', borderRadius: 12 }}
             >
-              <div className="flex items-center justify-between mb-6">
-                <span className="font-display text-xs font-bold text-[#3B3FE4] tracking-widest">{s.number}</span>
-                <span className="text-xs font-semibold text-[#3B3FE4] bg-[#3B3FE4]/8 px-3 py-1 rounded-full">
-                  {s.tag}
-                </span>
-              </div>
-              <h3 className="font-display text-xl font-bold text-primary tracking-tight mb-3">{s.title}</h3>
-              <p className="text-muted text-sm leading-relaxed mb-5">{s.body}</p>
-              <ul className="flex flex-col gap-2">
-                {s.highlights.map((h) => (
-                  <li key={h} className="flex items-center gap-2 text-xs text-muted">
-                    <span className="w-1 h-1 rounded-full bg-accent flex-shrink-0" />
-                    {h}
-                  </li>
-                ))}
-              </ul>
+              <span
+                className="font-display font-black leading-none select-none pointer-events-none absolute top-4 right-4"
+                style={{ fontSize: 48, color: '#E4E4E7', fontWeight: 800 as const }}
+                aria-hidden="true"
+              >
+                {pillar.number}
+              </span>
+              <h3 className="font-display text-[18px] font-semibold text-[#3F3F46] leading-snug mb-3 pr-12">
+                {pillar.title}
+              </h3>
+              <p className="text-[14px] text-[#71717A] leading-[1.6]">{pillar.body}</p>
             </article>
           ))}
-        </StaggerReveal>
+        </StaggerGrid>
 
-        <AnimatedReveal delay={0.1}>
+        <RevealOnScroll delay={0.15} className="mb-14">
+          <div
+            className="p-6 rounded-xl"
+            style={{ background: '#F7F7F8', border: '1px solid #E4E4E7' }}
+          >
+            <p className="font-display font-bold text-[#3F3F46] text-xl mb-1">
+              {COPY.offer.timeline_label}
+            </p>
+            <p className="text-[12px] text-[#71717A] mb-6 sm:hidden">
+              {COPY.offer.timeline_note}
+            </p>
+
+            <div className="relative hidden sm:block">
+              <div
+                className="absolute top-[3px] left-3 right-3"
+                style={{ borderTop: '1px dashed #E4E4E7' }}
+                aria-hidden="true"
+              />
+              <div className="relative flex justify-between">
+                {stages.map((stage, i) => (
+                  <div key={stage} className="flex flex-col items-center gap-2">
+                    <div
+                      style={{
+                        width: 8, height: 8, borderRadius: '50%',
+                        background: i === stages.length - 1 ? '#CCFF00' : '#E4E4E7',
+                        border: `1.5px solid ${i === stages.length - 1 ? '#CCFF00' : '#D4D4D8'}`,
+                        flexShrink: 0,
+                      }}
+                    />
+                    <span className="text-[10px] text-[#71717A] text-center whitespace-nowrap">
+                      {stage}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </RevealOnScroll>
+
+        <RevealOnScroll delay={0.2}>
           <DualCTA source="offer" onAuditClick={open} size="md" />
-        </AnimatedReveal>
+        </RevealOnScroll>
+
       </Container>
 
       <AuditModal isOpen={isOpen} onClose={close} />

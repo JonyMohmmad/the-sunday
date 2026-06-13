@@ -1,37 +1,27 @@
-import Nav from '@/components/sections/Nav';
-import Hero from '@/components/sections/Hero';
-import TrustBadges from '@/components/sections/TrustBadges';
-import ProofStrip from '@/components/sections/ProofStrip';
-import Problem from '@/components/sections/Problem';
-import Offer from '@/components/sections/Offer';
-import Process from '@/components/sections/Process';
-import Work from '@/components/sections/Work';
-import Testimonials from '@/components/sections/Testimonials';
-import Pricing from '@/components/sections/Pricing';
-import Team from '@/components/sections/Team';
-import FAQ from '@/components/sections/FAQ';
-import FinalCTA from '@/components/sections/FinalCTA';
-import Footer from '@/components/sections/Footer';
-import { ClientProviders } from '@/components/ClientProviders';
+import Nav            from '@/components/layout/Nav';
+import Footer         from '@/components/layout/Footer';
+import Hero           from '@/components/sections/Hero';
+import LogoWall       from '@/components/sections/LogoWall';
+import Features       from '@/components/sections/Features';
+import Metrics        from '@/components/sections/Metrics';
+import Testimonials   from '@/components/sections/Testimonials';
+import PricingSection from '@/components/sections/PricingSection';
+import Faq            from '@/components/sections/Faq';
+import CtaSection     from '@/components/sections/CtaSection';
 
 export default function Home() {
   return (
     <>
-      <ClientProviders />
       <Nav />
       <main>
         <Hero />
-        <TrustBadges />
-        <ProofStrip />
-        <Problem />
-        <Offer />
-        <Process />
-        <Work />
+        <LogoWall />
+        <Features />
+        <Metrics />
         <Testimonials />
-        <Pricing />
-        <Team />
-        <FAQ />
-        <FinalCTA />
+        <PricingSection />
+        <Faq />
+        <CtaSection />
       </main>
       <Footer />
     </>

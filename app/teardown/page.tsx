@@ -1,10 +1,10 @@
-'use client';
+﻿'use client';
 
 import { useState } from 'react';
 import Nav from '@/components/sections/Nav';
 import Footer from '@/components/sections/Footer';
 import { Container } from '@/components/ui/Container';
-import { Button } from '@/components/ui/Button';
+import Button from '@/components/ui/Button';
 
 export default function TeardownPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -23,7 +23,7 @@ export default function TeardownPage() {
             {/* Eyebrow */}
             <p className="text-xs font-semibold tracking-widest uppercase text-muted mb-4 flex items-center gap-2">
               <span className="w-4 h-px bg-accent" />
-              Free · No commitment
+              Free Â· No commitment
             </p>
 
             <h1 className="font-display text-4xl lg:text-5xl font-bold text-primary tracking-tight leading-none mb-4">
@@ -31,13 +31,13 @@ export default function TeardownPage() {
               <span className="text-accent">store teardown.</span>
             </h1>
             <p className="text-muted text-lg leading-relaxed mb-10">
-              Share your store URL and we&apos;ll send you a loom walkthrough of exactly what&apos;s killing your conversion — for free, within 48 hours.
+              Share your store URL and we&apos;ll send you a loom walkthrough of exactly what&apos;s killing your conversion â€” for free, within 48 hours.
             </p>
 
             {submitted ? (
               <div className="border border-accent/30 bg-accent/5 rounded-xl p-8 text-center">
-                <div className="text-accent text-3xl mb-3">✓</div>
-                <h2 className="font-display text-xl font-bold text-primary mb-2">Got it — we&apos;ll be in touch.</h2>
+                <div className="text-accent text-3xl mb-3">âœ“</div>
+                <h2 className="font-display text-xl font-bold text-primary mb-2">Got it â€” we&apos;ll be in touch.</h2>
                 <p className="text-muted text-sm">Expect your teardown loom within 48 hours.</p>
               </div>
             ) : (
@@ -97,8 +97,8 @@ export default function TeardownPage() {
                   >
                     <option value="" disabled selected>Select range</option>
                     <option value="under-5k">Under $5k / mo</option>
-                    <option value="5k-20k">$5k – $20k / mo</option>
-                    <option value="20k-50k">$20k – $50k / mo</option>
+                    <option value="5k-20k">$5k â€“ $20k / mo</option>
+                    <option value="20k-50k">$20k â€“ $50k / mo</option>
                     <option value="50k-plus">$50k+ / mo</option>
                   </select>
                 </div>
@@ -118,7 +118,7 @@ export default function TeardownPage() {
 
                 <div className="pt-2">
                   <Button type="submit" size="lg">
-                    Send my store for a teardown →
+                    Send my store for a teardown â†’
                   </Button>
                 </div>
 

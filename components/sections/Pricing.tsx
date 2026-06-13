@@ -1,164 +1,148 @@
-'use client';
+﻿'use client';
 
+import type { ReactNode } from 'react';
 import { Container } from '@/components/ui/Container';
-import { AnimatedReveal, StaggerReveal } from '@/components/ui/AnimatedReveal';
+import RevealOnScroll from '@/components/ui/RevealOnScroll';
+import StaggerGrid from '@/components/ui/StaggerGrid';
+import TiltCard from '@/components/ui/TiltCard';
 import { DualCTA } from '@/components/ui/DualCTA';
 import { AuditModal } from '@/components/ui/AuditModal';
 import { ROICalculator } from '@/components/ui/ROICalculator';
 import { useAuditModal } from '@/lib/useAuditModal';
+import { COPY } from '@/lib/copy';
 
-const plans = [
-  {
-    name: 'MVP Studio',
-    price: 'from $8,500',
-    frequency: 'one-time · fixed scope',
-    description: 'Go from idea to live product in 4 weeks. Core features only — no bloat, no scope creep. The fastest path to real user feedback.',
-    highlighted: false,
-    features: [
-      'Product discovery workshop',
-      'Full Figma prototype (all screens)',
-      'Full-stack web app build',
-      'Auth, basic user management',
-      'Deploy to production (Vercel / AWS)',
-      '30-day post-launch support',
-      'Handover docs & recorded walkthroughs',
-    ],
-    ctaSource: 'pricing_starter',
-    ctaLabel: undefined as string | undefined,
-  },
-  {
-    name: 'SaaS Build',
-    price: 'from $18,000',
-    frequency: 'one-time · full product',
-    description: 'A complete, production-ready SaaS. Multi-tenant architecture, billing, dashboards, admin panel — the full stack your business needs.',
-    highlighted: true,
-    features: [
-      'Everything in MVP Studio',
-      'Multi-tenant SaaS architecture',
-      'Stripe billing & subscription management',
-      'Role-based access control',
-      'Admin dashboard & analytics',
-      'API documentation',
-      '60-day post-launch support',
-    ],
-    ctaSource: 'pricing_pro',
-    ctaLabel: "Book a call — let's scope it",
-  },
-  {
-    name: 'Scale Retainer',
-    price: 'from $4,000/mo',
-    frequency: 'ongoing · cancel anytime',
-    description: 'Continuous product development. New features every sprint, performance monitoring, and a dedicated engineering team — on demand.',
-    highlighted: false,
-    features: [
-      'Dedicated sprint capacity (2-week cycles)',
-      'New features shipped every sprint',
-      'Performance & uptime monitoring',
-      'Priority Slack & video support',
-      'Monthly product strategy session',
-      'Architecture review & refactoring',
-      'Unlimited bug fixes',
-    ],
-    ctaSource: 'pricing_retainer',
-    ctaLabel: undefined as string | undefined,
-  },
-];
+function CheckIcon() {
+  return (
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+      <path d="M2 6l3 3 5-5" stroke="#CCFF00" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function highlightDollarAmounts(text: string): ReactNode {
+  const parts = text.split(/(\$[^\s,]+)/g);
+  return (
+    <>
+      {parts.map((part, i) =>
+        part.startsWith('$') ? (
+          <strong key={i} style={{ color: '#CCFF00' }}>{part}</strong>
+        ) : (
+          part
+        )
+      )}
+    </>
+  );
+}
 
 export default function Pricing() {
   const { isOpen, open, close } = useAuditModal();
 
   return (
-    <section id="pricing" className="py-24 lg:py-32 bg-[#F7F7F8] border-t border-[#E4E4E7]" aria-labelledby="pricing-heading">
+    <section
+      id="pricing"
+      className="py-24 lg:py-32"
+      style={{ background: '#F7F7F8', borderTop: '1px solid #E4E4E7' }}
+      aria-labelledby="pricing-heading"
+    >
       <Container>
-        <AnimatedReveal className="max-w-2xl mb-14">
-          <p className="text-xs font-semibold tracking-widest uppercase text-[#3B3FE4] mb-4 flex items-center gap-2">
-            <span className="w-4 h-px bg-[#3B3FE4]" />
-            Pricing
-          </p>
-          <h2
-            id="pricing-heading"
-            className="font-display text-4xl lg:text-5xl font-bold text-primary tracking-tight leading-none mb-4"
-          >
-            Clear pricing.
-            <br />
-            <span className="text-muted">No hidden fees, ever.</span>
-          </h2>
-        </AnimatedReveal>
 
-        {/* ROI Calculator */}
-        <AnimatedReveal className="mb-14">
-          <h3 className="font-display text-xl font-bold text-primary mb-2">
+        <div className="max-w-3xl mb-16">
+          <RevealOnScroll>
+            <p className="text-[11px] uppercase tracking-widest text-[#71717A] mb-4">
+              {COPY.pricing.eyebrow}
+            </p>
+            <h2
+              id="pricing-heading"
+              className="font-display font-bold text-[#3F3F46] tracking-tight leading-[1.05] mb-6"
+              style={{ fontSize: 'clamp(36px, 4vw, 52px)', fontWeight: 700 }}
+            >
+              {COPY.pricing.headline.split('\n').map((line, i) => (
+                <span key={i} style={{ display: 'block' }}>{line}</span>
+              ))}
+            </h2>
+            <p className="text-[#71717A] text-base leading-relaxed">{COPY.pricing.subhead}</p>
+          </RevealOnScroll>
+        </div>
+
+        <RevealOnScroll className="mb-16">
+          <h3 className="font-display text-xl font-bold text-[#3F3F46] mb-2">
             Calculate your potential upside
           </h3>
-          <p className="text-sm text-muted mb-8">
+          <p className="text-sm text-[#71717A] mb-8">
             Adjust the sliders to see what our typical 2.4× CVR lift means for your store.
           </p>
           <ROICalculator />
-        </AnimatedReveal>
+        </RevealOnScroll>
 
-        <StaggerReveal className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-          {plans.map((plan) => (
-            <article
-              key={plan.name}
-              className={`relative rounded-2xl p-8 flex flex-col gap-6 transition-all duration-200 ${
-                plan.highlighted
-                  ? 'bg-[#09090B] border-2 border-[#09090B] shadow-xl'
-                  : 'bg-white border border-[#E4E4E7] hover:border-[#3B3FE4]/30 hover:shadow-md'
-              }`}
+        <StaggerGrid className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
+          {COPY.pricing.cards.map((card) => (
+            <TiltCard
+              key={card.tier}
+              className="h-full"
+              maxTilt={4}
             >
-              {plan.highlighted && (
-                <div className="absolute -top-3 left-8">
-                  <span className="bg-accent text-[#09090B] text-xs font-bold px-3 py-1 rounded-full tracking-wide">
-                    Most Popular
-                  </span>
+              <article
+                className="relative flex flex-col overflow-hidden h-full"
+                style={{
+                  background: '#FFFFFF',
+                  border: `1px solid ${card.badge ? '#CCFF00' : '#E4E4E7'}`,
+                  borderRadius: 12,
+                }}
+              >
+                {card.badge && (
+                  <div className="absolute left-6" style={{ top: 0, transform: 'translateY(-50%)' }}>
+                    <span style={{
+                      background: '#CCFF00', color: '#FFFFFF',
+                      fontSize: 11, fontWeight: 600,
+                      padding: '3px 10px', borderRadius: 99,
+                      display: 'inline-block',
+                    }}>
+                      {card.badge}
+                    </span>
+                  </div>
+                )}
+
+                <div className="p-8 pb-6 flex-1">
+                  <h3 className="font-display text-lg font-bold text-[#3F3F46] mb-4">{card.tier}</h3>
+                  <div className="mb-1">
+                    <span
+                      className="font-display text-[#3F3F46]"
+                      style={{ fontSize: 48, fontWeight: 800 as const, lineHeight: 1 }}
+                    >
+                      {card.price}
+                    </span>
+                  </div>
+                  <span className="block text-[13px] text-[#71717A] mb-6">{card.per}</span>
+                  <p className="text-[14px] text-[#71717A] leading-[1.6] mb-6">{card.description}</p>
+
+                  <ul className="flex flex-col gap-3 mb-6" role="list">
+                    {card.includes.map((item) => (
+                      <li key={item} className="flex items-start gap-3 text-[14px] text-[#71717A]">
+                        <span className="flex-shrink-0 mt-[3px]"><CheckIcon /></span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <DualCTA
+                    source={`pricing_${card.tier.toLowerCase().replace(' ', '_')}`}
+                    primaryLabel={card.cta}
+                    onAuditClick={open}
+                    size="md"
+                  />
                 </div>
-              )}
 
-              <div>
-                <h3 className={`font-display text-xl font-bold tracking-tight mb-1 ${plan.highlighted ? 'text-white' : 'text-primary'}`}>
-                  {plan.name}
-                </h3>
-                <div className="flex items-baseline gap-2 mt-3 mb-1">
-                  <span className={`font-display text-3xl font-bold ${plan.highlighted ? 'text-white' : 'text-primary'}`}>
-                    {plan.price}
-                  </span>
+                <div
+                  className="px-8 py-3 text-[12px] text-[#71717A]"
+                  style={{ borderTop: '1px solid #E4E4E7', background: '#FFFFFF' }}
+                >
+                  {highlightDollarAmounts(card.note)}
                 </div>
-                <span className={`text-xs ${plan.highlighted ? 'text-white/50' : 'text-muted'}`}>{plan.frequency}</span>
-              </div>
-
-              <p className={`text-sm leading-relaxed ${plan.highlighted ? 'text-white/70' : 'text-muted'}`}>
-                {plan.description}
-              </p>
-
-              <ul className="flex flex-col gap-3 flex-1" role="list">
-                {plan.features.map((f) => (
-                  <li key={f} className={`flex items-start gap-3 text-sm ${plan.highlighted ? 'text-white/85' : 'text-primary/90'}`}>
-                    <svg className={`w-4 h-4 flex-shrink-0 mt-0.5 ${plan.highlighted ? 'text-accent' : 'text-[#3B3FE4]'}`} viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                      <path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                    {f}
-                  </li>
-                ))}
-              </ul>
-
-              <div className="mt-auto pt-2">
-                <DualCTA
-                  source={plan.ctaSource}
-                  primaryLabel={plan.ctaLabel}
-                  onAuditClick={open}
-                  size="md"
-                />
-              </div>
-            </article>
+              </article>
+            </TiltCard>
           ))}
-        </StaggerReveal>
+        </StaggerGrid>
 
-        <AnimatedReveal delay={0.15} className="text-center">
-          <p className="text-sm text-muted">
-            <span className="text-[#3B3FE4] font-semibold">Founder pricing</span> for our first cohort of clients.
-            Rates increase once we publish 5 case studies.
-          </p>
-        </AnimatedReveal>
       </Container>
 
       <AuditModal isOpen={isOpen} onClose={close} />

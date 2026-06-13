@@ -1,6 +1,7 @@
-'use client';
+﻿'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { Events } from '@/lib/analytics-events';
 
 const MAX_CVR = 8;
 
@@ -16,6 +17,15 @@ export function ROICalculator() {
   const [monthlyRevenue, setMonthlyRevenue] = useState(30000);
   const [currentCVR, setCurrentCVR]         = useState(1.5);
   const [avgOrderValue, setAvgOrderValue]   = useState(85);
+
+  const debounceRef = useRef<ReturnType<typeof setTimeout>>(undefined);
+  useEffect(() => {
+    clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(() => {
+      Events.roiCalculatorUsed(monthlyRevenue);
+    }, 1000);
+    return () => clearTimeout(debounceRef.current);
+  }, [monthlyRevenue]);
 
   const projectedCVR     = Math.min(currentCVR * 2.4, MAX_CVR);
   const projectedRevenue = monthlyRevenue * (projectedCVR / currentCVR);
@@ -37,7 +47,7 @@ export function ROICalculator() {
           className="text-[11px] text-[#A1A1AA] px-2.5 py-1 rounded-full"
           style={{ background: '#0A0A0B', border: '1px solid #232327' }}
         >
-          Based on our avg 2.4× CVR lift
+          Based on our avg 2.4Ã— CVR lift
         </span>
       </div>
 
@@ -162,7 +172,7 @@ export function ROICalculator() {
           href="#work"
           className="text-xs text-[#CCFF00] hover:underline whitespace-nowrap"
         >
-          See our case studies →
+          See our case studies â†’
         </a>
       </div>
     </div>

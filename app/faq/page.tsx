@@ -1,19 +1,19 @@
-import Nav from '@/components/sections/Nav';
-import FAQ from '@/components/sections/FAQ';
-import Footer from '@/components/sections/Footer';
+import Nav    from '@/components/layout/Nav';
+import Faq    from '@/components/sections/Faq';
+import Footer from '@/components/layout/Footer';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'FAQ — The Sunday',
-  description: 'Common questions about working with The Sunday — timeline, pricing, and process.',
+  title: 'FAQ — Forge',
+  description: 'Common questions about Forge — pricing, billing, security, and support.',
 };
 
 export default function FAQPage() {
   return (
     <>
       <Nav />
-      <main className="pt-24">
-        <FAQ />
+      <main style={{ paddingTop: '80px' }}>
+        <Faq />
       </main>
       <Footer />
     </>

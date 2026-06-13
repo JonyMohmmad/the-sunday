@@ -1,23 +1,30 @@
+﻿import Link from 'next/link';
 import { Container } from '@/components/ui/Container';
-import Link from 'next/link';
+import { COPY } from '@/lib/copy';
 
 export default function Footer() {
   return (
-    <footer className="border-t border-[#E4E4E7] py-10 bg-[#F7F7F8]" role="contentinfo">
+    <footer
+      role="contentinfo"
+      className="py-10"
+      style={{ background: '#FFFFFF', borderTop: '1px solid #E4E4E7' }}
+    >
       <Container>
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+        <div className="flex flex-col sm:flex-row items-start justify-between gap-8 mb-8">
 
-          {/* Wordmark + tagline */}
-          <div>
+          {/* Wordmark + tagline + scarcity note */}
+          <div className="max-w-xs">
             <Link
               href="/"
-              className="font-display text-base font-bold text-primary hover:text-[#3B3FE4] transition-colors duration-150"
+              className="font-display text-base font-bold text-[#3F3F46] hover:text-white/80 transition-colors duration-150"
               aria-label="The Sunday — Home"
+              style={{ fontWeight: 700 }}
             >
-              The Sunday
+              The Sunda<span style={{ color: '#CCFF00' }}>y</span>
             </Link>
-            <p className="text-xs text-muted mt-1">
-              SaaS & web app studio for startups and growing businesses.
+            <p className="text-[14px] text-[#71717A] mt-1">{COPY.footer.tagline}</p>
+            <p className="text-[12px] text-[#71717A] italic mt-3 leading-relaxed">
+              {COPY.footer.note}
             </p>
           </div>
 
@@ -25,45 +32,37 @@ export default function Footer() {
           <nav aria-label="Footer navigation">
             <ul className="flex items-center gap-6" role="list">
               <li>
+                {/* TODO: replace with real email before launch */}
                 <a
-                  href="mailto:hello@thesunday.studio"
-                  className="text-xs text-muted hover:text-primary transition-colors duration-150"
+                  href={`mailto:${COPY.footer.email}`}
+                  className="text-xs text-[#71717A] hover:text-[#3F3F46] transition-colors duration-150"
                   aria-label="Email us"
                 >
                   Email
                 </a>
               </li>
               <li>
+                {/* TODO: replace with real Instagram URL */}
                 <a
                   href="#"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs text-muted hover:text-primary transition-colors duration-150"
-                  aria-label="Twitter / X (opens in new tab)"
+                  className="text-xs text-[#71717A] hover:text-[#3F3F46] transition-colors duration-150"
+                  aria-label="Instagram (opens in new tab)"
+                >
+                  Instagram
+                </a>
+              </li>
+              <li>
+                {/* TODO: replace with real X/Twitter URL */}
+                <a
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs text-[#71717A] hover:text-[#3F3F46] transition-colors duration-150"
+                  aria-label="X / Twitter (opens in new tab)"
                 >
                   X
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs text-muted hover:text-primary transition-colors duration-150"
-                  aria-label="LinkedIn (opens in new tab)"
-                >
-                  LinkedIn
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs text-muted hover:text-primary transition-colors duration-150"
-                  aria-label="GitHub (opens in new tab)"
-                >
-                  GitHub
                 </a>
               </li>
             </ul>
@@ -71,12 +70,15 @@ export default function Footer() {
 
         </div>
 
-        <div className="mt-8 pt-6 border-t border-[#E4E4E7] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
-          <p className="text-xs text-muted">
+        <div
+          className="pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2"
+          style={{ borderTop: '1px solid #E4E4E7' }}
+        >
+          <p className="text-xs text-[#71717A]">
             © {new Date().getFullYear()} The Sunday. All rights reserved.
           </p>
-          <p className="text-xs text-muted">
-            Engineering and design. Both. Under one roof.
+          <p className="text-xs text-[#71717A]">
+            Shopify CRO · DTC fashion brands · US · UK · AU · CA
           </p>
         </div>
       </Container>

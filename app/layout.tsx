@@ -1,90 +1,68 @@
 import type { Metadata } from 'next';
-import { Space_Grotesk, Inter } from 'next/font/google';
+import { GeistSans } from 'geist/font/sans';
+import { GeistMono } from 'geist/font/mono';
 import './globals.css';
 
-const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  variable: '--font-space-grotesk',
-  display: 'swap',
-  weight: ['400', '500', '600', '700'],
-});
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-  weight: ['400', '500', '600'],
-});
-
 export const metadata: Metadata = {
-  title: 'The Sunday — SaaS & Web App Development Studio',
+  metadataBase: new URL('https://forge.dev'),
+  title: {
+    default: 'Forge — Deploy APIs instantly. Monitor everything.',
+    template: '%s | Forge',
+  },
   description:
-    'We build SaaS products and web applications for startups and growing businesses. Premium engineering and product design, shipped in weeks.',
+    'Forge deploys your APIs globally in under 3 seconds, monitors every request in real-time, and scales to zero automatically. Trusted by 4,200+ engineering teams.',
   keywords: [
-    'SaaS development',
-    'web app development',
-    'MVP development',
-    'product design',
-    'software studio',
+    'API deployment',
+    'API monitoring',
+    'edge computing',
+    'serverless APIs',
+    'distributed tracing',
+    'real-time observability',
+    'developer infrastructure',
   ],
+  authors: [{ name: 'Forge, Inc.', url: 'https://forge.dev' }],
+  creator: 'Forge, Inc.',
   openGraph: {
-    title: 'The Sunday — SaaS & Web App Studio',
-    description:
-      'We build software products that scale. Premium engineering and design in one studio — from MVP to full SaaS.',
     type: 'website',
     locale: 'en_US',
-    // TODO: Replace with real domain and OG image
-    url: 'https://[DOMAIN]',
+    url: 'https://forge.dev',
+    title: 'Forge — Deploy APIs instantly. Monitor everything.',
+    description:
+      'Deploy your APIs globally in under 3 seconds. Monitor every request in real-time. Scales to zero automatically.',
+    siteName: 'Forge',
     images: [
       {
-        url: 'https://[DOMAIN]/og-image.png',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'The Sunday — Shopify Conversion Agency',
+        alt: 'Forge — API deployment and monitoring platform',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'The Sunday — Shopify Conversion Redesigns',
-    description: 'Fashion brand Shopify redesigns that actually convert.',
+    title: 'Forge — Deploy APIs instantly. Monitor everything.',
+    description:
+      'Deploy your APIs globally in under 3 seconds. Monitor every request in real-time.',
+    creator: '@forgedev',
+    images: ['/og-image.png'],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'ProfessionalService',
-  name: 'The Sunday',
-  description:
-    'Boutique Shopify redesign agency for DTC streetwear, anime, and lifestyle fashion brands.',
-  url: 'https://[DOMAIN]',
-  // TODO: Replace with real contact details
-  email: 'hello@[DOMAIN]',
-  areaServed: ['US', 'GB', 'CA', 'AU'],
-  serviceType: 'Shopify Store Redesign',
-  priceRange: '$$',
-};
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      className={`${spaceGrotesk.variable} ${inter.variable}`}
-    >
-      <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-      </head>
+    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <body>{children}</body>
     </html>
   );

@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { ScrollDepthBanner } from '@/components/ui/ScrollDepthBanner';
 import { MobileStickyBar } from '@/components/ui/MobileStickyBar';

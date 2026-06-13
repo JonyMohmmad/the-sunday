@@ -1,256 +1,225 @@
 'use client';
 
-import { motion, useReducedMotion } from 'framer-motion';
-import { useEffect } from 'react';
-import { Container } from '@/components/ui/Container';
-import { DualCTA } from '@/components/ui/DualCTA';
-import { AuditModal } from '@/components/ui/AuditModal';
-import { useAuditModal } from '@/lib/useAuditModal';
+import { motion } from 'framer-motion';
+import { useMotionVariants } from '@/lib/animations';
+import GradientText from '@/components/ui/GradientText';
 
-function AppMockup() {
-  return (
-    <div
-      className="relative rounded-2xl overflow-hidden border border-[#E4E4E7]"
-      style={{ boxShadow: '0 24px 80px rgba(59,63,228,0.12), 0 4px 20px rgba(0,0,0,0.06)' }}
-      aria-hidden="true"
-    >
-      {/* Window chrome */}
-      <div className="flex items-center gap-3 px-4 py-3 border-b border-[#E4E4E7] bg-[#F7F7F8]">
-        <div className="flex gap-1.5">
-          {['#FF5F57', '#FFBD2E', '#28C840'].map((c) => (
-            <div key={c} style={{ width: 10, height: 10, borderRadius: 5, background: c }} />
-          ))}
-        </div>
-        <div className="flex-1 flex justify-center">
-          <div className="h-5 rounded-md bg-[#E4E4E7]" style={{ width: 180 }} />
-        </div>
-        <div className="h-5 rounded-md bg-[#E4E4E7]" style={{ width: 60 }} />
-      </div>
+const logLines = [
+  { text: '$ forge deploy ./api --prod',         color: '#93c5fd', delay: 0.3  },
+  { text: '✓ Building... (1.2s)',                 color: '#22c55e', delay: 0.45 },
+  { text: '✓ Pushing to 37 edge regions... (0.8s)', color: '#22c55e', delay: 0.6  },
+  { text: '✓ Health checks passed (all regions)', color: '#22c55e', delay: 0.72 },
+  { text: '✓ Deployed → https://api.forge.dev/v2',color: '#22c55e', delay: 0.84 },
+  { text: 'Deploy time: 2.4s 🚀',                color: '#f1f5f9', delay: 0.96 },
+];
 
-      <div className="flex bg-white" style={{ height: 360 }}>
-        {/* Sidebar */}
-        <div
-          className="flex flex-col items-center gap-3 py-4 px-2 border-r border-[#E4E4E7] bg-[#F7F7F8]"
-          style={{ width: 52 }}
-        >
-          <div style={{ width: 32, height: 32, borderRadius: 8, background: '#3B3FE4' }} />
-          {[...Array(4)].map((_, i) => (
-            <div key={i} style={{ width: 32, height: 32, borderRadius: 8, background: '#E4E4E7' }} />
-          ))}
-        </div>
-
-        {/* Main */}
-        <div className="flex-1 p-5 overflow-hidden">
-          {/* Metric cards */}
-          <div className="grid grid-cols-3 gap-3 mb-4">
-            {[
-              { label: 'MRR', value: '$24,180', pct: '+12%' },
-              { label: 'Active Users', value: '1,847', pct: '+8%' },
-              { label: 'Churn Rate', value: '1.2%', pct: '-0.3%' },
-            ].map((m) => (
-              <div
-                key={m.label}
-                style={{ background: '#F7F7F8', border: '1px solid #E4E4E7', borderRadius: 12, padding: '12px 14px' }}
-              >
-                <div style={{ fontSize: 9, color: '#71717A', marginBottom: 4, fontWeight: 500 }}>{m.label}</div>
-                <div style={{ fontSize: 17, fontWeight: 700, color: '#09090B', letterSpacing: '-0.5px' }}>
-                  {m.value}
-                </div>
-                <span
-                  style={{
-                    fontSize: 9, fontWeight: 700, color: '#09090B',
-                    background: '#CCFF00', padding: '1px 6px', borderRadius: 4,
-                    display: 'inline-block', marginTop: 4,
-                  }}
-                >
-                  {m.pct}
-                </span>
-              </div>
-            ))}
-          </div>
-
-          {/* Chart */}
-          <div style={{ border: '1px solid #E4E4E7', borderRadius: 12, padding: '12px 14px', marginBottom: 12 }}>
-            <div style={{ fontSize: 9, color: '#71717A', marginBottom: 8, fontWeight: 600 }}>
-              Revenue · Last 12 months
-            </div>
-            <div style={{ display: 'flex', alignItems: 'flex-end', gap: 4, height: 56 }}>
-              {[28, 42, 35, 55, 48, 68, 60, 76, 70, 85, 75, 95].map((h, i) => (
-                <div
-                  key={i}
-                  style={{
-                    flex: 1,
-                    height: `${h}%`,
-                    borderRadius: '3px 3px 0 0',
-                    background: i === 11 ? '#3B3FE4' : i === 9 ? '#CCFF00' : '#E4E4E7',
-                  }}
-                />
-              ))}
-            </div>
-          </div>
-
-          {/* Table */}
-          <div style={{ border: '1px solid #E4E4E7', borderRadius: 12, overflow: 'hidden' }}>
-            {[
-              { name: 'Acme Corp', plan: 'Scale', mrr: '$890', active: true },
-              { name: 'Verve Studio', plan: 'Growth', mrr: '$290', active: true },
-              { name: 'Bolt Labs', plan: 'Starter', mrr: '$49', active: false },
-            ].map((r, i) => (
-              <div
-                key={r.name}
-                style={{
-                  display: 'flex', alignItems: 'center', gap: 10, padding: '8px 14px',
-                  borderTop: i > 0 ? '1px solid #E4E4E7' : 'none',
-                  background: i % 2 === 0 ? '#fff' : '#FAFAFA',
-                }}
-              >
-                <div
-                  style={{
-                    width: 22, height: 22, borderRadius: 6, flexShrink: 0,
-                    background: i === 0 ? '#3B3FE4' : i === 1 ? '#CCFF00' : '#E4E4E7',
-                  }}
-                />
-                <div style={{ flex: 1, fontSize: 9, fontWeight: 600, color: '#09090B' }}>{r.name}</div>
-                <div style={{ fontSize: 9, color: '#71717A' }}>{r.plan}</div>
-                <div style={{ fontSize: 9, fontWeight: 700, color: '#09090B' }}>{r.mrr}</div>
-                <span
-                  style={{
-                    fontSize: 8, fontWeight: 700,
-                    color: r.active ? '#09090B' : '#71717A',
-                    background: r.active ? '#CCFF00' : '#E4E4E7',
-                    padding: '1px 6px', borderRadius: 4,
-                  }}
-                >
-                  {r.active ? 'Active' : 'Trial'}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+const avatarGradients = [
+  'linear-gradient(135deg,#667eea,#764ba2)',
+  'linear-gradient(135deg,#f093fb,#f5576c)',
+  'linear-gradient(135deg,#4facfe,#00f2fe)',
+  'linear-gradient(135deg,#43e97b,#38f9d7)',
+  'linear-gradient(135deg,#fa709a,#fee140)',
+];
 
 export default function Hero() {
-  const prefersReducedMotion = useReducedMotion();
-  const { isOpen, open, close } = useAuditModal();
-
-  // Task 9: listen for openAuditModal events dispatched by ScrollDepthBanner / MobileStickyBar
-  useEffect(() => {
-    const handler = () => open();
-    window.addEventListener('openAuditModal', handler);
-    return () => window.removeEventListener('openAuditModal', handler);
-  }, [open]);
+  const v = useMotionVariants();
 
   return (
     <section
-      id="home"
-      className="relative min-h-screen flex items-center pt-28 pb-20 overflow-hidden bg-white"
       aria-label="Hero"
+      className="relative min-h-screen flex flex-col items-center justify-center pt-32 pb-24 text-center px-4"
+      style={{ zIndex: 1 }}
     >
-      {/* Subtle blue glow top */}
-      <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 pointer-events-none"
-        aria-hidden="true"
+
+      {/* Animated badge */}
+      <motion.div
+        variants={v.fadeIn}
+        initial="hidden"
+        animate="visible"
+        className="mb-8 inline-flex"
+      >
+        <motion.div
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm cursor-pointer"
+          style={{
+            background: 'rgba(59,130,246,0.06)',
+            border: '1px solid rgba(59,130,246,0.3)',
+            color: '#93c5fd',
+          }}
+          whileHover={{
+            boxShadow: '0 0 20px rgba(59,130,246,0.2)',
+            borderColor: 'rgba(59,130,246,0.5)',
+          }}
+          transition={{ duration: 0.2 }}
+        >
+          <span>⚡</span>
+          <span>New — Edge deployments now in 37 regions</span>
+          <span style={{ color: 'rgba(147,197,253,0.6)' }}>→</span>
+        </motion.div>
+      </motion.div>
+
+      {/* H1 */}
+      <motion.h1
+        variants={v.fadeUp}
+        initial="hidden"
+        animate="visible"
+        transition={{ delay: 0.1 }}
+        className="font-bold tracking-tight leading-none mb-6"
         style={{
-          width: '900px',
-          height: '500px',
-          background: 'radial-gradient(ellipse at 50% 0%, rgba(59,63,228,0.07) 0%, transparent 70%)',
+          fontSize: 'clamp(52px, 6vw, 80px)',
+          letterSpacing: '-0.03em',
+          color: 'var(--text)',
+          maxWidth: '14ch',
         }}
-      />
+      >
+        Deploy APIs that
+        <br />
+        <GradientText>actually scale.</GradientText>
+      </motion.h1>
 
-      <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.15fr] gap-12 lg:gap-16 items-center">
+      {/* Subheadline */}
+      <motion.p
+        variants={v.fadeUp}
+        initial="hidden"
+        animate="visible"
+        transition={{ delay: 0.2 }}
+        className="text-[19px] leading-[1.7] mb-10"
+        style={{ color: 'var(--text-2)', maxWidth: '560px' }}
+      >
+        Forge deploys your APIs globally in under 3 seconds, monitors every request
+        in real-time, and scales to zero automatically. No infrastructure expertise required.
+      </motion.p>
 
-          {/* ── Left: Text ── */}
-          <div className="flex flex-col gap-6 lg:gap-8">
+      {/* CTA row */}
+      <motion.div
+        variants={v.fadeUp}
+        initial="hidden"
+        animate="visible"
+        transition={{ delay: 0.3 }}
+        className="flex flex-wrap items-center justify-center gap-4 mb-10"
+      >
+        <motion.a
+          href="#"
+          whileHover={{ y: -2, scale: 1.03, boxShadow: '0 0 32px rgba(59,130,246,0.35)' }}
+          whileTap={{ scale: 0.97 }}
+          transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-base font-semibold text-white"
+          style={{ background: 'var(--primary)' }}
+        >
+          Start deploying free →
+        </motion.a>
+        <motion.a
+          href="#"
+          whileHover={{ y: -2, borderColor: 'var(--primary)', color: '#93c5fd' }}
+          whileTap={{ scale: 0.97 }}
+          transition={{ duration: 0.15 }}
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-medium transition-colors duration-150"
+          style={{
+            border: '1px solid var(--border)',
+            color: 'var(--text-2)',
+          }}
+        >
+          ▶ Watch 2-min demo
+        </motion.a>
+      </motion.div>
 
-            {/* Eyebrow */}
-            <motion.div
-              initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-[#3B3FE4]"
+      {/* Social proof */}
+      <motion.div
+        variants={v.fadeUp}
+        initial="hidden"
+        animate="visible"
+        transition={{ delay: 0.4 }}
+        className="flex items-center gap-3 justify-center mb-16"
+      >
+        <div className="flex">
+          {avatarGradients.map((grad, i) => (
+            <div
+              key={i}
+              className="w-8 h-8 rounded-full border-2 flex-shrink-0"
+              style={{
+                background: grad,
+                borderColor: 'var(--bg)',
+                marginLeft: i === 0 ? 0 : -8,
+              }}
+            />
+          ))}
+        </div>
+        <p className="text-sm" style={{ color: 'var(--text-2)' }}>
+          <strong className="font-semibold" style={{ color: 'var(--text)' }}>
+            4,200+
+          </strong>{' '}
+          engineering teams shipping with Forge
+        </p>
+      </motion.div>
+
+      {/* Hero terminal card */}
+      <motion.div
+        variants={v.fadeUp}
+        initial="hidden"
+        animate="visible"
+        transition={{ delay: 0.5 }}
+        className="float-animation w-full"
+        style={{ maxWidth: '640px', zIndex: 2 }}
+      >
+        <div
+          className="glass glow-blue rounded-2xl overflow-hidden"
+          style={{ boxShadow: '0 0 60px rgba(59,130,246,0.15), 0 32px 64px rgba(0,0,0,0.4)' }}
+        >
+          {/* Card header */}
+          <div
+            className="flex items-center gap-2 px-5 py-3.5"
+            style={{ borderBottom: '1px solid var(--border)' }}
+          >
+            <div className="flex items-center gap-1.5">
+              <div className="w-3 h-3 rounded-full bg-red-500/80" />
+              <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+              <div className="w-3 h-3 rounded-full bg-green-500/80" />
+            </div>
+            <span
+              className="ml-2 text-sm"
+              style={{ color: 'var(--text-3)', fontFamily: 'var(--font-geist-mono)' }}
             >
-              <span className="w-4 h-px bg-[#3B3FE4]" aria-hidden="true" />
-              SaaS &amp; Web App Studio
-            </motion.div>
-
-            {/* Headline */}
-            <motion.h1
-              initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-              className="font-display font-bold text-primary leading-none tracking-tight text-[clamp(2.6rem,5.5vw,4.5rem)]"
-            >
-              We build the software
-              <br />
-              <span
-                style={{
-                  backgroundImage: 'linear-gradient(135deg, #3B3FE4 0%, #7C3AED 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                }}
-              >
-                your market wants.
-              </span>
-            </motion.h1>
-
-            {/* Subhead */}
-            <motion.p
-              initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              className="text-muted text-lg leading-relaxed max-w-[500px]"
-            >
-              Premium engineering and product design in one studio. From{' '}
-              <span className="text-primary font-semibold">validated MVP</span> to full-scale SaaS —
-              shipped in weeks, built to last.
-            </motion.p>
-
-            {/* CTAs */}
-            <motion.div
-              initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.48, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <DualCTA source="hero" onAuditClick={open} size="lg" />
-            </motion.div>
-
-            {/* Trust signals */}
-            <motion.div
-              initial={prefersReducedMotion ? false : { opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.55, delay: 0.65 }}
-              className="flex flex-wrap gap-x-6 gap-y-2 text-xs text-muted pt-2 border-t border-[#E4E4E7]"
-            >
-              {['Fixed price · no surprises', 'Engineers only · no outsourcing', 'Weeks to ship · not months'].map(
-                (t) => (
-                  <span key={t} className="flex items-center gap-1.5">
-                    <span className="w-1 h-1 rounded-full bg-accent flex-shrink-0" aria-hidden="true" />
-                    {t}
-                  </span>
-                )
-              )}
-            </motion.div>
+              forge deploy
+            </span>
           </div>
 
-          {/* ── Right: App Mockup ── */}
-          <motion.div
-            initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.97, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="w-full"
+          {/* Log lines */}
+          <div className="px-5 py-5 space-y-1.5">
+            {logLines.map((line, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -8 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: line.delay, duration: 0.35, ease: [0.2, 0.8, 0.2, 1] }}
+                className="text-[13px] leading-relaxed"
+                style={{
+                  fontFamily: 'var(--font-geist-mono)',
+                  color: line.color,
+                }}
+              >
+                {line.text}
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Progress bar */}
+          <div
+            className="px-5 pb-5"
           >
-            <AppMockup />
-          </motion.div>
-
+            <div
+              className="h-[2px] rounded-full overflow-hidden"
+              style={{ background: 'var(--surface-2)' }}
+            >
+              <motion.div
+                className="h-full rounded-full"
+                style={{ background: 'var(--primary)' }}
+                initial={{ width: '0%' }}
+                animate={{ width: '100%' }}
+                transition={{ delay: 1.1, duration: 1, ease: 'easeInOut' }}
+              />
+            </div>
+          </div>
         </div>
-      </Container>
-
-      <AuditModal isOpen={isOpen} onClose={close} />
+      </motion.div>
     </section>
   );
 }

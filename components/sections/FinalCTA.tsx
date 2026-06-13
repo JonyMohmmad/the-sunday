@@ -1,10 +1,13 @@
-'use client';
+﻿'use client';
 
 import { Container } from '@/components/ui/Container';
-import { AnimatedReveal } from '@/components/ui/AnimatedReveal';
 import { DualCTA } from '@/components/ui/DualCTA';
 import { AuditModal } from '@/components/ui/AuditModal';
 import { useAuditModal } from '@/lib/useAuditModal';
+import { DropCultureBadge } from '@/components/ui/DropCultureBadge';
+import RevealOnScroll from '@/components/ui/RevealOnScroll';
+import TextReveal from '@/components/ui/TextReveal';
+import { COPY } from '@/lib/copy';
 
 export default function FinalCTA() {
   const { isOpen, open, close } = useAuditModal();
@@ -12,51 +15,62 @@ export default function FinalCTA() {
   return (
     <section
       id="contact"
-      className="relative py-32 lg:py-40 overflow-hidden border-t border-[#E4E4E7]"
+      className="relative py-32 lg:py-40 overflow-hidden"
+      style={{ background: '#FFFFFF', borderTop: '1px solid #E4E4E7' }}
       aria-labelledby="cta-heading"
-      style={{
-        background: 'linear-gradient(135deg, #3B3FE4 0%, #7C3AED 100%)',
-      }}
     >
-      {/* Subtle lime glow */}
+      {/* The ONLY gradient in the site — subtle lime climax glow */}
       <div
         className="absolute inset-0 pointer-events-none"
         aria-hidden="true"
         style={{
-          background: 'radial-gradient(ellipse 60% 50% at 80% 20%, rgba(204,255,0,0.15) 0%, transparent 60%)',
+          background: 'radial-gradient(ellipse 60% 40% at 50% 50%, rgba(204,255,0,0.04), transparent)',
+          zIndex: 0,
         }}
       />
 
+      {/* DropCultureBadge — top-right, desktop only */}
+      <div
+        className="hidden lg:block absolute top-12 right-12 pointer-events-none"
+        style={{ opacity: 0.4, zIndex: 0 }}
+        aria-hidden="true"
+      >
+        <DropCultureBadge />
+      </div>
+
       <Container className="relative text-center">
-        <AnimatedReveal>
-          <p className="text-xs font-semibold tracking-widest uppercase text-white/60 mb-6 flex items-center justify-center gap-2">
-            <span className="w-4 h-px bg-white/40" />
-            Free strategy call · No commitment
-            <span className="w-4 h-px bg-white/40" />
-          </p>
+        <div style={{ position: 'relative', zIndex: 1 }}>
+          <RevealOnScroll>
+            <p className="text-[11px] uppercase tracking-widest text-[#71717A] mb-6">
+              {COPY.final_cta.eyebrow}
+            </p>
 
-          <h2
-            id="cta-heading"
-            className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-none mb-6 max-w-3xl mx-auto"
-          >
-            Ready to ship
-            <br />
-            <span className="text-accent">your product?</span>
-          </h2>
+            <TextReveal
+              id="cta-heading"
+              as="h2"
+              text={COPY.final_cta.headline}
+              className="font-display text-[#3F3F46] tracking-tight mx-auto mb-6"
+              style={{
+                fontSize: 'clamp(40px, 6vw, 72px)',
+                fontWeight: 800 as const,
+                lineHeight: 1.0,
+                maxWidth: 800,
+              }}
+            />
 
-          <p className="text-white/70 text-lg leading-relaxed max-w-xl mx-auto mb-10">
-            Book a free 30-minute strategy call. We&apos;ll map out your product, identify the core feature set,
-            and tell you exactly what it will take to build it — whether you hire us or not.
-          </p>
+            <p className="text-[#71717A] text-lg leading-relaxed max-w-xl mx-auto mb-10">
+              {COPY.final_cta.subhead}
+            </p>
 
-          <div className="flex justify-center">
-            <DualCTA source="final_cta" onAuditClick={open} size="lg" />
-          </div>
+            <div className="flex justify-center">
+              <DualCTA source="final_cta" onAuditClick={open} size="lg" />
+            </div>
 
-          <p className="text-xs text-white/50 mt-8">
-            No pitch. No pressure. Just an honest conversation about your product.
-          </p>
-        </AnimatedReveal>
+            <p className="text-[13px] text-[#71717A] italic mt-8">
+              {COPY.final_cta.proof}
+            </p>
+          </RevealOnScroll>
+        </div>
       </Container>
 
       <AuditModal isOpen={isOpen} onClose={close} />

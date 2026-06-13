@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -35,10 +35,10 @@ export function ScrollDepthBanner() {
       <AnimatePresence>
         {visible && (
           <motion.div
-            initial={{ y: -60 }}
+            initial={{ y: '-100%' }}
             animate={{ y: 0 }}
-            exit={{ y: -60 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+            exit={{ y: '-100%' }}
+            transition={{ type: 'spring', duration: 0.4, bounce: 0.08 }}
             className="fixed top-0 left-0 right-0 z-45 flex items-center justify-center gap-4 h-12"
             style={{
               background: '#0f1a00',
@@ -62,7 +62,7 @@ export function ScrollDepthBanner() {
               onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(204,255,0,0.08)')}
               onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
             >
-              Claim your free audit →
+              Claim your free audit â†’
             </button>
 
             <button
@@ -71,7 +71,7 @@ export function ScrollDepthBanner() {
               aria-label="Dismiss banner"
               className="absolute right-4 text-[#A1A1AA] text-lg leading-none hover:text-[#FAFAFA] transition-colors"
             >
-              ×
+              Ã—
             </button>
           </motion.div>
         )}

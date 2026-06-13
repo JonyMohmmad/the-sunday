@@ -1,10 +1,10 @@
-import Nav from '@/components/sections/Nav';
+﻿import Nav from '@/components/sections/Nav';
 import Work from '@/components/sections/Work';
 import Footer from '@/components/sections/Footer';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Work — The Sunday',
+  title: 'Work â€” The Sunday',
   description: 'Conversion-focused Shopify redesigns for fashion DTC brands. See our results.',
 };
 

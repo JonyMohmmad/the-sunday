@@ -1,119 +1,129 @@
 'use client';
 
-import { useState } from 'react';
-import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
-import { Container } from '@/components/ui/Container';
-import { AnimatedReveal } from '@/components/ui/AnimatedReveal';
+import { useState, useRef } from 'react';
+import { motion, AnimatePresence, useInView } from 'framer-motion';
+import { useMotionVariants } from '@/lib/animations';
 
 const faqs = [
   {
-    q: 'What tech stack do you build with?',
-    a: 'Our default stack is Next.js (React), TypeScript, PostgreSQL, Prisma, and Tailwind — deployed on Vercel or AWS. We also work with Node.js APIs, Stripe billing, Auth.js, and standard third-party integrations. We pick the right tool for the job, not the trendy one.',
+    q: 'Is there a free plan?',
+    a: 'Yes. The Hobby tier is free forever with 100k API calls per month, 1 deployment, and community support. No credit card required.',
   },
   {
-    q: 'How long does a typical project take?',
-    a: 'MVPs take 4 weeks. Full SaaS builds run 6–10 weeks depending on scope. We start every project with a clear spec and a timeline that doesn\'t change unless you change the scope. We have never missed a committed delivery date.',
+    q: 'How does billing work for overages?',
+    a: "We bill usage-based for calls above your tier. You set a monthly cap — we'll never charge beyond it without your approval.",
   },
   {
-    q: 'Do you work with early-stage startups or established businesses?',
-    a: 'Both. Early-stage founders come to us for MVPs and first products. Established businesses hire us to build internal tools, replace expensive SaaS subscriptions, or extend their engineering team. The approach adapts; the quality doesn\'t.',
+    q: 'Can I bring my own domain?',
+    a: "Custom domains are available on Pro and Enterprise plans. HTTPS is provisioned automatically via Let's Encrypt with no additional configuration.",
   },
   {
-    q: 'Can you work with our existing codebase?',
-    a: 'Yes. We do code audits before taking on existing projects. If the architecture is salvageable, we build on it. If it\'s fundamentally broken, we\'ll tell you honestly and explain why — before you sign anything.',
+    q: 'What happens when I exceed my API call limit?',
+    a: "You'll get an email warning at 80% and 95% usage. We never take your API offline without prior notice — you stay live while we discuss options.",
   },
   {
-    q: 'What happens after the project launches?',
-    a: 'Every project includes 30–60 days of post-launch support. After that, you can move to our Scale Retainer for ongoing development, or take the codebase in-house. We write clean, documented code specifically so you\'re never locked in.',
+    q: 'Is my data secure?',
+    a: 'Yes. Forge is SOC 2 Type II certified. All data is encrypted at rest (AES-256) and in transit (TLS 1.3). We do not train on your data or share it with third parties.',
   },
   {
-    q: 'Do you handle both design and development?',
-    a: 'Yes — that\'s the whole point. Most studios either do design or dev. We do both in-house, which means fewer handoffs, faster decisions, and a product where the design actually works in the browser. Jony leads design; Tahsin leads architecture.',
+    q: 'Do you offer startup discounts?',
+    a: "Yes — 90% off for pre-seed startups for 12 months. Email startups@forge.dev with your company info and we'll get you set up within 24 hours.",
   },
 ];
 
-function FAQItem({ q, a, isOpen, onToggle }: { q: string; a: string; isOpen: boolean; onToggle: () => void }) {
-  const prefersReducedMotion = useReducedMotion();
+function FaqItem({
+  q, a, index, parentInView,
+}: {
+  q: string; a: string; index: number; parentInView: boolean;
+}) {
+  const [open, setOpen] = useState(false);
+  const v = useMotionVariants();
 
   return (
-    <div className="border-b border-[#E4E4E7]">
+    <motion.div
+      variants={v.fadeUp}
+      initial="hidden"
+      animate={parentInView ? 'visible' : 'hidden'}
+      transition={{ delay: index * 0.07 }}
+      style={{ borderBottom: '1px solid var(--border)' }}
+    >
       <button
-        onClick={onToggle}
-        aria-expanded={isOpen}
-        className="w-full flex items-start justify-between gap-4 py-6 text-left group"
+        onClick={() => setOpen((prev) => !prev)}
+        className="w-full flex items-center justify-between py-5 text-left transition-colors duration-150"
+        aria-expanded={open}
+        style={{ color: open ? 'var(--primary)' : 'var(--text)' }}
+        onMouseEnter={(e) => { if (!open) (e.currentTarget as HTMLElement).style.color = 'var(--primary)'; }}
+        onMouseLeave={(e) => { if (!open) (e.currentTarget as HTMLElement).style.color = 'var(--text)'; }}
       >
-        <span className="font-display font-bold text-primary text-base leading-snug group-hover:text-[#3B3FE4] transition-colors duration-150">
-          {q}
-        </span>
-        <motion.span
-          animate={{ rotate: isOpen ? 45 : 0 }}
-          transition={{ duration: prefersReducedMotion ? 0 : 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="flex-shrink-0 w-5 h-5 flex items-center justify-center text-muted group-hover:text-[#3B3FE4] transition-colors duration-150 mt-0.5"
+        <span className="text-[16px] font-semibold pr-8">{q}</span>
+        <motion.svg
+          animate={{ rotate: open ? 180 : 0 }}
+          transition={{ duration: 0.25, ease: [0.2, 0.8, 0.2, 1] }}
+          width="18" height="18" viewBox="0 0 18 18" fill="none"
+          className="flex-shrink-0"
           aria-hidden="true"
         >
-          <svg viewBox="0 0 16 16" fill="none" className="w-4 h-4">
-            <path d="M8 2v12M2 8h12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-          </svg>
-        </motion.span>
+          <path
+            d="M4.5 6.75L9 11.25L13.5 6.75"
+            stroke="currentColor" strokeWidth="1.75"
+            strokeLinecap="round" strokeLinejoin="round"
+          />
+        </motion.svg>
       </button>
 
       <AnimatePresence initial={false}>
-        {isOpen && (
+        {open && (
           <motion.div
-            initial={prefersReducedMotion ? false : { height: 0, opacity: 0 }}
+            initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: prefersReducedMotion ? 0 : 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-hidden"
+            transition={{ duration: 0.3, ease: [0.2, 0.8, 0.2, 1] }}
+            style={{ overflow: 'hidden' }}
           >
-            <p className="text-muted text-base leading-relaxed pb-6">{a}</p>
+            <p className="text-[15px] leading-[1.7] pb-5" style={{ color: 'var(--text-2)' }}>
+              {a}
+            </p>
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </motion.div>
   );
 }
 
-export default function FAQ() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
-  const toggle = (i: number) => setOpenIndex(openIndex === i ? null : i);
+export default function Faq() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: '-80px' });
+  const v = useMotionVariants();
 
   return (
-    <section id="faq" className="py-24 lg:py-32 bg-white border-t border-[#E4E4E7]" aria-labelledby="faq-heading">
-      <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.8fr] gap-12 lg:gap-20">
+    <section id="faq" aria-labelledby="faq-heading" className="py-20 relative z-10">
+      <div className="max-w-2xl mx-auto px-4 sm:px-6">
+        <motion.div
+          ref={ref}
+          variants={v.fadeUp}
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
+          className="text-center mb-12"
+        >
+          <h2
+            id="faq-heading"
+            className="font-bold tracking-tight"
+            style={{
+              fontSize: 'clamp(36px, 4vw, 52px)',
+              letterSpacing: '-0.02em',
+              color: 'var(--text)',
+            }}
+          >
+            Frequently asked questions.
+          </h2>
+        </motion.div>
 
-          <AnimatedReveal>
-            <p className="text-xs font-semibold tracking-widest uppercase text-[#3B3FE4] mb-4 flex items-center gap-2">
-              <span className="w-4 h-px bg-[#3B3FE4]" />
-              FAQ
-            </p>
-            <h2
-              id="faq-heading"
-              className="font-display text-4xl lg:text-5xl font-bold text-primary tracking-tight leading-none"
-            >
-              Honest
-              <br />
-              answers.
-            </h2>
-          </AnimatedReveal>
-
-          <AnimatedReveal delay={0.1}>
-            <div role="list" aria-label="Frequently asked questions">
-              {faqs.map((faq, i) => (
-                <FAQItem
-                  key={i}
-                  q={faq.q}
-                  a={faq.a}
-                  isOpen={openIndex === i}
-                  onToggle={() => toggle(i)}
-                />
-              ))}
-            </div>
-          </AnimatedReveal>
-
+        <div>
+          {faqs.map((faq, i) => (
+            <FaqItem key={faq.q} q={faq.q} a={faq.a} index={i} parentInView={inView} />
+          ))}
         </div>
-      </Container>
+      </div>
     </section>
   );
 }

@@ -1,8 +1,8 @@
-// lib/cta-config.ts
-// ─────────────────────────────────────────────────────────────────────────────
+﻿// lib/cta-config.ts
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 // Single source of truth for all CTA links and copy.
 // Before launch: replace CAL_LINK with your real Cal.com URL.
-// ─────────────────────────────────────────────────────────────────────────────
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 export const CTA = {
   // TODO: replace with your real Cal.com or Calendly booking URL
@@ -14,7 +14,7 @@ export const CTA = {
   AUDIT_FORM_ACTION: '#',
 
   PRIMARY_LABEL: 'Book a strategy call',
-  PRIMARY_SUBLABEL: 'Free · 30 min · No pitch',
+  PRIMARY_SUBLABEL: 'Free Â· 30 min Â· No pitch',
 
   SECONDARY_LABEL: 'Get a free store audit',
   SECONDARY_SUBLABEL: 'We review your Shopify store in 48 hrs',

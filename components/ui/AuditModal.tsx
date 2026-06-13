@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -43,7 +43,7 @@ export function AuditModal({ isOpen, onClose }: AuditModalProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
+          transition={{ duration: 0.18, ease: 'easeOut' }}
           className="fixed inset-0 z-50 flex items-center justify-center p-4"
           style={{ background: 'rgba(0,0,0,0.85)' }}
           onClick={onClose}
@@ -52,10 +52,10 @@ export function AuditModal({ isOpen, onClose }: AuditModalProps) {
           aria-labelledby="audit-modal-heading"
         >
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.97 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.2 }}
+            exit={{ opacity: 0, scale: 0.97 }}
+            transition={{ duration: 0.18, ease: [0.23, 1, 0.32, 1] }}
             className="relative w-full max-w-[480px] rounded-2xl p-10"
             style={{ background: '#141416', border: '1px solid #232327' }}
             onClick={(e) => e.stopPropagation()}
@@ -70,12 +70,12 @@ export function AuditModal({ isOpen, onClose }: AuditModalProps) {
               onMouseEnter={(e) => (e.currentTarget.style.background = '#232327')}
               onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
             >
-              ×
+              Ã—
             </button>
 
             {submitted ? (
               <div className="flex flex-col items-center gap-4 py-6 text-center">
-                <span className="text-[#CCFF00] text-5xl">✓</span>
+                <span className="text-[#CCFF00] text-5xl">âœ“</span>
                 <p className="font-display text-xl font-bold text-[#FAFAFA]">
                   We&apos;ve got your store!
                 </p>
@@ -91,7 +91,7 @@ export function AuditModal({ isOpen, onClose }: AuditModalProps) {
                   Get your free store audit
                 </h2>
                 <p className="text-sm text-[#A1A1AA] leading-relaxed mb-6">
-                  We&apos;ll review your Shopify store&apos;s CRO, speed, and mobile UX — then send you
+                  We&apos;ll review your Shopify store&apos;s CRO, speed, and mobile UX â€” then send you
                   a loom walkthrough within 48 hours. No strings attached.
                 </p>
 
@@ -100,7 +100,7 @@ export function AuditModal({ isOpen, onClose }: AuditModalProps) {
                   {[
                     'Full CRO audit of your homepage, PDP, and checkout',
                     'Lighthouse performance score + top 3 speed fixes',
-                    'Personalised Loom walkthrough (10–15 min)',
+                    'Personalised Loom walkthrough (10â€“15 min)',
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-2.5 text-sm text-[#FAFAFA]">
                       <CheckIcon />
@@ -140,19 +140,19 @@ export function AuditModal({ isOpen, onClose }: AuditModalProps) {
                   >
                     <option value="" disabled>Monthly revenue (optional)</option>
                     <option value="under_10k">Under $10K / month</option>
-                    <option value="10k_50k">$10K – $50K / month</option>
-                    <option value="50k_200k">$50K – $200K / month</option>
+                    <option value="10k_50k">$10K â€“ $50K / month</option>
+                    <option value="50k_200k">$50K â€“ $200K / month</option>
                     <option value="200k_plus">$200K+ / month</option>
                   </select>
 
                   <button
                     type="submit"
-                    className="w-full h-12 font-display font-semibold text-[#0A0A0B] rounded-[6px] mt-1 transition-colors duration-150"
+                    className="w-full h-12 font-display font-semibold text-[#0A0A0B] rounded-[6px] mt-1 transition-[transform,background-color] duration-150 ease-out active:scale-[0.97]"
                     style={{ background: '#CCFF00' }}
                     onMouseEnter={(e) => (e.currentTarget.style.background = '#d4ff33')}
                     onMouseLeave={(e) => (e.currentTarget.style.background = '#CCFF00')}
                   >
-                    Send my store for review →
+                    Send my store for review â†’
                   </button>
                 </form>
 

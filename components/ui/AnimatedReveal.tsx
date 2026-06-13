@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { motion, useInView, useReducedMotion } from 'framer-motion';
 import { useRef, ReactNode } from 'react';
@@ -25,9 +25,9 @@ export function AnimatedReveal({
   return (
     <MotionTag
       ref={ref}
-      initial={prefersReducedMotion ? false : { opacity: 0, y: 28 }}
+      initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 24 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.45, delay, ease: [0.23, 1, 0.32, 1] }}
       className={className}
     >
       {children}
@@ -35,7 +35,7 @@ export function AnimatedReveal({
   );
 }
 
-/* Stagger container — wraps children and reveals them one by one */
+/* Stagger container â€” wraps children and reveals them one by one */
 interface StaggerProps {
   children: ReactNode;
   className?: string;
@@ -61,13 +61,13 @@ export function StaggerReveal({
   };
 
   const item = {
-    hidden: prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 },
+    hidden: prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 20 },
     show: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.55,
-        ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+        duration: 0.45,
+        ease: [0.23, 1, 0.32, 1] as [number, number, number, number],
       },
     },
   };

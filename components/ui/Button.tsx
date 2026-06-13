@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 interface ButtonProps {
   href?: string;
@@ -14,22 +14,23 @@ interface ButtonProps {
   target?: string;
   rel?: string;
   type?: 'button' | 'submit';
+  disabled?: boolean;
 }
 
-const sizes = {
+const sizeMap = {
   sm: 'px-4 py-2 text-sm',
-  md: 'px-6 py-3 text-sm',
-  lg: 'px-8 py-4 text-base',
+  md: 'px-5 py-2.5 text-sm',
+  lg: 'px-6 py-3 text-base',
 };
 
-const variants = {
+const variantMap = {
   primary:
-    'bg-accent text-[#0A0A0B] font-semibold hover:bg-[#d4ff1a] active:scale-95',
+    'bg-primary text-white font-semibold rounded-xl hover:brightness-110 transition-[filter,box-shadow] duration-150',
   ghost:
-    'border border-[#232327] text-primary font-medium hover:border-accent hover:text-accent',
+    'border text-sm font-medium rounded-xl transition-[border-color,color] duration-150',
 };
 
-export function Button({
+export default function Button({
   href,
   onClick,
   variant = 'primary',
@@ -39,18 +40,30 @@ export function Button({
   target,
   rel,
   type = 'button',
+  disabled,
 }: ButtonProps) {
-  const base = `inline-flex items-center gap-2 rounded-lg transition-all duration-150 ${sizes[size]} ${variants[variant]} ${className}`;
+  const ghostStyle =
+    variant === 'ghost'
+      ? { borderColor: 'var(--border)', color: 'var(--text-2)' }
+      : {};
+
+  const base = `inline-flex items-center gap-2 ${sizeMap[size]} ${variantMap[variant]} ${className}`;
+
+  const motionProps = {
+    whileHover: { y: -2, scale: 1.02 },
+    whileTap:   { scale: 0.98 },
+    transition: { type: 'spring' as const, stiffness: 400, damping: 25 },
+  };
 
   if (href) {
-    const isExternal = href.startsWith('http') || href.startsWith('//');
     return (
-      <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}>
+      <motion.div {...motionProps} className="inline-flex">
         <Link
           href={href}
           className={base}
-          target={target ?? (isExternal ? '_blank' : undefined)}
-          rel={rel ?? (isExternal ? 'noopener noreferrer' : undefined)}
+          style={ghostStyle}
+          target={target}
+          rel={rel}
         >
           {children}
         </Link>
@@ -63,8 +76,9 @@ export function Button({
       type={type}
       onClick={onClick}
       className={base}
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.97 }}
+      style={ghostStyle}
+      disabled={disabled}
+      {...motionProps}
     >
       {children}
     </motion.button>
