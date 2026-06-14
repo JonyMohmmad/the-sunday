@@ -8,7 +8,7 @@ import CtaSection     from '@/components/sections/CtaSection';
 export const metadata: Metadata = {
   title: 'Pricing',
   description:
-    'Simple, transparent pricing. Start free with Hobby, scale with Pro at $49/mo, or get custom Enterprise pricing. No hidden fees.',
+    'Transparent, fixed-price web design and development. Marketing sites from $2,500, custom sites and stores from $6,000, and custom quotes for web apps. No hidden fees.',
 };
 
 export default function PricingPage() {
@@ -26,13 +26,13 @@ export default function PricingPage() {
               lineHeight: 1.05,
             }}
           >
-            Pricing that scales with you.
+            Pricing that fits your business.
           </h1>
           <p
             className="text-[18px] leading-relaxed mx-auto"
-            style={{ color: 'var(--text-2)', maxWidth: '520px' }}
+            style={{ color: 'var(--text-2)', maxWidth: '560px' }}
           >
-            Start free. No credit card needed. Upgrade when your team is ready.
+            Fixed quotes, no surprises. Every project is scoped on a free call before you commit.
           </p>
         </div>
         <PricingSection />

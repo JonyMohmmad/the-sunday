@@ -2,34 +2,44 @@
 
 /* ─── Design Tokens ─────────────────────────────────────────────────────────── */
 @theme {
-  --color-bg:        #080b14;
-  --color-surface:   #0d1117;
-  --color-surface-2: #161b27;
+  --color-bg:        #edeef5;
+  --color-surface:   #ffffff;
+  --color-surface-2: #e2e4ee;
   --color-primary:   #3b82f6;
-  --color-success:   #22c55e;
-  --color-text:      #f1f5f9;
-  --color-text-2:    #64748b;
-  --color-text-3:    #334155;
-  --color-code-bg:   #0f1521;
-  --color-amber:     #f59e0b;
+  --color-cta:       #df0203;
+  --color-cta-hover: #b80203;
+  --color-success:   #16a34a;
+  --color-text:      #1a1a1a;
+  --color-text-2:    #5a5a5a;
+  --color-text-3:    #9a9a9a;
+  --color-code-bg:   #f4f5fa;
+  --color-amber:     #d97706;
 
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, 'Courier New', monospace;
+
+  /* ── Mentality homepage design (scoped) ── */
+  --color-bg-base:     #EDEEF5;
+  --color-brand-green: #9fff00;
+  --font-display: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
 }
 
 /* ─── CSS Variables ─────────────────────────────────────────────────────────── */
 :root {
-  --bg:           #080b14;
-  --surface:      #0d1117;
-  --surface-2:    #161b27;
-  --border:       rgba(255, 255, 255, 0.07);
+  --bg:           #edeef5;
+  --surface:      #ffffff;
+  --surface-2:    #e2e4ee;
+  --border:       rgba(0, 0, 0, 0.08);
   --primary:      #3b82f6;
   --primary-glow: rgba(59, 130, 246, 0.15);
-  --text:         #f1f5f9;
-  --text-2:       #64748b;
-  --text-3:       #334155;
-  --success:      #22c55e;
-  --code-bg:      #0f1521;
+  --cta:          #df0203;
+  --cta-hover:    #b80203;
+  --cta-glow:     rgba(223, 2, 3, 0.35);
+  --text:         #1a1a1a;
+  --text-2:       #5a5a5a;
+  --text-3:       #9a9a9a;
+  --success:      #16a34a;
+  --code-bg:      #f4f5fa;
 }
 
 /* ─── Base ──────────────────────────────────────────────────────────────────── */
@@ -37,14 +47,24 @@
 
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
+/* Custom cursor active (desktop only): hide the native cursor everywhere,
+   including elements that force their own (links, buttons, inputs). */
+html.cursor-hidden,
+html.cursor-hidden * { cursor: none !important; }
+
+/* CustomScrollbarPro active (desktop only): hide the native scrollbar without
+   reserving layout width, so the custom thumb is the only one shown. */
+html.custom-scrollbar-active { scrollbar-width: none; }
+html.custom-scrollbar-active::-webkit-scrollbar { width: 0; height: 0; display: none; }
+
 body {
   background-color: var(--bg);
   color: var(--text);
-  font-family: var(--font-geist-sans), var(--font-sans);
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.032) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(0, 0, 0, 0.035) 1px, transparent 1px);
   background-size: 28px 28px;
   background-attachment: fixed;
 }
@@ -58,7 +78,7 @@ body::before {
   transform: translateX(-50%);
   width: 1000px;
   height: 700px;
-  background: radial-gradient(ellipse at 50% 0%, rgba(59, 130, 246, 0.11) 0%, transparent 65%);
+  background: radial-gradient(ellipse at 50% 0%, rgba(59, 130, 246, 0.06) 0%, transparent 65%);
   pointer-events: none;
   z-index: 0;
 }
@@ -95,7 +115,7 @@ body::after {
 
 /* ─── Utility Classes ───────────────────────────────────────────────────────── */
 .glass {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.7);
   border: 1px solid var(--border);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -125,6 +145,12 @@ body::after {
 @keyframes fadeInLine {
   from { opacity: 0; transform: translateX(-8px); }
   to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Conic gradient rotation — animates `transform` only, so it stays on the
+   GPU compositor (no per-frame layout/paint) and holds 60fps. */
+@keyframes conic-rotate {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
 /* ─── Marquee ────────────────────────────────────────────────────────────────── */
@@ -157,6 +183,7 @@ body::after {
   .marquee-track   { animation: none; }
   .float-animation { animation: none; }
   .gradient-text   { animation: none; }
+  .conic-spin      { animation: none !important; }
   *, *::before, *::after {
     animation-duration:        0.01ms !important;
     animation-iteration-count: 1      !important;

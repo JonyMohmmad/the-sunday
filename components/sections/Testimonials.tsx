@@ -3,36 +3,7 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useMotionVariants } from '@/lib/animations';
-
-const testimonials = [
-  {
-    quote:
-      "Forge cut our deployment time from 12 minutes to under 3 seconds. We've shipped more in the past month than the previous quarter.",
-    name: 'Sarah Kim',
-    role: 'Staff Engineer',
-    company: 'Notion',
-    initials: 'SK',
-    gradient: 'linear-gradient(135deg,#667eea,#764ba2)',
-  },
-  {
-    quote:
-      'The observability alone is worth it. We cancelled three separate monitoring tools after switching. The distributed tracing is genuinely better than Datadog.',
-    name: 'Marcus Chen',
-    role: 'VP Engineering',
-    company: 'Linear',
-    initials: 'MC',
-    gradient: 'linear-gradient(135deg,#f093fb,#f5576c)',
-  },
-  {
-    quote:
-      "We were on AWS Lambda with a pile of glue infrastructure. Forge replaced all of it. Our on-call rotations are boring now — that's a compliment.",
-    name: 'Priya Nair',
-    role: 'CTO',
-    company: 'Loom',
-    initials: 'PN',
-    gradient: 'linear-gradient(135deg,#4facfe,#00f2fe)',
-  },
-];
+import { TESTIMONIALS } from '@/lib/site';
 
 function StarRating() {
   return (
@@ -54,7 +25,6 @@ export default function Testimonials() {
   return (
     <section aria-labelledby="testimonials-heading" className="py-24 relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
         <motion.div
           ref={ref}
           variants={v.fadeUp}
@@ -65,18 +35,14 @@ export default function Testimonials() {
           <h2
             id="testimonials-heading"
             className="font-bold tracking-tight"
-            style={{
-              fontSize: 'clamp(36px, 4vw, 52px)',
-              letterSpacing: '-0.02em',
-              color: 'var(--text)',
-            }}
+            style={{ fontSize: 'clamp(36px, 4vw, 52px)', letterSpacing: '-0.02em', color: 'var(--text)' }}
           >
-            Loved by engineering teams worldwide.
+            Loved by founders worldwide.
           </h2>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {testimonials.map((t, i) => (
+          {TESTIMONIALS.map((t, i) => (
             <motion.article
               key={t.name}
               variants={v.fadeUp}
@@ -96,11 +62,11 @@ export default function Testimonials() {
                 style={{ color: 'var(--primary)', opacity: 0.12 }}
                 aria-hidden="true"
               >
-                "
+                &ldquo;
               </span>
               <StarRating />
               <blockquote className="text-[15px] leading-[1.75] flex-1 mb-6" style={{ color: 'var(--text)' }}>
-                "{t.quote}"
+                &ldquo;{t.quote}&rdquo;
               </blockquote>
               <div className="flex items-center gap-3">
                 <div
@@ -120,7 +86,6 @@ export default function Testimonials() {
             </motion.article>
           ))}
         </div>
-
       </div>
     </section>
   );

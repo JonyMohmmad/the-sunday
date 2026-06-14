@@ -3,14 +3,28 @@
 import { useState } from 'react';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import Link from 'next/link';
-import { Zap, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import { SITE } from '@/lib/site';
 
-const navLinks = [
-  { label: 'Features', href: '#features' },
-  { label: 'Pricing',  href: '#pricing'  },
-  { label: 'Docs',     href: '#'         },
-  { label: 'Changelog',href: '#'         },
-];
+function Logo() {
+  return (
+    <Link href="/" className="flex items-center gap-2 group" aria-label={`${SITE.brand} home`}>
+      <span
+        className="flex items-center justify-center w-7 h-7 rounded-lg text-white font-bold text-sm transition-transform duration-200 group-hover:scale-110"
+        style={{ background: 'var(--primary)' }}
+        aria-hidden="true"
+      >
+        L
+      </span>
+      <span
+        className="text-lg font-bold tracking-tight"
+        style={{ color: 'var(--text)', fontFamily: 'var(--font-sans)' }}
+      >
+        {SITE.brand}
+      </span>
+    </Link>
+  );
+}
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -39,63 +53,46 @@ export default function Nav() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
+            <Logo />
 
-            {/* Wordmark */}
-            <Link href="/" className="flex items-center gap-2 group" aria-label="Forge home">
-              <Zap
-                size={18}
-                className="text-primary transition-transform duration-200 group-hover:scale-110"
-                fill="currentColor"
-              />
-              <span
-                className="text-xl font-bold tracking-tight"
-                style={{ color: 'var(--text)', fontFamily: 'var(--font-geist-sans)' }}
-              >
-                forge
-              </span>
-            </Link>
-
-            {/* Desktop nav links */}
             <nav className="hidden md:flex items-center gap-8" aria-label="Main navigation">
-              {navLinks.map((link) => (
+              {SITE.nav.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
-                  className="text-sm transition-colors duration-150"
+                  className="text-sm transition-colors duration-150 hover:text-[var(--text)] focus-visible:text-[var(--text)] outline-none"
                   style={{ color: 'var(--text-2)' }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--text)')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-2)')}
                 >
                   {link.label}
                 </a>
               ))}
             </nav>
 
-            {/* Desktop CTA */}
             <div className="hidden md:flex items-center gap-3">
               <a
-                href="#"
-                className="text-sm transition-colors duration-150 px-3 py-1.5"
+                href={SITE.bookingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm transition-colors duration-150 px-3 py-1.5 hover:text-[var(--text)] outline-none"
                 style={{ color: 'var(--text-2)' }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--text)')}
-                onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-2)')}
               >
-                Sign in
+                Contact
               </a>
               <motion.a
-                href="#"
+                href={SITE.bookingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.03, y: -1 }}
                 whileTap={{ scale: 0.97 }}
                 className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-semibold text-white transition-shadow duration-150"
-                style={{ background: 'var(--primary)' }}
-                onMouseEnter={(e) => (e.currentTarget.style.boxShadow = '0 0 24px rgba(59,130,246,0.35)')}
+                style={{ background: 'var(--cta)' }}
+                onMouseEnter={(e) => (e.currentTarget.style.boxShadow = '0 0 24px rgba(223,2,3,0.4)')}
                 onMouseLeave={(e) => (e.currentTarget.style.boxShadow = 'none')}
               >
-                Start free →
+                {SITE.bookingLabel} →
               </motion.a>
             </div>
 
-            {/* Mobile hamburger */}
             <button
               className="md:hidden p-2 rounded-lg transition-colors duration-150"
               style={{ color: 'var(--text-2)' }}
@@ -109,7 +106,6 @@ export default function Nav() {
         </div>
       </motion.header>
 
-      {/* Mobile drawer */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -126,7 +122,7 @@ export default function Nav() {
             }}
           >
             <nav className="flex flex-col px-4 py-6 gap-1" aria-label="Mobile navigation">
-              {navLinks.map((link, i) => (
+              {SITE.nav.map((link, i) => (
                 <motion.a
                   key={link.label}
                   href={link.href}
@@ -136,30 +132,20 @@ export default function Nav() {
                   className="py-3 px-3 text-base rounded-lg transition-colors duration-150"
                   style={{ color: 'var(--text-2)' }}
                   onClick={() => setMenuOpen(false)}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--text)')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-2)')}
                 >
                   {link.label}
                 </motion.a>
               ))}
-              <div className="flex flex-col gap-3 mt-4 pt-4" style={{ borderTop: '1px solid var(--border)' }}>
-                <a
-                  href="#"
-                  className="py-2.5 px-3 text-sm text-center rounded-xl transition-colors duration-150"
-                  style={{ color: 'var(--text-2)', border: '1px solid var(--border)' }}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Sign in
-                </a>
-                <a
-                  href="#"
-                  className="py-2.5 px-3 text-sm font-semibold text-center rounded-xl text-white"
-                  style={{ background: 'var(--primary)' }}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Start free →
-                </a>
-              </div>
+              <a
+                href={SITE.bookingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="py-2.5 px-3 mt-4 text-sm font-semibold text-center rounded-xl text-white"
+                style={{ background: 'var(--cta)' }}
+                onClick={() => setMenuOpen(false)}
+              >
+                {SITE.bookingLabel} →
+              </a>
             </nav>
           </motion.div>
         )}

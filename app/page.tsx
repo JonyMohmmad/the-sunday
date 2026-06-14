@@ -1,23 +1,37 @@
-import Nav            from '@/components/layout/Nav';
-import Footer         from '@/components/layout/Footer';
-import Hero           from '@/components/sections/Hero';
-import LogoWall       from '@/components/sections/LogoWall';
-import Features       from '@/components/sections/Features';
-import Metrics        from '@/components/sections/Metrics';
-import Testimonials   from '@/components/sections/Testimonials';
+import Navbar from '@/components/mentality/Navbar';
+import Hero from '@/components/mentality/Hero';
+import LogoWall from '@/components/sections/LogoWall';
+import Services from '@/components/sections/Services';
+import Work from '@/components/sections/Work';
+import Metrics from '@/components/sections/Metrics';
+import ProcessSteps from '@/components/sections/ProcessSteps';
+import Testimonials from '@/components/sections/Testimonials';
 import PricingSection from '@/components/sections/PricingSection';
-import Faq            from '@/components/sections/Faq';
-import CtaSection     from '@/components/sections/CtaSection';
+import Faq from '@/components/sections/Faq';
+import CtaSection from '@/components/sections/CtaSection';
+import Footer from '@/components/layout/Footer';
 
 export default function Home() {
   return (
     <>
-      <Nav />
-      <main>
+      {/* Light Mentality-style hero block — `relative z-10` + opaque bg-base
+          paints over the global teal body layers, scoping the light theme
+          to just the navbar + hero. */}
+      <div
+        className="relative z-10 bg-bg-base text-zinc-900 antialiased selection:bg-brand-green selection:text-black"
+        style={{ fontFamily: 'var(--font-inter)' }}
+      >
+        <Navbar />
         <Hero />
+      </div>
+
+      {/* Restored Lumora sections — original dark/teal theme. */}
+      <main>
         <LogoWall />
-        <Features />
+        <Services />
+        <Work />
         <Metrics />
+        <ProcessSteps />
         <Testimonials />
         <PricingSection />
         <Faq />

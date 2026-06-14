@@ -3,8 +3,11 @@ import type { Metadata } from 'next';
 import Link             from 'next/link';
 import { notFound }     from 'next/navigation';
 import { MDXRemote }    from 'next-mdx-remote/rsc';
+import Nav from '@/components/layout/Nav';
+import Footer from '@/components/layout/Footer';
 import { getAllPosts, getPostBySlug } from '@/lib/blog';
 import { SEO } from '@/lib/seo-config';
+import { SITE } from '@/lib/site';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -79,78 +82,88 @@ export default async function BlogPostPage({ params }: Props) {
   if (!post) notFound();
 
   return (
-    <main style={{ backgroundColor: '#0A0A0B', minHeight: '100vh', padding: '120px 24px 80px' }}>
-      <ArticleJsonLd post={post} />
+    <>
+      <Nav />
+      <main style={{ minHeight: '100vh', padding: '140px 24px 80px' }}>
+        <ArticleJsonLd post={post} />
 
-      <article style={{ maxWidth: 680, margin: '0 auto' }}>
-        {/* Tags */}
-        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 24 }}>
-          {post.tags.map((tag) => (
-            <span key={tag} style={{
-              fontSize: 11, letterSpacing: '0.08em', textTransform: 'uppercase',
-              color: '#A1A1AA', backgroundColor: '#141416',
-              border: '1px solid #232327', borderRadius: 4, padding: '2px 8px',
-            }}>
-              {tag}
-            </span>
-          ))}
-        </div>
-
-        {/* Headline */}
-        <h1 style={{
-          fontFamily: "var(--font-display, 'Space Grotesk', sans-serif)",
-          fontSize: 'clamp(28px, 4vw, 42px)', fontWeight: 800,
-          color: '#FAFAFA', lineHeight: 1.1, marginBottom: 24,
-        }}>
-          {post.title}
-        </h1>
-
-        {/* Meta */}
-        <div style={{
-          display: 'flex', gap: 24, fontSize: 13, color: '#A1A1AA',
-          paddingBottom: 32, borderBottom: '1px solid #232327', marginBottom: 48,
-        }}>
-          <span>{post.author}</span>
-          <span>
-            {new Date(post.publishedAt).toLocaleDateString('en-US', {
-              year: 'numeric', month: 'long', day: 'numeric',
-            })}
-          </span>
-          <span>{post.readTime}</span>
-        </div>
-
-        {/* MDX Content */}
-        <div className="blog-prose">
-          <MDXRemote source={post.content} />
-        </div>
-
-        {/* Bottom CTA */}
-        <div style={{
-          marginTop: 64, padding: '2rem', backgroundColor: '#141416',
-          border: '1px solid #232327', borderRadius: 12,
-        }}>
-          <p style={{
-            fontFamily: "var(--font-display, 'Space Grotesk', sans-serif)",
-            fontSize: 20, fontWeight: 600, color: '#FAFAFA', marginBottom: 8,
-          }}>
-            Want us to audit your store?
-          </p>
-          <p style={{ fontSize: 14, color: '#A1A1AA', marginBottom: 20 }}>
-            We&apos;ll review your Shopify store&apos;s CRO, speed, and mobile UX —
-            and send you a Loom walkthrough within 48 hours. Free.
-          </p>
+        <article style={{ maxWidth: 680, margin: '0 auto' }}>
           <Link
-            href="/"
-            style={{
-              display: 'inline-block', backgroundColor: '#CCFF00', color: '#0A0A0B',
-              fontWeight: 600, fontSize: 14, padding: '10px 20px',
-              borderRadius: 6, textDecoration: 'none',
-            }}
+            href="/blog"
+            style={{ fontSize: 13, color: 'var(--text-2)', textDecoration: 'none', marginBottom: 24, display: 'inline-block' }}
           >
-            Get a free audit →
+            ← All articles
           </Link>
-        </div>
-      </article>
-    </main>
+
+          {/* Tags */}
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 24 }}>
+            {post.tags.map((tag) => (
+              <span key={tag} style={{
+                fontSize: 11, letterSpacing: '0.08em', textTransform: 'uppercase',
+                color: 'var(--text-2)', background: 'var(--surface)',
+                border: '1px solid var(--border)', borderRadius: 6, padding: '2px 8px',
+              }}>
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          {/* Headline */}
+          <h1 style={{
+            fontSize: 'clamp(28px, 4vw, 42px)', fontWeight: 800,
+            letterSpacing: '-0.02em',
+            color: 'var(--text)', lineHeight: 1.1, marginBottom: 24,
+          }}>
+            {post.title}
+          </h1>
+
+          {/* Meta */}
+          <div style={{
+            display: 'flex', gap: 24, fontSize: 13, color: 'var(--text-2)',
+            paddingBottom: 32, borderBottom: '1px solid var(--border)', marginBottom: 48,
+          }}>
+            <span>{post.author}</span>
+            <span>
+              {new Date(post.publishedAt).toLocaleDateString('en-US', {
+                year: 'numeric', month: 'long', day: 'numeric',
+              })}
+            </span>
+            <span>{post.readTime}</span>
+          </div>
+
+          {/* MDX Content */}
+          <div className="blog-prose">
+            <MDXRemote source={post.content} />
+          </div>
+
+          {/* Bottom CTA */}
+          <div style={{
+            marginTop: 64, padding: '2rem', background: 'rgba(59,130,246,0.05)',
+            border: '1px solid rgba(59,130,246,0.3)', borderRadius: 16,
+          }}>
+            <p style={{ fontSize: 20, fontWeight: 700, color: 'var(--text)', marginBottom: 8 }}>
+              Thinking about a new website?
+            </p>
+            <p style={{ fontSize: 15, color: 'var(--text-2)', marginBottom: 20, lineHeight: 1.6 }}>
+              Book a free 30-minute call and we&apos;ll give you a clear plan and price
+              for your project — wherever you are in the world.
+            </p>
+            <a
+              href={SITE.bookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: 'inline-block', background: 'var(--cta)', color: '#fff',
+                fontWeight: 600, fontSize: 14, padding: '10px 20px',
+                borderRadius: 10, textDecoration: 'none',
+              }}
+            >
+              {SITE.bookingLabel} →
+            </a>
+          </div>
+        </article>
+      </main>
+      <Footer />
+    </>
   );
 }

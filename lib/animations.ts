@@ -1,5 +1,5 @@
 import type { Variants } from 'framer-motion';
-import { useReducedMotion } from 'framer-motion';
+import { useReducedMotion } from '@/lib/use-reduced-motion';
 
 export const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -44,7 +44,13 @@ const emptyVariants: Variants = {
 };
 
 export function useMotionVariants() {
+  // Use the mount-gated hook (starts at `false`, reads the media query only
+  // after mount). framer-motion's own useReducedMotion returns the real value
+  // on the first client render, which diverges from the server (opacity:0
+  // present vs absent) and aborts hydration — leaving every scroll-reveal
+  // element stuck at opacity:0, i.e. a blank page.
   const reduced = useReducedMotion();
+
   return {
     fadeUp: reduced ? emptyVariants : fadeUp,
     fadeIn: reduced ? emptyVariants : fadeIn,

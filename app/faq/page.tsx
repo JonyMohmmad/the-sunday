@@ -4,15 +4,16 @@ import Footer from '@/components/layout/Footer';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'FAQ — Forge',
-  description: 'Common questions about Forge — pricing, billing, security, and support.',
+  title: 'FAQ',
+  description:
+    'Answers to common questions about working with Lumora Studio — pricing, timelines, technology, and ongoing support for businesses worldwide.',
 };
 
 export default function FAQPage() {
   return (
     <>
       <Nav />
-      <main style={{ paddingTop: '80px' }}>
+      <main style={{ paddingTop: '120px' }}>
         <Faq />
       </main>
       <Footer />

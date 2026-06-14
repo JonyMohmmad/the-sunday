@@ -1,68 +1,58 @@
-﻿// lib/seo-config.ts
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-// Single source of truth for all SEO metadata.
-// TODO: replace all [PLACEHOLDER] values before launch.
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// lib/seo-config.ts
+// ─────────────────────────────────────────────────────────────────────────
+// Single source of truth for SEO metadata. Brand/contact come from site.ts.
+// TODO before launch: replace the domain and social handles with real ones.
+// ─────────────────────────────────────────────────────────────────────────
+import { SITE } from '@/lib/site';
 
 export const SEO = {
-  // TODO: replace with your real domain (no trailing slash)
-  siteUrl: 'https://[DOMAIN].com',
+  siteUrl: SITE.domain,
+  siteName: SITE.brand,
 
-  // TODO: replace with your real agency name
-  siteName: '[COMPANY_NAME]',
-
-  // Default metadata
-  defaultTitle: '[COMPANY_NAME] â€” Shopify CRO for Streetwear & Anime Brands',
+  defaultTitle: `${SITE.brand} — Web Design & Development for Growing Businesses`,
   defaultDescription:
-    'We rebuild Shopify stores for DTC streetwear and anime fashion '
-    + 'brands in the US, UK, AU, and CA. Faster PDPs. Cleaner checkouts. '
-    + 'Avg 2.4Ã— CVR lift â€” or we keep working until we get there.',
+    'Lumora Studio designs and builds fast, high-converting websites, online '
+    + 'stores, and web apps for businesses worldwide. Custom design, modern tech, '
+    + 'and a focus on turning visitors into customers.',
   defaultKeywords: [
-    'Shopify CRO agency',
-    'Shopify conversion rate optimisation',
-    'streetwear ecommerce agency',
-    'anime fashion Shopify',
-    'DTC Shopify redesign',
-    'Shopify PDP optimisation',
-    'ecommerce CRO agency UK',
-    'ecommerce CRO agency US',
-    'Shopify checkout optimisation',
-    'Shopify speed optimisation',
+    'web design agency',
+    'web development agency',
+    'custom website design',
+    'ecommerce website development',
+    'Shopify development agency',
+    'business website design',
+    'web app development',
+    'SaaS website design',
+    'Next.js development agency',
+    'conversion-focused web design',
   ],
 
-  // Open Graph defaults
-  ogImage: '/og-image.png',
-  ogType:  'website',
-  locale:  'en_US',
+  ogImage: '/opengraph-image',
+  ogType: 'website',
+  locale: 'en_US',
 
-  // Twitter/X card
   twitterCard: 'summary_large_image',
-  // TODO: replace with your real X/Twitter handle
-  twitterHandle: '@[HANDLE]',
+  twitterHandle: '@lumorastudio',
 
-  // Structured data â€” Agency info
   organization: {
-    name: '[COMPANY_NAME]',
-    url:  'https://[DOMAIN].com',
-    // TODO: replace with real logo URL after deployment
-    logo: 'https://[DOMAIN].com/logo.png',
-    // TODO: replace with real founding year
-    foundingYear: '2025',
-    // TODO: replace with real social profiles
+    name: SITE.brand,
+    url: SITE.domain,
+    logo: `${SITE.domain}/logo.png`,
+    foundingYear: '2024',
     sameAs: [
-      'https://twitter.com/[HANDLE]',
-      'https://instagram.com/[HANDLE]',
-      'https://linkedin.com/company/[SLUG]',
+      SITE.social.twitter,
+      SITE.social.instagram,
+      SITE.social.linkedin,
+      SITE.social.dribbble,
     ],
     contactPoint: {
-      email:       'hello@[DOMAIN].com',
+      email: SITE.email,
       contactType: 'Customer Service',
     },
   },
 
-  // Hreflang â€” all markets are English, x-default + en
   hreflang: [
-    { lang: 'en',        href: 'https://[DOMAIN].com' },
-    { lang: 'x-default', href: 'https://[DOMAIN].com' },
+    { lang: 'en', href: SITE.domain },
+    { lang: 'x-default', href: SITE.domain },
   ],
 } as const;

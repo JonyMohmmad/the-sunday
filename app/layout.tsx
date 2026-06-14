@@ -1,51 +1,62 @@
 import type { Metadata } from 'next';
-import { GeistSans } from 'geist/font/sans';
+import { Poppins, Inter, Outfit } from 'next/font/google';
 import { GeistMono } from 'geist/font/mono';
+import { SEO } from '@/lib/seo-config';
+
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-poppins',
+  display: 'swap',
+});
+
+// Used by the (scoped) Mentality homepage design.
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-inter',
+  display: 'swap',
+});
+
+const outfit = Outfit({
+  subsets: ['latin'],
+  weight: ['500', '600', '700', '800'],
+  variable: '--font-outfit',
+  display: 'swap',
+});
+import JsonLd from '@/components/seo/JsonLd';
+import Analytics from '@/components/seo/Analytics';
+import CustomCursor from '@/components/ui/CustomCursor';
+import CustomScrollbarPro from '@/components/ui/CustomScrollbarPro';
 import './globals.css';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://forge.dev'),
+  metadataBase: new URL(SEO.siteUrl),
   title: {
-    default: 'Forge — Deploy APIs instantly. Monitor everything.',
-    template: '%s | Forge',
+    default: SEO.defaultTitle,
+    template: `%s | ${SEO.siteName}`,
   },
-  description:
-    'Forge deploys your APIs globally in under 3 seconds, monitors every request in real-time, and scales to zero automatically. Trusted by 4,200+ engineering teams.',
-  keywords: [
-    'API deployment',
-    'API monitoring',
-    'edge computing',
-    'serverless APIs',
-    'distributed tracing',
-    'real-time observability',
-    'developer infrastructure',
-  ],
-  authors: [{ name: 'Forge, Inc.', url: 'https://forge.dev' }],
-  creator: 'Forge, Inc.',
+  description: SEO.defaultDescription,
+  keywords: [...SEO.defaultKeywords],
+  authors: [{ name: SEO.siteName, url: SEO.siteUrl }],
+  creator: SEO.siteName,
+  applicationName: SEO.siteName,
+  alternates: {
+    canonical: SEO.siteUrl,
+  },
   openGraph: {
     type: 'website',
-    locale: 'en_US',
-    url: 'https://forge.dev',
-    title: 'Forge — Deploy APIs instantly. Monitor everything.',
-    description:
-      'Deploy your APIs globally in under 3 seconds. Monitor every request in real-time. Scales to zero automatically.',
-    siteName: 'Forge',
-    images: [
-      {
-        url: '/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Forge — API deployment and monitoring platform',
-      },
-    ],
+    locale: SEO.locale,
+    url: SEO.siteUrl,
+    title: SEO.defaultTitle,
+    description: SEO.defaultDescription,
+    siteName: SEO.siteName,
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Forge — Deploy APIs instantly. Monitor everything.',
-    description:
-      'Deploy your APIs globally in under 3 seconds. Monitor every request in real-time.',
-    creator: '@forgedev',
-    images: ['/og-image.png'],
+    title: SEO.defaultTitle,
+    description: SEO.defaultDescription,
+    creator: SEO.twitterHandle,
   },
   robots: {
     index: true,
@@ -62,8 +73,17 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
-      <body>{children}</body>
+    <html
+      lang="en"
+      className={`${poppins.variable} ${inter.variable} ${outfit.variable} ${GeistMono.variable}`}
+    >
+      <body>
+        <JsonLd />
+        {children}
+        <Analytics />
+        <CustomCursor />
+        <CustomScrollbarPro />
+      </body>
     </html>
   );
 }

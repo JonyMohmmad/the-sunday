@@ -1,7 +1,7 @@
 ﻿// components/seo/JsonLd.tsx
 // Renders JSON-LD structured data: Organization, WebSite, Service, FAQPage.
 import { SEO } from '@/lib/seo-config';
-import { COPY } from '@/lib/copy';
+import { PRICING, FAQ, SERVICES } from '@/lib/site';
 
 function organizationSchema() {
   return {
@@ -38,27 +38,25 @@ function serviceSchema() {
   return {
     '@context':  'https://schema.org',
     '@type':     'Service',
-    name:        'Shopify CRO Redesign',
+    name:        'Web Design & Development',
     provider: {
       '@type': 'Organization',
       name:    SEO.organization.name,
       url:     SEO.organization.url,
     },
     description:
-      'Conversion rate optimisation and full Shopify store redesign for '
-      + 'DTC streetwear and anime fashion brands.',
-    areaServed:  ['US', 'GB', 'AU', 'CA'],
-    serviceType: 'Ecommerce CRO Agency',
+      'Custom web design and development — marketing websites, e-commerce '
+      + 'stores, and web apps for businesses worldwide.',
+    areaServed:  'Worldwide',
+    serviceType: 'Web Design & Development Agency',
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
-      name:    'CRO Redesign Packages',
-      itemListElement: COPY.pricing.cards.map((card, i) => ({
-        '@type':       'Offer',
-        position:      i + 1,
-        name:          card.tier,
-        price:         card.price.replace(/[^0-9]/g, ''),
-        priceCurrency: 'USD',
-        description:   card.description,
+      name:    'Services',
+      itemListElement: SERVICES.map((s, i) => ({
+        '@type':    'Offer',
+        position:   i + 1,
+        name:       s.title,
+        description: s.body,
       })),
     },
   };
@@ -68,7 +66,7 @@ function faqSchema() {
   return {
     '@context': 'https://schema.org',
     '@type':    'FAQPage',
-    mainEntity: COPY.faq.items.map((item) => ({
+    mainEntity: FAQ.map((item) => ({
       '@type': 'Question',
       name:    item.q,
       acceptedAnswer: {

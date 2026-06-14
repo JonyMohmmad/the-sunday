@@ -1,7 +1,8 @@
 ﻿'use client';
 
-import { motion, useInView, useReducedMotion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { useRef, ReactNode } from 'react';
+import { useReducedMotion } from '@/lib/use-reduced-motion';
 
 interface AnimatedRevealProps {
   children: ReactNode;

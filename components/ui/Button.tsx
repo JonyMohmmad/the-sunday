@@ -25,7 +25,7 @@ const sizeMap = {
 
 const variantMap = {
   primary:
-    'bg-primary text-white font-semibold rounded-xl hover:brightness-110 transition-[filter,box-shadow] duration-150',
+    'bg-cta text-white font-semibold rounded-xl hover:brightness-110 transition-[filter,box-shadow] duration-150',
   ghost:
     'border text-sm font-medium rounded-xl transition-[border-color,color] duration-150',
 };
