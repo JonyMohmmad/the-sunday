@@ -2,6 +2,7 @@ import Navbar from '@/components/mentality/Navbar';
 import Hero from '@/components/mentality/Hero';
 import LogoWall from '@/components/sections/LogoWall';
 import Services from '@/components/sections/Services';
+import AgenticSolutions from '@/components/sections/AgenticSolutions';
 import Work from '@/components/sections/Work';
 import Metrics from '@/components/sections/Metrics';
 import ProcessSteps from '@/components/sections/ProcessSteps';
@@ -18,8 +19,8 @@ export default function Home() {
           paints over the global teal body layers, scoping the light theme
           to just the navbar + hero. */}
       <div
-        className="relative z-10 bg-bg-base text-zinc-900 antialiased selection:bg-brand-green selection:text-black"
-        style={{ fontFamily: 'var(--font-inter)' }}
+        className="relative z-10 bg-bg-base antialiased selection:bg-brand-green selection:text-black"
+        style={{ fontFamily: 'var(--font-inter)', color: 'var(--text)' }}
       >
         <Navbar />
         <Hero />
@@ -29,6 +30,7 @@ export default function Home() {
       <main>
         <LogoWall />
         <Services />
+        <AgenticSolutions />
         <Work />
         <Metrics />
         <ProcessSteps />

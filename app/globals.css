@@ -26,6 +26,8 @@
 
 /* ─── CSS Variables ─────────────────────────────────────────────────────────── */
 :root {
+  color-scheme: light;
+
   --bg:           #edeef5;
   --surface:      #ffffff;
   --surface-2:    #e2e4ee;
@@ -40,6 +42,52 @@
   --text-3:       #9a9a9a;
   --success:      #16a34a;
   --code-bg:      #f4f5fa;
+
+  /* Navbar top-fade gradient color (matches the page background). */
+  --nav-fade:     rgba(241, 241, 241, 0.8);
+}
+
+/* ─── Dark theme — rich dark purple with a subtle gradient ───────────────────── */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --bg:           #130a22;
+  --surface:      #1c1133;
+  --surface-2:    #271642;
+  --border:       rgba(167, 139, 250, 0.16);
+  --primary:      #a78bfa;
+  --primary-glow: rgba(167, 139, 250, 0.22);
+  --cta:          #df0203;          /* keep the brand red — it pops on purple */
+  --cta-hover:    #ef2324;
+  --cta-glow:     rgba(223, 2, 3, 0.45);
+  --text:         #f3effb;
+  --text-2:       #c2b5e0;
+  --text-3:       #8b7caa;
+  --success:      #34d399;
+  --code-bg:      #1a1030;
+
+  --nav-fade:     rgba(19, 10, 34, 0.82);
+
+  /* Mirror the values onto the Tailwind @theme tokens so utility classes
+     (bg-bg-base, etc.) follow the theme too. */
+  --color-bg:        #130a22;
+  --color-bg-base:   #130a22;
+  --color-surface:   #1c1133;
+  --color-surface-2: #271642;
+  --color-text:      #f3effb;
+  --color-text-2:    #c2b5e0;
+  --color-text-3:    #8b7caa;
+}
+
+/* While the toggle fires, briefly transition colors everywhere for a smooth
+   cross-fade between themes — the class is removed right after, so it never
+   interferes with hover/scroll transitions during normal use. */
+.theme-transition,
+.theme-transition *,
+.theme-transition *::before,
+.theme-transition *::after {
+  transition: background-color 0.35s ease, border-color 0.35s ease,
+    color 0.35s ease, fill 0.35s ease !important;
 }
 
 /* ─── Base ──────────────────────────────────────────────────────────────────── */
@@ -69,6 +117,17 @@ body {
   background-attachment: fixed;
 }
 
+/* Dark theme — swap the dot grid for a purple-tinted grid layered over a rich
+   purple gradient ("little gradient"), so the whole page reads dark purple. */
+:root[data-theme='dark'] body {
+  background-color: #130a22;
+  background-image:
+    radial-gradient(rgba(167, 139, 250, 0.06) 1px, transparent 1px),
+    linear-gradient(180deg, #1d1136 0%, #150b26 42%, #0c0518 100%);
+  background-size: 28px 28px, 100% 100%;
+  background-attachment: fixed, fixed;
+}
+
 /* Ambient top glow */
 body::before {
   content: '';
@@ -81,6 +140,13 @@ body::before {
   background: radial-gradient(ellipse at 50% 0%, rgba(59, 130, 246, 0.06) 0%, transparent 65%);
   pointer-events: none;
   z-index: 0;
+}
+
+/* A warmer, brighter purple bloom for the dark theme. */
+:root[data-theme='dark'] body::before {
+  width: 1200px;
+  height: 800px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(139, 92, 246, 0.22) 0%, transparent 62%);
 }
 
 /* Film grain */

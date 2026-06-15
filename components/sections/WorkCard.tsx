@@ -1,9 +1,11 @@
 'use client';
 
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { ArrowUpRight, Zap } from 'lucide-react';
 import { INDUSTRIES, type WorkProject } from '@/lib/site';
+import { useMounted } from '@/lib/use-mounted';
 
 const industryLabel = (key: string) =>
   INDUSTRIES.find((i) => i.key === key)?.label ?? key;
@@ -18,17 +20,25 @@ interface WorkCardProps {
 export default function WorkCard({ project, index = 0, reveal = 'inView' }: WorkCardProps) {
   const lhGood = project.lighthouse >= 90;
 
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: '-60px' });
+  const mounted = useMounted();
+
+  // 'inView' (homepage) gates the reveal behind a mounted flag so the card is
+  // visible-by-default in SSR/pre-hydration — it never gets stuck at opacity:0
+  // if JS is slow or fails. 'mount' (filter grid) only runs after a user
+  // interaction, so JS is guaranteed and it animates in on render as before.
   const revealProps =
     reveal === 'mount'
       ? { initial: { opacity: 0, y: 16 }, animate: { opacity: 1, y: 0 } }
       : {
-          initial: { opacity: 0, y: 16 },
-          whileInView: { opacity: 1, y: 0 },
-          viewport: { once: true, margin: '-60px' },
+          initial: false as const,
+          animate: !mounted || inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 },
         };
 
   return (
     <motion.article
+      ref={ref}
       layout
       {...revealProps}
       exit={{ opacity: 0, scale: 0.96 }}

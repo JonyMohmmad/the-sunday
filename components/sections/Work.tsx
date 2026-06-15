@@ -4,12 +4,14 @@ import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { useMotionVariants } from '@/lib/animations';
+import { useMounted } from '@/lib/use-mounted';
 import { WORK, SITE } from '@/lib/site';
 import WorkCard from './WorkCard';
 
 export default function Work() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
+  const mounted = useMounted();
   const v = useMotionVariants();
 
   return (
@@ -23,8 +25,8 @@ export default function Work() {
         <motion.div
           ref={ref}
           variants={v.fadeUp}
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
+          initial={false}
+          animate={!mounted || inView ? 'visible' : 'hidden'}
           className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-14"
         >
           <div className="max-w-xl">
@@ -56,8 +58,8 @@ export default function Work() {
 
         <motion.div
           variants={v.fadeUp}
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
+          initial={false}
+          animate={!mounted || inView ? 'visible' : 'hidden'}
           transition={{ delay: 0.4 }}
           className="text-center mt-12"
         >

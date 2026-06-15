@@ -3,11 +3,13 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useMotionVariants } from '@/lib/animations';
+import { useMounted } from '@/lib/use-mounted';
 import { PROCESS } from '@/lib/site';
 
 export default function ProcessSteps() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
+  const mounted = useMounted();
   const v = useMotionVariants();
 
   return (
@@ -16,8 +18,8 @@ export default function ProcessSteps() {
         <motion.div
           ref={ref}
           variants={v.fadeUp}
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
+          initial={false}
+          animate={!mounted || inView ? 'visible' : 'hidden'}
           className="text-center mb-16 max-w-2xl mx-auto"
         >
           <p className="text-xs font-semibold uppercase tracking-[0.2em] mb-4" style={{ color: '#93c5fd' }}>
@@ -41,8 +43,8 @@ export default function ProcessSteps() {
             <motion.div
               key={step.number}
               variants={v.fadeUp}
-              initial="hidden"
-              animate={inView ? 'visible' : 'hidden'}
+              initial={false}
+              animate={!mounted || inView ? 'visible' : 'hidden'}
               transition={{ delay: i * 0.1 }}
               className="relative rounded-2xl p-7"
               style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid var(--border)' }}

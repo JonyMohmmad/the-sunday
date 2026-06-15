@@ -3,12 +3,14 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useMotionVariants } from '@/lib/animations';
+import { useMounted } from '@/lib/use-mounted';
 import AnimatedNumber from '@/components/ui/AnimatedNumber';
 import { METRICS } from '@/lib/site';
 
 export default function Metrics() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
+  const mounted = useMounted();
   const v = useMotionVariants();
 
   return (
@@ -21,8 +23,8 @@ export default function Metrics() {
         <motion.div
           ref={ref}
           variants={v.fadeUp}
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
+          initial={false}
+          animate={!mounted || inView ? 'visible' : 'hidden'}
           className="text-center mb-16"
         >
           <h2
@@ -39,8 +41,8 @@ export default function Metrics() {
             <motion.div
               key={stat.label}
               variants={v.fadeUp}
-              initial="hidden"
-              animate={inView ? 'visible' : 'hidden'}
+              initial={false}
+              animate={!mounted || inView ? 'visible' : 'hidden'}
               transition={{ delay: i * 0.1 }}
               className="flex flex-col items-center text-center px-8 py-8"
               style={{

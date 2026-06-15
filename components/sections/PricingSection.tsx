@@ -4,11 +4,13 @@ import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Check } from 'lucide-react';
 import { useMotionVariants } from '@/lib/animations';
+import { useMounted } from '@/lib/use-mounted';
 import { PRICING, SITE } from '@/lib/site';
 
 export default function PricingSection() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
+  const mounted = useMounted();
   const v = useMotionVariants();
 
   return (
@@ -17,8 +19,8 @@ export default function PricingSection() {
         <motion.div
           ref={ref}
           variants={v.fadeUp}
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
+          initial={false}
+          animate={!mounted || inView ? 'visible' : 'hidden'}
           className="text-center mb-4"
         >
           <p className="text-xs font-semibold uppercase tracking-[0.2em] mb-4" style={{ color: '#93c5fd' }}>
@@ -42,8 +44,8 @@ export default function PricingSection() {
             <motion.div
               key={plan.tier}
               variants={v.fadeUp}
-              initial="hidden"
-              animate={inView ? 'visible' : 'hidden'}
+              initial={false}
+              animate={!mounted || inView ? 'visible' : 'hidden'}
               transition={{ delay: 0.15 + i * 0.1 }}
               whileHover={{ y: -4 }}
               className="relative flex flex-col rounded-2xl p-7"

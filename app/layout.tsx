@@ -75,8 +75,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${poppins.variable} ${inter.variable} ${outfit.variable} ${GeistMono.variable}`}
     >
+      <head>
+        {/* Apply the saved (or system) theme before first paint to avoid a
+            flash of the wrong theme. Runs synchronously in <head>. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('theme');if(!t){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.dataset.theme=t;}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body>
         <JsonLd />
         {children}

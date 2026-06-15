@@ -3,6 +3,7 @@
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { useMotionVariants } from '@/lib/animations';
+import { useMounted } from '@/lib/use-mounted';
 import { FAQ, SITE } from '@/lib/site';
 
 function FaqItem({
@@ -11,13 +12,14 @@ function FaqItem({
   q: string; a: string; index: number; parentInView: boolean;
 }) {
   const [open, setOpen] = useState(false);
+  const mounted = useMounted();
   const v = useMotionVariants();
 
   return (
     <motion.div
       variants={v.fadeUp}
-      initial="hidden"
-      animate={parentInView ? 'visible' : 'hidden'}
+      initial={false}
+      animate={!mounted || parentInView ? 'visible' : 'hidden'}
       transition={{ delay: index * 0.07 }}
       style={{ borderBottom: '1px solid var(--border)' }}
     >
@@ -59,6 +61,7 @@ function FaqItem({
 export default function Faq() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
+  const mounted = useMounted();
   const v = useMotionVariants();
 
   return (
@@ -67,8 +70,8 @@ export default function Faq() {
         <motion.div
           ref={ref}
           variants={v.fadeUp}
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
+          initial={false}
+          animate={!mounted || inView ? 'visible' : 'hidden'}
           className="text-center mb-12"
         >
           <h2
@@ -88,8 +91,8 @@ export default function Faq() {
 
         <motion.p
           variants={v.fadeUp}
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
+          initial={false}
+          animate={!mounted || inView ? 'visible' : 'hidden'}
           transition={{ delay: 0.3 }}
           className="text-center text-sm mt-10"
           style={{ color: 'var(--text-2)' }}

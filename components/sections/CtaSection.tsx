@@ -4,11 +4,13 @@ import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Mail } from 'lucide-react';
 import { useMotionVariants } from '@/lib/animations';
+import { useMounted } from '@/lib/use-mounted';
 import { SITE, FINAL_CTA } from '@/lib/site';
 
 export default function CtaSection() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
+  const mounted = useMounted();
   const v = useMotionVariants();
 
   return (
@@ -30,8 +32,8 @@ export default function CtaSection() {
         <motion.p
           ref={ref}
           variants={v.fadeUp}
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
+          initial={false}
+          animate={!mounted || inView ? 'visible' : 'hidden'}
           className="text-xs font-semibold uppercase tracking-[0.2em] mb-6"
           style={{ color: 'var(--text-3)' }}
         >
@@ -40,8 +42,8 @@ export default function CtaSection() {
 
         <motion.h2
           variants={v.fadeUp}
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
+          initial={false}
+          animate={!mounted || inView ? 'visible' : 'hidden'}
           transition={{ delay: 0.08 }}
           className="font-bold tracking-tight mb-5"
           style={{ fontSize: 'clamp(36px, 5vw, 60px)', letterSpacing: '-0.02em', color: 'var(--text)', lineHeight: 1.05 }}
@@ -51,8 +53,8 @@ export default function CtaSection() {
 
         <motion.p
           variants={v.fadeUp}
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
+          initial={false}
+          animate={!mounted || inView ? 'visible' : 'hidden'}
           transition={{ delay: 0.15 }}
           className="text-[18px] leading-relaxed mb-10 max-w-xl mx-auto"
           style={{ color: 'var(--text-2)' }}
@@ -62,8 +64,8 @@ export default function CtaSection() {
 
         <motion.div
           variants={v.fadeUp}
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
+          initial={false}
+          animate={!mounted || inView ? 'visible' : 'hidden'}
           transition={{ delay: 0.22 }}
           className="flex flex-wrap items-center justify-center gap-4"
         >
@@ -94,8 +96,8 @@ export default function CtaSection() {
 
         <motion.p
           variants={v.fadeUp}
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
+          initial={false}
+          animate={!mounted || inView ? 'visible' : 'hidden'}
           transition={{ delay: 0.3 }}
           className="text-sm mt-6"
           style={{ color: 'var(--text-3)' }}

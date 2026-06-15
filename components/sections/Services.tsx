@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Check, Globe, ShoppingBag, LayoutDashboard, TrendingUp } from 'lucide-react';
 import { useMotionVariants } from '@/lib/animations';
+import { useMounted } from '@/lib/use-mounted';
 import { SERVICES, SITE } from '@/lib/site';
 import ConicGradient from '@/components/ui/ConicGradient';
 
@@ -17,6 +18,7 @@ const icons: Record<string, React.ReactNode> = {
 export default function Services() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
+  const mounted = useMounted();
   const v = useMotionVariants();
 
   return (
@@ -25,8 +27,8 @@ export default function Services() {
         <motion.div
           ref={ref}
           variants={v.fadeUp}
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
+          initial={false}
+          animate={!mounted || inView ? 'visible' : 'hidden'}
           className="text-center mb-14 max-w-2xl mx-auto"
         >
           <p className="text-xs font-semibold uppercase tracking-[0.2em] mb-4" style={{ color: '#93c5fd' }}>
@@ -50,8 +52,8 @@ export default function Services() {
             <motion.div
               key={s.key}
               variants={v.fadeUp}
-              initial="hidden"
-              animate={inView ? 'visible' : 'hidden'}
+              initial={false}
+              animate={!mounted || inView ? 'visible' : 'hidden'}
               transition={{ delay: i * 0.1 }}
               whileHover={{ y: -4, borderColor: 'rgba(59,130,246,0.3)' }}
               className="group relative overflow-hidden rounded-2xl p-8 flex flex-col"
@@ -101,8 +103,8 @@ export default function Services() {
 
         <motion.div
           variants={v.fadeUp}
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
+          initial={false}
+          animate={!mounted || inView ? 'visible' : 'hidden'}
           transition={{ delay: 0.4 }}
           className="text-center mt-12"
         >

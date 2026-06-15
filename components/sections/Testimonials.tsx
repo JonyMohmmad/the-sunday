@@ -3,6 +3,7 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useMotionVariants } from '@/lib/animations';
+import { useMounted } from '@/lib/use-mounted';
 import { TESTIMONIALS } from '@/lib/site';
 
 function StarRating() {
@@ -20,6 +21,7 @@ function StarRating() {
 export default function Testimonials() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
+  const mounted = useMounted();
   const v = useMotionVariants();
 
   return (
@@ -28,8 +30,8 @@ export default function Testimonials() {
         <motion.div
           ref={ref}
           variants={v.fadeUp}
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
+          initial={false}
+          animate={!mounted || inView ? 'visible' : 'hidden'}
           className="text-center mb-14"
         >
           <h2
@@ -46,8 +48,8 @@ export default function Testimonials() {
             <motion.article
               key={t.name}
               variants={v.fadeUp}
-              initial="hidden"
-              animate={inView ? 'visible' : 'hidden'}
+              initial={false}
+              animate={!mounted || inView ? 'visible' : 'hidden'}
               transition={{ delay: i * 0.1 }}
               whileHover={{ y: -4, borderColor: 'rgba(59,130,246,0.2)' }}
               className="relative rounded-2xl p-7 flex flex-col"

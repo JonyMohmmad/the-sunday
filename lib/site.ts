@@ -93,6 +93,187 @@ export const SERVICES = [
   },
 ];
 
+// ── AGENTIC SOLUTIONS & PORTFOLIO ──────────────────────────────────────
+// Full-scale, autonomous AI agents we build for corporate workflows.
+// `span` drives the bento-grid layout (out of 6 columns on large screens).
+// Each solution carries a real case study used by the tabbed portfolio.
+export type AgentSolution = {
+  key: string;
+  title: string;
+  tagline: string;          // short bento headline
+  body: string;             // bento description
+  span: 1 | 2 | 3 | 6;      // bento column span (lg, of 6)
+  metrics: string[];        // badge copy, e.g. "90% Cost Reduction"
+  stack: string[];          // tech tags, e.g. "LangChain"
+  demoLabel: string;        // CTA label, e.g. "Watch agent in action"
+  demoUrl: string;          // live demo / recording link
+  caseStudy: {
+    client: string;
+    industry: string;
+    summary: string;
+    results: { value: string; label: string }[];
+  };
+};
+
+export const AGENT_SOLUTIONS: AgentSolution[] = [
+  {
+    key: 'voice',
+    title: 'AI Voice Agents',
+    tagline: 'Conversations that sound human — at machine scale.',
+    body:
+      'Real-time, low-latency voice agents that handle inbound and outbound calls ' +
+      'end to end — qualifying leads, booking appointments, and resolving requests ' +
+      'with natural turn-taking, interruptions, and memory.',
+    span: 3,
+    metrics: ['Sub-700ms latency', '24/7 availability', '90% calls fully automated'],
+    stack: ['Vapi', 'Twilio', 'ElevenLabs', 'Whisper', 'OpenAI'],
+    demoLabel: 'Hear the agent live',
+    demoUrl: '#demo-voice',
+    caseStudy: {
+      client: 'Meridian Insurance',
+      industry: 'Insurance · Inbound + outbound',
+      summary:
+        'Replaced a 40-seat overflow call centre with a voice agent that answers ' +
+        'instantly, qualifies claims, and warm-transfers only the edge cases.',
+      results: [
+        { value: '92%', label: 'Calls resolved without a human' },
+        { value: '−68%', label: 'Cost per call' },
+        { value: '0s', label: 'Hold time, any hour' },
+      ],
+    },
+  },
+  {
+    key: 'research',
+    title: 'AI Research Agents',
+    tagline: 'Deep-dive intelligence, synthesised in minutes.',
+    body:
+      'Autonomous researchers that crawl, read, and reconcile hundreds of sources — ' +
+      'then deliver cited, decision-ready briefings on markets, competitors, and ' +
+      'prospects while your team sleeps.',
+    span: 3,
+    metrics: ['10× faster research', '500+ sources/run', 'Fully cited output'],
+    stack: ['LangGraph', 'CrewAI', 'Tavily', 'Pinecone', 'Anthropic'],
+    demoLabel: 'Watch a live research run',
+    demoUrl: '#demo-research',
+    caseStudy: {
+      client: 'Halcyon Capital',
+      industry: 'Venture & PE · Market intelligence',
+      summary:
+        'Compresses a two-week analyst diligence cycle into an overnight, fully-sourced ' +
+        'market and competitor memo for every inbound deal.',
+      results: [
+        { value: '10×', label: 'Faster diligence cycles' },
+        { value: '500+', label: 'Sources synthesised per memo' },
+        { value: '3×', label: 'More deals screened weekly' },
+      ],
+    },
+  },
+  {
+    key: 'care',
+    title: 'Human-like Customer Care',
+    tagline: 'Support that remembers, empathises, and resolves.',
+    body:
+      'Context-aware chatbots wired into your knowledge base, CRM, and order systems — ' +
+      'so they answer with your tone of voice, take real actions, and escalate ' +
+      'gracefully when a human truly adds value.',
+    span: 2,
+    metrics: ['<2s first response', '85% deflection', 'CSAT 4.8/5'],
+    stack: ['LangChain', 'OpenAI', 'Pinecone', 'Zendesk', 'Python'],
+    demoLabel: 'Chat with the agent',
+    demoUrl: '#demo-care',
+    caseStudy: {
+      client: 'Northwind Commerce',
+      industry: 'E-commerce · Tier-1 support',
+      summary:
+        'A care agent that handles "where is my order", returns, and edits directly in ' +
+        'the order system — deflecting the bulk of tickets without losing the human touch.',
+      results: [
+        { value: '85%', label: 'Tickets auto-resolved' },
+        { value: '4.8/5', label: 'Customer satisfaction' },
+        { value: '−54%', label: 'Support cost per order' },
+      ],
+    },
+  },
+  {
+    key: 'sales',
+    title: 'Lead Generation & Sales Agents',
+    tagline: 'A tireless SDR working your whole pipeline.',
+    body:
+      'Autonomous prospecting, enrichment, and personalised multi-channel outreach — ' +
+      'agents that research each account, book qualified meetings, and keep your CRM ' +
+      'pristine without manual data entry.',
+    span: 2,
+    metrics: ['3× meetings booked', '24/7 prospecting', '−70% cost per lead'],
+    stack: ['CrewAI', 'LangChain', 'Apollo', 'HubSpot', 'OpenAI'],
+    demoLabel: 'See it qualify a lead',
+    demoUrl: '#demo-sales',
+    caseStudy: {
+      client: 'Vantage SaaS',
+      industry: 'B2B SaaS · Outbound growth',
+      summary:
+        'Researches, sequences, and qualifies inbound and cold prospects, then hands ' +
+        'sales-ready meetings straight to closers with full context attached.',
+      results: [
+        { value: '3.2×', label: 'Qualified meetings booked' },
+        { value: '−70%', label: 'Cost per qualified lead' },
+        { value: '100%', label: 'CRM data hygiene' },
+      ],
+    },
+  },
+  {
+    key: 'docs',
+    title: 'File Documentation & AI Automation',
+    tagline: 'Complex documents in, structured action out.',
+    body:
+      'Agents that ingest contracts, invoices, and forms — extracting, validating, and ' +
+      'routing data into your systems with compliance checks and an audit trail, ' +
+      'eliminating manual data entry.',
+    span: 2,
+    metrics: ['99.2% extraction accuracy', '10× faster processing', 'Full audit trail'],
+    stack: ['LangChain', 'Unstructured', 'OpenAI', 'Python', 'Postgres'],
+    demoLabel: 'Watch it process a document',
+    demoUrl: '#demo-docs',
+    caseStudy: {
+      client: 'Atlas Logistics',
+      industry: 'Logistics · Document operations',
+      summary:
+        'Reads thousands of customs and shipping documents daily, validates them against ' +
+        'compliance rules, and posts clean records into the ERP with zero manual entry.',
+      results: [
+        { value: '99.2%', label: 'Extraction accuracy' },
+        { value: '10×', label: 'Faster document throughput' },
+        { value: '−90%', label: 'Manual data-entry hours' },
+      ],
+    },
+  },
+  {
+    key: 'enterprise',
+    title: 'Custom Enterprise Agents',
+    tagline: 'High-level professionals that own a whole role.',
+    body:
+      'Bespoke, multi-agent systems engineered to take over complex operational ' +
+      'functions — orchestrating tools, data, and human approvals across departments, ' +
+      'with the guardrails, observability, and security an enterprise demands.',
+    span: 6,
+    metrics: ['90% cost reduction', 'Owns end-to-end workflows', 'SOC 2-ready guardrails'],
+    stack: ['LangGraph', 'CrewAI', 'Anthropic', 'OpenAI', 'Python', 'Kubernetes'],
+    demoLabel: 'Book an architecture demo',
+    demoUrl: '#demo-enterprise',
+    caseStudy: {
+      client: 'Confidential — Fortune 500',
+      industry: 'Enterprise operations · Multi-department',
+      summary:
+        'A supervised multi-agent system that runs an entire back-office function — ' +
+        'planning work, calling internal tools, and routing only exceptions to staff.',
+      results: [
+        { value: '90%', label: 'Operational cost reduction' },
+        { value: '4 FTE', label: 'Roles fully automated' },
+        { value: '24/7', label: 'Uninterrupted operations' },
+      ],
+    },
+  },
+];
+
 // ── METRICS ────────────────────────────────────────────────────────────
 export const METRICS = [
   { prefix: '', target: 150, suffix: '+', decimals: 0, label: 'Projects shipped', sub: 'across every industry' },
