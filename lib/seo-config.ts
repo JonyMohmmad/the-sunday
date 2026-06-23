@@ -9,21 +9,22 @@ export const SEO = {
   siteUrl: SITE.domain,
   siteName: SITE.brand,
 
-  defaultTitle: `${SITE.brand} — Web Design & Development for Growing Businesses`,
+  defaultTitle: `${SITE.brand} — Web, AI & Growth for Modern Businesses`,
   defaultDescription:
-    'Lumora Studio designs and builds fast, high-converting websites, online '
-    + 'stores, and web apps for businesses worldwide. Custom design, modern tech, '
-    + 'and a focus on turning visitors into customers.',
+    'Lumora is a full-service digital studio: high-converting websites and stores, '
+    + 'AI automation, growth marketing, and digital security — one team for everything '
+    + 'that powers your business online.',
   defaultKeywords: [
     'web design agency',
-    'web development agency',
-    'custom website design',
-    'ecommerce website development',
-    'Shopify development agency',
-    'business website design',
-    'web app development',
-    'SaaS website design',
-    'Next.js development agency',
+    'web development',
+    'ecommerce development',
+    'Next.js development',
+    'AI automation agency',
+    'AI agents',
+    'digital marketing agency',
+    'social media management',
+    'brand & graphic design',
+    'digital security',
     'conversion-focused web design',
   ],
 

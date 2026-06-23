@@ -1,7 +1,7 @@
 ﻿// components/seo/JsonLd.tsx
-// Renders JSON-LD structured data: Organization, WebSite, Service, FAQPage.
+// Renders JSON-LD structured data: Organization, WebSite, ProfessionalService, FAQPage.
 import { SEO } from '@/lib/seo-config';
-import { PRICING, FAQ, SERVICES } from '@/lib/site';
+import { FAQ, PILLARS } from '@/lib/site';
 
 function organizationSchema() {
   return {
@@ -34,30 +34,42 @@ function websiteSchema() {
   };
 }
 
-function serviceSchema() {
+function professionalServiceSchema() {
+  // Flatten the four pillars into a single offer catalog.
+  const offers = PILLARS.flatMap((pillar) =>
+    pillar.services.map((s) => ({
+      '@type': 'Offer',
+      name: s.name,
+      category: pillar.title,
+      description: s.body,
+    })),
+  );
+
   return {
     '@context':  'https://schema.org',
-    '@type':     'Service',
-    name:        'Web Design & Development',
+    '@type':     'ProfessionalService',
+    name:        SEO.organization.name,
+    url:         SEO.organization.url,
+    logo:        SEO.organization.logo,
+    image:       SEO.organization.logo,
+    description: SEO.defaultDescription,
     provider: {
       '@type': 'Organization',
       name:    SEO.organization.name,
       url:     SEO.organization.url,
     },
-    description:
-      'Custom web design and development — marketing websites, e-commerce '
-      + 'stores, and web apps for businesses worldwide.',
     areaServed:  'Worldwide',
-    serviceType: 'Web Design & Development Agency',
+    serviceType: [
+      'Web Design & Development',
+      'Growth & Digital Marketing',
+      'AI Agents & Automation',
+      'Digital Security & Protection',
+    ],
+    sameAs: SEO.organization.sameAs,
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       name:    'Services',
-      itemListElement: SERVICES.map((s, i) => ({
-        '@type':    'Offer',
-        position:   i + 1,
-        name:       s.title,
-        description: s.body,
-      })),
+      itemListElement: offers.map((offer, i) => ({ ...offer, position: i + 1 })),
     },
   };
 }
@@ -81,7 +93,7 @@ export default function JsonLd() {
   const schemas = [
     organizationSchema(),
     websiteSchema(),
-    serviceSchema(),
+    professionalServiceSchema(),
     faqSchema(),
   ];
 

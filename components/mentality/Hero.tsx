@@ -1,13 +1,4 @@
-import { SITE } from '@/lib/site';
-
-/** Inline pill-shaped "eye" element sitting between words in the headline. */
-function EyePill() {
-  return (
-    <span className="inline-flex align-middle mx-1 md:mx-2 w-[16px] md:w-[42px] lg:w-[62px] h-[16px] md:h-[26px] lg:h-[34px] border-[2px] rounded-full items-center justify-center" style={{ borderColor: 'var(--text)' }}>
-      <span className="w-2 h-2 rounded-full" style={{ background: 'var(--text)' }} />
-    </span>
-  );
-}
+import { SITE, HERO } from '@/lib/site';
 
 export default function Hero() {
   return (
@@ -15,20 +6,48 @@ export default function Hero() {
       {/* Hero content */}
       <div className="max-w-7xl w-full mx-auto px-8 md:px-16 lg:px-20 relative z-10 grid grid-cols-12 gap-x-4 md:gap-x-8 pt-36 md:pt-44 pb-28 md:pb-36">
         <div className="col-span-12 md:col-span-10 md:col-start-2">
-          <h1 className="font-display font-medium tracking-tight leading-[1.05] text-[clamp(34px,6vw,84px)]">
-            <span style={{ color: 'var(--text)' }}>Websites that</span>{' '}
-            <span style={{ color: 'var(--text-3)' }}>win</span>
-            <EyePill />
-            <span style={{ color: 'var(--text-3)' }}>you</span>
-            <br />
-            <span style={{ color: 'var(--text-3)' }}>more customers, built by</span>
-            <br />
-            <span style={{ color: 'var(--text)' }}>{SITE.brand}.</span>
+          {/* Eyebrow */}
+          <p
+            className="mb-6 text-xs md:text-sm font-semibold uppercase tracking-[0.2em]"
+            style={{ color: 'var(--text-2)' }}
+          >
+            {HERO.eyebrow}
+          </p>
+
+          <h1 className="font-display font-medium tracking-tight leading-[1.06] text-[clamp(30px,5vw,68px)] max-w-5xl">
+            <span style={{ color: 'var(--text)' }}>We build your website, </span>
+            <span style={{ color: 'var(--text-3)' }}>run the marketing behind it, </span>
+            <span style={{ color: 'var(--text)' }}>and protect the brand you’re growing.</span>
           </h1>
 
-          {/* Tagline */}
-          <p className="mt-6 max-w-xl text-base md:text-lg" style={{ color: 'var(--text-2)' }}>
-            {SITE.tagline}
+          {/* Subhead */}
+          <p className="mt-7 max-w-2xl text-base md:text-lg" style={{ color: 'var(--text-2)' }}>
+            {HERO.body}
+          </p>
+
+          {/* CTAs */}
+          <div className="mt-9 flex flex-wrap items-center gap-3">
+            <a
+              href={SITE.bookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-sm md:text-base rounded-full px-5 py-2.5 hover:opacity-90 transition-opacity duration-200"
+              style={{ background: 'var(--text)', color: 'var(--bg)' }}
+            >
+              Book a free call <span aria-hidden="true">→</span>
+            </a>
+            <a
+              href="#work"
+              className="inline-flex items-center gap-1.5 text-sm md:text-base rounded-full px-5 py-2.5 transition-colors duration-200"
+              style={{ border: '1px solid var(--text)', color: 'var(--text)' }}
+            >
+              See our work
+            </a>
+          </div>
+
+          {/* Trust line (qualitative — no fabricated logos) */}
+          <p className="mt-8 text-sm" style={{ color: 'var(--text-3)' }}>
+            {HERO.trust}
           </p>
         </div>
       </div>

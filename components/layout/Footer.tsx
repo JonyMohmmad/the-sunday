@@ -5,10 +5,10 @@ import { SITE } from '@/lib/site';
 
 const footerLinks = {
   Services: [
-    { label: 'Business Websites', href: '/#services' },
-    { label: 'E-commerce Stores', href: '/#services' },
-    { label: 'Web Apps & SaaS', href: '/#services' },
-    { label: 'SEO & Care Plans', href: '/#services' },
+    { label: 'Design & Build', href: '/#services' },
+    { label: 'Growth & Marketing', href: '/#services' },
+    { label: 'AI Agents & Automation', href: '/ai-agents' },
+    { label: 'Security & Protection', href: '/security' },
   ],
   Studio: [
     { label: 'Work', href: '/work' },
@@ -17,9 +17,10 @@ const footerLinks = {
     { label: 'Blog', href: '/blog' },
   ],
   Company: [
+    { label: 'About', href: '/about' },
     { label: 'FAQ', href: '/faq' },
     { label: 'Book a call', href: SITE.bookingUrl },
-    { label: 'Contact', href: `mailto:${SITE.email}` },
+    { label: 'Contact', href: '/contact' },
   ],
 };
 

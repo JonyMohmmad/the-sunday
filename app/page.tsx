@@ -2,11 +2,9 @@ import Navbar from '@/components/mentality/Navbar';
 import Hero from '@/components/mentality/Hero';
 import LogoWall from '@/components/sections/LogoWall';
 import Services from '@/components/sections/Services';
-import AgenticSolutions from '@/components/sections/AgenticSolutions';
 import Work from '@/components/sections/Work';
 import Metrics from '@/components/sections/Metrics';
 import ProcessSteps from '@/components/sections/ProcessSteps';
-import Testimonials from '@/components/sections/Testimonials';
 import PricingSection from '@/components/sections/PricingSection';
 import Faq from '@/components/sections/Faq';
 import CtaSection from '@/components/sections/CtaSection';
@@ -30,11 +28,9 @@ export default function Home() {
       <main>
         <LogoWall />
         <Services />
-        <AgenticSolutions />
         <Work />
         <Metrics />
         <ProcessSteps />
-        <Testimonials />
         <PricingSection />
         <Faq />
         <CtaSection />

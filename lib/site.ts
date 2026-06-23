@@ -1,6 +1,8 @@
 // lib/site.ts
 // ─────────────────────────────────────────────────────────────────────────
-// Single source of truth for Lumora Studio.
+// Single source of truth for Lumora Studio — a full-service digital studio
+// across four pillars: Design & Build, Growth & Marketing, AI Agents &
+// Automation, and Security & Protection.
 // Edit copy, pricing, services, and contact details here — components read
 // from this file so the whole site stays consistent.
 // ─────────────────────────────────────────────────────────────────────────
@@ -9,10 +11,10 @@ export const SITE = {
   brand: 'Lumora Studio',
   brandShort: 'Lumora',
   domain: 'https://lumorastudio.com',
-  tagline: 'We design & build websites that grow your business.',
+  // Short brand line used in the footer and meta strapline.
+  tagline: 'One studio for web, AI, growth, and security.',
 
   // ── Primary conversion action ──────────────────────────────────────────
-  // TODO: replace with your real Cal.com / Calendly scheduler link.
   bookingUrl: 'https://cal.com/lumora/intro-call',
   bookingLabel: 'Book a call',
 
@@ -40,79 +42,143 @@ export const SITE = {
 
 // ── HERO ───────────────────────────────────────────────────────────────
 export const HERO = {
-  eyebrow: 'Web design & development studio',
-  headline1: 'Websites that win you',
-  headline2: 'more customers.',
+  eyebrow: 'Digital Studio — Web · AI · Growth',
+  headline:
+    "We build your website, run the marketing behind it, and protect the brand you're growing.",
   body:
-    'Lumora Studio designs and builds fast, beautiful websites, online stores, ' +
-    'and web apps for ambitious businesses worldwide — engineered to turn ' +
-    'visitors into paying customers.',
-  proof: '150+ projects shipped · 40+ countries · 4.9/5 average rating',
+    'Lumora is one studio for design, development, AI automation, growth marketing, ' +
+    'and digital security — so everything that powers your business online works ' +
+    'together, not in silos.',
+  // Trust line shown under the hero (qualitative, no fabricated logos).
+  trust:
+    'Trusted by founders and teams building across e-commerce, hospitality, and SaaS.',
 };
 
-// ── TRUST / LOGO WALL ──────────────────────────────────────────────────
-export const CLIENTS = [
-  'Aurora', 'Northbeam', 'Maison', 'Vertex', 'Lumen Health',
-  'Caldera', 'Beacon', 'Orbit Labs', 'Saffron', 'Driftwood',
-  'Helix', 'Monarch',
-];
+// ── TRUST LINE / REAL PROJECTS ─────────────────────────────────────────
+// Honest trust strip — only real, shipped projects.
+export const TRUST_LINE =
+  'Trusted by founders and teams building across e-commerce, hospitality, and SaaS.';
+export const TRUST_PROJECTS = ['Savageon', 'AgentForge', 'Cala Nera'];
 
-// ── SERVICES ───────────────────────────────────────────────────────────
-export const SERVICES = [
+// ── SERVICES — FOUR PILLARS ────────────────────────────────────────────
+// Web/design is the front door; marketing, AI, and security are the deeper
+// engine. Each pillar can link to a dedicated page for claim-heavy detail.
+export type PillarService = {
+  name: string;
+  body: string;
+  points: string[];
+};
+
+export type Pillar = {
+  key: string;
+  number: string;
+  title: string;
+  tagline: string;
+  href?: string; // dedicated sub-page, when one exists
+  services: PillarService[];
+};
+
+export const PILLARS: Pillar[] = [
   {
-    key: 'business',
-    title: 'Business & Marketing Websites',
-    body:
-      'Conversion-focused company sites, landing pages, and brand sites that ' +
-      'make your business look world-class and book more leads.',
-    points: ['Custom design', 'Copy that converts', 'CMS you can edit', 'SEO-ready'],
-  },
-  {
-    key: 'ecommerce',
-    title: 'E-commerce & Online Stores',
-    body:
-      'Shopify and custom storefronts built to sell — fast product pages, ' +
-      'frictionless checkout, and an experience customers trust.',
-    points: ['Shopify & headless', 'Optimised checkout', 'Payments & shipping', 'Conversion tuning'],
-  },
-  {
-    key: 'webapps',
-    title: 'Web Apps & SaaS Platforms',
-    body:
-      'Custom dashboards, customer portals, and full SaaS products — designed ' +
-      'for clarity and built to scale with your users.',
-    points: ['Product UX/UI', 'Dashboards & portals', 'API integrations', 'Auth & billing'],
+    key: 'design-build',
+    number: '01',
+    title: 'Design & Build',
+    tagline: 'The front door — websites, stores, web apps, and brand.',
+    services: [
+      {
+        name: 'Business & Marketing Websites',
+        body: 'Conversion-focused sites that book more leads.',
+        points: ['Custom design', 'Copy that converts', 'Editable CMS', 'SEO-ready'],
+      },
+      {
+        name: 'E-commerce & Online Stores',
+        body: 'Shopify and custom storefronts built to sell.',
+        points: ['Shopify & headless', 'Optimised checkout', 'Payments & shipping', 'Multi-seller ready'],
+      },
+      {
+        name: 'Web Apps & SaaS Platforms',
+        body: 'Dashboards, portals, and products built to scale.',
+        points: ['Product UX/UI', 'Dashboards & portals', 'API integrations', 'Auth & billing'],
+      },
+      {
+        name: 'Graphics Design',
+        body: 'Brand identity, social creative, and visual assets that make you look world-class.',
+        points: ['Logos & brand systems', 'Ad creative', 'Social graphics'],
+      },
+    ],
   },
   {
     key: 'growth',
-    title: 'Branding, SEO & Ongoing Care',
-    body:
-      'Design systems, technical SEO, performance, and a care plan that keeps ' +
-      'your site fast, secure, and growing long after launch.',
-    points: ['Brand & design systems', 'Technical SEO', 'Speed & Core Web Vitals', 'Maintenance plans'],
+    number: '02',
+    title: 'Growth & Marketing',
+    tagline: 'Turn the traffic your site earns into customers.',
+    services: [
+      {
+        name: 'Full-Stack Digital Marketing',
+        body: 'End-to-end campaigns that turn traffic into customers.',
+        points: ['Paid ads', 'Funnels', 'Email', 'Analytics'],
+      },
+      {
+        name: 'Social Media Solutions',
+        body: 'Content, scheduling, and management that keeps your brand active and growing.',
+        points: ['Content planning', 'Community management', 'Performance tracking'],
+      },
+    ],
+  },
+  {
+    key: 'ai',
+    number: '03',
+    title: 'AI Agents & Automation',
+    tagline: 'Take real work off your team with custom agents.',
+    href: '/ai-agents',
+    services: [
+      {
+        name: 'Custom AI Agents',
+        body:
+          'Agents that take real work off your team — support, lead gen, and document ' +
+          'processing wired into your existing tools.',
+        points: ['Voice & chat agents', 'Lead generation', 'Document automation', 'CRM integrations'],
+      },
+    ],
+  },
+  {
+    key: 'security',
+    number: '04',
+    title: 'Security & Protection',
+    tagline: 'Protect the brand and identity you are growing.',
+    href: '/security',
+    services: [
+      {
+        name: 'Identity Protection',
+        body: 'Safeguarding your accounts and digital identity from takeover and impersonation.',
+        points: ['Account hardening', 'Monitoring', 'Recovery'],
+      },
+      {
+        name: 'Social Media Security Management',
+        body: "Protecting your brand's social presence from hacks, fraud, and reputation attacks.",
+        points: ['Account security', 'Threat monitoring', 'Incident response'],
+      },
+      {
+        name: 'Intellectual Property Management',
+        body: 'Protecting your brand assets, trademarks, and original work.',
+        points: ['IP audits', 'Trademark guidance', 'Takedown support'],
+      },
+    ],
   },
 ];
 
-// ── AGENTIC SOLUTIONS & PORTFOLIO ──────────────────────────────────────
-// Full-scale, autonomous AI agents we build for corporate workflows.
-// `span` drives the bento-grid layout (out of 6 columns on large screens).
-// Each solution carries a real case study used by the tabbed portfolio.
+// ── AI AGENTS (illustrative capabilities) ──────────────────────────────
+// Detail for the dedicated /ai-agents page. Metrics here are framed as
+// ILLUSTRATIVE capability ranges — what's possible — not claimed client
+// outcomes. Do not present these as achieved results.
 export type AgentSolution = {
   key: string;
   title: string;
-  tagline: string;          // short bento headline
-  body: string;             // bento description
-  span: 1 | 2 | 3 | 6;      // bento column span (lg, of 6)
-  metrics: string[];        // badge copy, e.g. "90% Cost Reduction"
-  stack: string[];          // tech tags, e.g. "LangChain"
-  demoLabel: string;        // CTA label, e.g. "Watch agent in action"
-  demoUrl: string;          // live demo / recording link
-  caseStudy: {
-    client: string;
-    industry: string;
-    summary: string;
-    results: { value: string; label: string }[];
-  };
+  tagline: string;
+  body: string;
+  span: 1 | 2 | 3 | 6; // bento column span (lg, of 6)
+  metrics: string[]; // illustrative capability badges
+  stack: string[];
 };
 
 export const AGENT_SOLUTIONS: AgentSolution[] = [
@@ -125,22 +191,8 @@ export const AGENT_SOLUTIONS: AgentSolution[] = [
       'end to end — qualifying leads, booking appointments, and resolving requests ' +
       'with natural turn-taking, interruptions, and memory.',
     span: 3,
-    metrics: ['Sub-700ms latency', '24/7 availability', '90% calls fully automated'],
+    metrics: ['Sub-700ms latency', '24/7 availability', 'High automation rate'],
     stack: ['Vapi', 'Twilio', 'ElevenLabs', 'Whisper', 'OpenAI'],
-    demoLabel: 'Hear the agent live',
-    demoUrl: '#demo-voice',
-    caseStudy: {
-      client: 'Meridian Insurance',
-      industry: 'Insurance · Inbound + outbound',
-      summary:
-        'Replaced a 40-seat overflow call centre with a voice agent that answers ' +
-        'instantly, qualifies claims, and warm-transfers only the edge cases.',
-      results: [
-        { value: '92%', label: 'Calls resolved without a human' },
-        { value: '−68%', label: 'Cost per call' },
-        { value: '0s', label: 'Hold time, any hour' },
-      ],
-    },
   },
   {
     key: 'research',
@@ -153,20 +205,6 @@ export const AGENT_SOLUTIONS: AgentSolution[] = [
     span: 3,
     metrics: ['10× faster research', '500+ sources/run', 'Fully cited output'],
     stack: ['LangGraph', 'CrewAI', 'Tavily', 'Pinecone', 'Anthropic'],
-    demoLabel: 'Watch a live research run',
-    demoUrl: '#demo-research',
-    caseStudy: {
-      client: 'Halcyon Capital',
-      industry: 'Venture & PE · Market intelligence',
-      summary:
-        'Compresses a two-week analyst diligence cycle into an overnight, fully-sourced ' +
-        'market and competitor memo for every inbound deal.',
-      results: [
-        { value: '10×', label: 'Faster diligence cycles' },
-        { value: '500+', label: 'Sources synthesised per memo' },
-        { value: '3×', label: 'More deals screened weekly' },
-      ],
-    },
   },
   {
     key: 'care',
@@ -177,22 +215,8 @@ export const AGENT_SOLUTIONS: AgentSolution[] = [
       'so they answer with your tone of voice, take real actions, and escalate ' +
       'gracefully when a human truly adds value.',
     span: 2,
-    metrics: ['<2s first response', '85% deflection', 'CSAT 4.8/5'],
+    metrics: ['<2s first response', 'High deflection', 'Strong CSAT'],
     stack: ['LangChain', 'OpenAI', 'Pinecone', 'Zendesk', 'Python'],
-    demoLabel: 'Chat with the agent',
-    demoUrl: '#demo-care',
-    caseStudy: {
-      client: 'Northwind Commerce',
-      industry: 'E-commerce · Tier-1 support',
-      summary:
-        'A care agent that handles "where is my order", returns, and edits directly in ' +
-        'the order system — deflecting the bulk of tickets without losing the human touch.',
-      results: [
-        { value: '85%', label: 'Tickets auto-resolved' },
-        { value: '4.8/5', label: 'Customer satisfaction' },
-        { value: '−54%', label: 'Support cost per order' },
-      ],
-    },
   },
   {
     key: 'sales',
@@ -203,22 +227,8 @@ export const AGENT_SOLUTIONS: AgentSolution[] = [
       'agents that research each account, book qualified meetings, and keep your CRM ' +
       'pristine without manual data entry.',
     span: 2,
-    metrics: ['3× meetings booked', '24/7 prospecting', '−70% cost per lead'],
+    metrics: ['More meetings booked', '24/7 prospecting', 'Lower cost per lead'],
     stack: ['CrewAI', 'LangChain', 'Apollo', 'HubSpot', 'OpenAI'],
-    demoLabel: 'See it qualify a lead',
-    demoUrl: '#demo-sales',
-    caseStudy: {
-      client: 'Vantage SaaS',
-      industry: 'B2B SaaS · Outbound growth',
-      summary:
-        'Researches, sequences, and qualifies inbound and cold prospects, then hands ' +
-        'sales-ready meetings straight to closers with full context attached.',
-      results: [
-        { value: '3.2×', label: 'Qualified meetings booked' },
-        { value: '−70%', label: 'Cost per qualified lead' },
-        { value: '100%', label: 'CRM data hygiene' },
-      ],
-    },
   },
   {
     key: 'docs',
@@ -229,22 +239,8 @@ export const AGENT_SOLUTIONS: AgentSolution[] = [
       'routing data into your systems with compliance checks and an audit trail, ' +
       'eliminating manual data entry.',
     span: 2,
-    metrics: ['99.2% extraction accuracy', '10× faster processing', 'Full audit trail'],
+    metrics: ['High extraction accuracy', 'Faster processing', 'Full audit trail'],
     stack: ['LangChain', 'Unstructured', 'OpenAI', 'Python', 'Postgres'],
-    demoLabel: 'Watch it process a document',
-    demoUrl: '#demo-docs',
-    caseStudy: {
-      client: 'Atlas Logistics',
-      industry: 'Logistics · Document operations',
-      summary:
-        'Reads thousands of customs and shipping documents daily, validates them against ' +
-        'compliance rules, and posts clean records into the ERP with zero manual entry.',
-      results: [
-        { value: '99.2%', label: 'Extraction accuracy' },
-        { value: '10×', label: 'Faster document throughput' },
-        { value: '−90%', label: 'Manual data-entry hours' },
-      ],
-    },
   },
   {
     key: 'enterprise',
@@ -255,44 +251,74 @@ export const AGENT_SOLUTIONS: AgentSolution[] = [
       'functions — orchestrating tools, data, and human approvals across departments, ' +
       'with the guardrails, observability, and security an enterprise demands.',
     span: 6,
-    metrics: ['90% cost reduction', 'Owns end-to-end workflows', 'SOC 2-ready guardrails'],
+    metrics: ['Owns end-to-end workflows', 'Guardrails & observability', 'Enterprise-grade security'],
     stack: ['LangGraph', 'CrewAI', 'Anthropic', 'OpenAI', 'Python', 'Kubernetes'],
-    demoLabel: 'Book an architecture demo',
-    demoUrl: '#demo-enterprise',
-    caseStudy: {
-      client: 'Confidential — Fortune 500',
-      industry: 'Enterprise operations · Multi-department',
-      summary:
-        'A supervised multi-agent system that runs an entire back-office function — ' +
-        'planning work, calling internal tools, and routing only exceptions to staff.',
-      results: [
-        { value: '90%', label: 'Operational cost reduction' },
-        { value: '4 FTE', label: 'Roles fully automated' },
-        { value: '24/7', label: 'Uninterrupted operations' },
-      ],
-    },
   },
 ];
 
-// ── METRICS ────────────────────────────────────────────────────────────
-export const METRICS = [
-  { prefix: '', target: 150, suffix: '+', decimals: 0, label: 'Projects shipped', sub: 'across every industry' },
-  { prefix: '', target: 40, suffix: '+', decimals: 0, label: 'Countries served', sub: 'clients on 5 continents' },
-  { prefix: '', target: 2.7, suffix: '×', decimals: 1, label: 'Avg conversion lift', sub: 'after a Lumora rebuild' },
-  { prefix: '', target: 4.9, suffix: '/5', decimals: 1, label: 'Average client rating', sub: 'from 120+ reviews' },
+// ── SECURITY & PROTECTION (dedicated /security page) ───────────────────
+export type SecurityArea = {
+  key: string;
+  title: string;
+  intro: string;
+  covers: string[];
+};
+
+export const SECURITY_AREAS: SecurityArea[] = [
+  {
+    key: 'identity',
+    title: 'Identity Protection',
+    intro:
+      'We harden the accounts and digital identity your business runs on, then keep ' +
+      'watch so a takeover or impersonation attempt is caught early — not after the damage.',
+    covers: [
+      'Account hardening: strong MFA, passkeys, and recovery-path review across critical logins.',
+      'Monitoring for exposed credentials, impersonation domains, and look-alike profiles.',
+      'A documented recovery process so a compromised account can be regained quickly.',
+    ],
+  },
+  {
+    key: 'social',
+    title: 'Social Media Security Management',
+    intro:
+      "Your brand's social presence is a real asset — and a target. We secure the accounts, " +
+      'watch for threats, and give you a calm, rehearsed response when something goes wrong.',
+    covers: [
+      'Account security: access reviews, role separation, and removal of stale admins.',
+      'Threat monitoring for phishing, fake pages, and coordinated reputation attacks.',
+      'An incident-response workflow so a hack or fraud event is contained, not chaotic.',
+    ],
+  },
+  {
+    key: 'ip',
+    title: 'Intellectual Property Management',
+    intro:
+      'We help you understand what brand assets you own, where they are exposed, and how ' +
+      'to act when someone copies your work — without overpromising legal outcomes.',
+    covers: [
+      'IP audits: an inventory of logos, content, and original work worth protecting.',
+      'Trademark guidance and pointers to qualified counsel where formal filings are needed.',
+      'Takedown support for copied content, counterfeit listings, and infringing pages.',
+    ],
+  },
 ];
 
-// ── WORK / CASE STUDIES ────────────────────────────────────────────────
+// ── METRICS (real / verifiable — Option A from the brief) ──────────────
+export const METRICS = [
+  { prefix: '', target: 3, suffix: '', decimals: 0, label: 'Products shipped', sub: 'web & AI, live in production' },
+  { prefix: '', target: 3, suffix: '', decimals: 0, label: 'Countries served', sub: 'clients across 3 continents' },
+  { prefix: '', target: 247, suffix: '', decimals: 0, label: 'Waitlist signups', sub: 'driven for AgentForge pre-launch' },
+  { prefix: '', target: 9, suffix: '', decimals: 0, label: 'Seller stalls', sub: 'on the Savageon marketplace' },
+];
+
+// ── WORK / CASE STUDIES (real, shipped projects only) ──────────────────
 // Industry tags drive the portfolio filter. Keep `key` in sync with each
 // project's `industry` field below.
 export const INDUSTRIES = [
   { key: 'all',       label: 'All work' },
   { key: 'ecommerce', label: 'E-commerce' },
   { key: 'saas',      label: 'SaaS' },
-  { key: 'brand',      label: 'Brand & Web' },
-  { key: 'webapp',     label: 'Web apps' },
-  { key: 'health',     label: 'Healthcare' },
-  { key: 'realestate', label: 'Real estate' },
+  { key: 'brand',     label: 'Brand & Web' },
 ] as const;
 
 export type IndustryKey = (typeof INDUSTRIES)[number]['key'];
@@ -322,7 +348,6 @@ export type WorkProject = {
   metric: string;         // sub-label for the headline metric
   results: { value: string; label: string }[]; // measurable outcomes grid
   stack: string[];        // tech transparency card
-  lighthouse: number;     // performance score badge (0–100)
   accent: string;         // gradient used in the browser-frame preview
   image?: string;         // real homepage screenshot (in /public); falls back to accent mock
 };
@@ -331,198 +356,6 @@ export const getWorkBySlug = (slug: string): WorkProject | undefined =>
   WORK.find((w) => w.slug === slug);
 
 export const WORK: WorkProject[] = [
-  {
-    slug: 'aurora-skincare',
-    client: 'Aurora Skincare',
-    industry: 'ecommerce',
-    category: 'E-commerce · Shopify',
-    url: 'aurora-skincare.com',
-    liveUrl: 'https://aurora-skincare.com',
-    year: '2025',
-    duration: '4 weeks',
-    summary: 'Rebuilt a slow DTC store into a fast, branded storefront.',
-    overview:
-      'Aurora is a fast-growing DTC skincare brand whose Shopify store had outgrown its theme — ' +
-      'beautiful product, but a sluggish, generic storefront that leaked revenue on mobile.',
-    challenge:
-      'A 4.2-second mobile load time and a cluttered product page were quietly costing Aurora sales. ' +
-      'Bounce rates were high, the brand looked like every other template store, and checkout drop-off was steep.',
-    approach: [
-      'Rebuilt the storefront on Shopify Hydrogen for near-instant page loads.',
-      'Designed a bespoke, editorial product page with social proof and sticky add-to-cart.',
-      'Streamlined checkout and wired up Klaviyo flows for abandoned carts.',
-    ],
-    result: '+63% revenue',
-    metric: 'in the first 90 days',
-    results: [
-      { value: '+63%',  label: 'Revenue in first 90 days' },
-      { value: '0.9s',  label: 'Mobile load (was 4.2s)' },
-      { value: '+41%',  label: 'Mobile conversion rate' },
-    ],
-    stack: ['Shopify Hydrogen', 'React', 'Tailwind CSS', 'Klaviyo'],
-    lighthouse: 99,
-    accent: 'linear-gradient(135deg,#f093fb,#f5576c)',
-  },
-  {
-    slug: 'northbeam',
-    client: 'Northbeam',
-    industry: 'saas',
-    category: 'SaaS · Marketing site',
-    url: 'northbeam.io',
-    liveUrl: 'https://northbeam.io',
-    year: '2025',
-    duration: '5 weeks',
-    summary: 'New positioning and a high-converting marketing site.',
-    overview:
-      'Northbeam is a B2B analytics platform with a strong product but a marketing site that ' +
-      'undersold it — vague messaging and a homepage that did not explain who it was for.',
-    challenge:
-      'Trial signups had plateaued. The old site led with features instead of outcomes, and the ' +
-      'signup path was buried three clicks deep behind a generic hero.',
-    approach: [
-      'Reworked positioning around a single, sharp value proposition.',
-      'Designed a conversion-first homepage with a one-click trial path.',
-      'Built reusable section components so the team can ship new pages fast.',
-    ],
-    result: '2.1× signups',
-    metric: 'month-over-month',
-    results: [
-      { value: '2.1×',  label: 'Trial signups MoM' },
-      { value: '−34%',  label: 'Bounce on homepage' },
-      { value: '+28%',  label: 'Demo requests' },
-    ],
-    stack: ['Next.js', 'TypeScript', 'Sanity CMS', 'Vercel'],
-    lighthouse: 100,
-    accent: 'linear-gradient(135deg,#4facfe,#00f2fe)',
-  },
-  {
-    slug: 'maison-atelier',
-    client: 'Maison Atelier',
-    industry: 'brand',
-    category: 'Brand & Web · Custom',
-    url: 'maisonatelier.studio',
-    liveUrl: 'https://maisonatelier.studio',
-    year: '2024',
-    duration: '6 weeks',
-    summary: 'Full rebrand and bespoke website for a design house.',
-    overview:
-      'Maison Atelier is a high-end interior design house that needed a digital presence as ' +
-      'considered as its work — a site that felt like a gallery, not a brochure.',
-    challenge:
-      'Their existing site looked dated and generic, attracting low-budget enquiries and failing to ' +
-      'convey the studio’s craft. They needed organic leads that matched their premium positioning.',
-    approach: [
-      'Developed a new visual identity, type system, and art direction.',
-      'Built an immersive, image-led portfolio with buttery scroll interactions.',
-      'Implemented technical SEO and a structured enquiry flow to qualify leads.',
-    ],
-    result: '+48% leads',
-    metric: 'from organic traffic',
-    results: [
-      { value: '+48%',  label: 'Qualified leads (organic)' },
-      { value: '3.4×',  label: 'Avg. session duration' },
-      { value: '#1',    label: 'Ranking for key local terms' },
-    ],
-    stack: ['Next.js', 'Framer Motion', 'Sanity CMS', 'Vercel'],
-    lighthouse: 98,
-    accent: 'linear-gradient(135deg,#667eea,#764ba2)',
-  },
-  {
-    slug: 'vertex-analytics',
-    client: 'Vertex Analytics',
-    industry: 'webapp',
-    category: 'Web app · Dashboard',
-    url: 'app.vertexanalytics.io',
-    liveUrl: 'https://app.vertexanalytics.io',
-    year: '2025',
-    duration: '9 weeks',
-    summary: 'Designed and built an analytics dashboard from scratch.',
-    overview:
-      'Vertex needed a customer-facing analytics dashboard that turned dense data into decisions — ' +
-      'fast, legible, and good enough to demo on a sales call.',
-    challenge:
-      'Customers churned because the old reporting was slow and confusing. Vertex needed a product ' +
-      'UX that surfaced the right numbers instantly and felt effortless to navigate.',
-    approach: [
-      'Mapped the core jobs-to-be-done and designed a focused dashboard IA.',
-      'Built fast, virtualized data views and clear, glanceable charts.',
-      'Shipped a design system so new features stay consistent and quick to build.',
-    ],
-    result: '−40% churn',
-    metric: 'after the redesign',
-    results: [
-      { value: '−40%',  label: 'Monthly churn' },
-      { value: '+55%',  label: 'Daily active users' },
-      { value: '120ms', label: 'Median view render' },
-    ],
-    stack: ['Next.js', 'TypeScript', 'TanStack', 'Postgres'],
-    lighthouse: 97,
-    accent: 'linear-gradient(135deg,#43e97b,#38f9d7)',
-  },
-  {
-    slug: 'lumen-health',
-    client: 'Lumen Health',
-    industry: 'health',
-    category: 'Healthcare · Marketing + booking',
-    url: 'lumenhealth.care',
-    liveUrl: 'https://lumenhealth.care',
-    year: '2025',
-    duration: '5 weeks',
-    summary: 'A trustworthy clinic site with online appointment booking.',
-    overview:
-      'Lumen Health is a multi-location clinic that relied on phone bookings. They wanted a ' +
-      'reassuring, accessible site that let patients book online without friction.',
-    challenge:
-      'Phone lines were overwhelmed and the old site was not accessible or mobile-friendly. ' +
-      'Patients struggled to find services and book, so appointments were being lost.',
-    approach: [
-      'Designed a calm, WCAG-compliant interface that builds trust.',
-      'Integrated real-time online booking across all clinic locations.',
-      'Optimised local SEO so each location ranks in its own area.',
-    ],
-    result: '+72% bookings',
-    metric: 'within two months',
-    results: [
-      { value: '+72%',  label: 'Online bookings' },
-      { value: '−45%',  label: 'Booking phone calls' },
-      { value: 'AA',    label: 'WCAG accessibility' },
-    ],
-    stack: ['Next.js', 'TypeScript', 'Cal.com', 'Vercel'],
-    lighthouse: 100,
-    accent: 'linear-gradient(135deg,#0ba360,#3cba92)',
-  },
-  {
-    slug: 'driftwood-estates',
-    client: 'Driftwood Estates',
-    industry: 'realestate',
-    category: 'Real estate · Listings site',
-    url: 'driftwoodestates.com',
-    liveUrl: 'https://driftwoodestates.com',
-    year: '2024',
-    duration: '6 weeks',
-    summary: 'A premium listings site for a boutique property firm.',
-    overview:
-      'Driftwood is a boutique real-estate firm selling coastal properties. They needed a site that ' +
-      'made every listing feel aspirational and captured high-intent enquiries.',
-    challenge:
-      'Listings lived on a clunky third-party portal with no brand and poor imagery. High-value ' +
-      'buyers bounced, and the firm had no way to capture or nurture leads.',
-    approach: [
-      'Built a bespoke, filterable listings experience with cinematic galleries.',
-      'Designed a brand and site that signals trust to high-net-worth buyers.',
-      'Added saved-search and enquiry capture wired to the firm’s CRM.',
-    ],
-    result: '+2.4× enquiries',
-    metric: 'on featured listings',
-    results: [
-      { value: '2.4×',  label: 'Enquiries on featured homes' },
-      { value: '+58%',  label: 'Time on listing pages' },
-      { value: '1.1s',  label: 'Gallery load time' },
-    ],
-    stack: ['Next.js', 'Mapbox', 'Sanity CMS', 'HubSpot'],
-    lighthouse: 98,
-    accent: 'linear-gradient(135deg,#fa709a,#fee140)',
-  },
   {
     slug: 'cala-nera',
     client: 'Cala Nera',
@@ -534,13 +367,13 @@ export const WORK: WorkProject[] = [
     duration: '5 weeks',
     summary: 'An immersive site for a clifftop luxury hotel on the Amalfi Coast.',
     overview:
-      'Cala Nera is an ultra-premium, 24-suite hotel carved into the limestone cliffs of Positano. ' +
+      'Cala Nera is an ultra-premium hotel carved into the limestone cliffs of the Amalfi Coast. ' +
       'They needed a digital presence as restrained and considered as the property itself — one that ' +
       'sells silence, stone, and sea air to high-net-worth travellers.',
     challenge:
       'Luxury hospitality lives or dies on atmosphere. The brand needed a site that conveyed quiet ' +
-      'exclusivity, showcased eight room categories and Michelin-starred dining, and turned browsing ' +
-      'into direct bookings without feeling like a template booking engine.',
+      'exclusivity, showcased its rooms and dining, and turned browsing into direct reservations ' +
+      'without feeling like a template booking engine.',
     approach: [
       'Designed a minimal, image-led experience built around restraint and negative space.',
       'Built cinematic suite, dining, spa, and experiences sections with buttery scroll interactions.',
@@ -554,7 +387,6 @@ export const WORK: WorkProject[] = [
       { value: '<1s', label: 'Optimised image loads' },
     ],
     stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel'],
-    lighthouse: 99,
     accent: 'linear-gradient(135deg,#0b486b,#2c7873)',
     image: '/work/cala-nera.webp',
   },
@@ -589,7 +421,6 @@ export const WORK: WorkProject[] = [
       { value: 'Days', label: 'Agent deployment, not months' },
     ],
     stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel'],
-    lighthouse: 99,
     accent: 'linear-gradient(135deg,#6a11cb,#2575fc)',
     image: '/work/agentforge.webp',
   },
@@ -624,7 +455,6 @@ export const WORK: WorkProject[] = [
       { value: 'AI', label: '“Savage AI” support chat' },
     ],
     stack: ['Next.js', 'React', 'Tailwind CSS', 'Vercel'],
-    lighthouse: 96,
     accent: 'linear-gradient(135deg,#16161a,#e63946)',
     image: '/work/savageon.webp',
   },
@@ -637,7 +467,7 @@ export const PROCESS = [
     title: 'Discovery & strategy',
     body:
       'We start with a call to understand your business, customers, and goals — ' +
-      'then map the exact site that will move your numbers. No templates, no guesswork.',
+      'then map the exact site or system that will move your numbers. No templates, no guesswork.',
   },
   {
     number: '02',
@@ -650,7 +480,7 @@ export const PROCESS = [
     number: '03',
     title: 'Build',
     body:
-      'We engineer a fast, accessible, SEO-ready site with the latest web tech — ' +
+      'We engineer a fast, accessible, SEO-ready build with the latest web tech — ' +
       'tested across devices and built to load in under two seconds.',
   },
   {
@@ -658,11 +488,16 @@ export const PROCESS = [
     title: 'Launch & grow',
     body:
       'We launch, measure, and optimise. With a care plan, we keep improving ' +
-      'conversion, speed, and SEO so your site keeps paying for itself.',
+      'conversion, speed, and SEO so your project keeps paying for itself.',
   },
 ];
 
-// ── PRICING ────────────────────────────────────────────────────────────
+// The same process applies across web, marketing, AI, and security engagements.
+export const PROCESS_NOTE =
+  'The same process applies across every engagement — whether we’re building a site, ' +
+  'running growth, shipping an AI agent, or hardening your security.';
+
+// ── PRICING (web project packages) ─────────────────────────────────────
 export const PRICING = [
   {
     tier: 'Launch',
@@ -712,36 +547,10 @@ export const PRICING = [
   },
 ];
 
-// ── TESTIMONIALS ───────────────────────────────────────────────────────
-export const TESTIMONIALS = [
-  {
-    quote:
-      'Lumora rebuilt our store and the difference was immediate — it loads instantly, looks premium, and our sales jumped within weeks. Best money we have spent on the business.',
-    name: 'Elena Rossi',
-    role: 'Founder',
-    company: 'Aurora Skincare',
-    initials: 'ER',
-    gradient: 'linear-gradient(135deg,#f093fb,#f5576c)',
-  },
-  {
-    quote:
-      'They understood our SaaS better than agencies we had paid 5× more. The new marketing site doubled our trial signups and the team was a genuine pleasure to work with.',
-    name: 'David Chen',
-    role: 'CEO',
-    company: 'Northbeam',
-    initials: 'DC',
-    gradient: 'linear-gradient(135deg,#4facfe,#00f2fe)',
-  },
-  {
-    quote:
-      'From branding to the final build, Lumora delivered something we are proud to show clients. Communication was clear, deadlines were met, and the quality is world-class.',
-    name: 'Amara Okafor',
-    role: 'Creative Director',
-    company: 'Maison Atelier',
-    initials: 'AO',
-    gradient: 'linear-gradient(135deg,#667eea,#764ba2)',
-  },
-];
+// Marketing, AI, and security are scoped per engagement — no fixed list price.
+export const PRICING_NOTE =
+  'These are our web project packages. Growth marketing, AI agents, and security ' +
+  'are priced per scope — custom quote, book a call.';
 
 // ── FAQ ────────────────────────────────────────────────────────────────
 export const FAQ = [
@@ -755,7 +564,7 @@ export const FAQ = [
   {
     q: 'How much does a website cost?',
     a:
-      'Our projects start at $2,500 for a marketing site and $6,000 for a custom site or online ' +
+      'Our web projects start at $2,500 for a marketing site and $6,000 for a custom site or online ' +
       'store. Web apps and larger builds are custom-quoted. You will always get a fixed price ' +
       'before we begin — no surprises.',
   },
@@ -769,8 +578,8 @@ export const FAQ = [
   {
     q: 'Do you work with clients in my country / time zone?',
     a:
-      'Yes. We are a fully remote studio and work with clients across more than 40 countries. ' +
-      'We schedule calls around your time zone and communicate clearly throughout the project.',
+      'Yes. We are a fully remote studio working with clients worldwide. We schedule calls around ' +
+      'your time zone and communicate clearly throughout the project.',
   },
   {
     q: 'Do you offer ongoing support after launch?',
@@ -785,14 +594,62 @@ export const FAQ = [
       'headless CMS options you can edit yourself. Everything is optimised for speed, SEO, ' +
       'and accessibility.',
   },
+  {
+    q: 'Do you only build websites, or do you also handle marketing and AI?',
+    a:
+      'We are a full-service digital studio across four pillars: Design & Build, Growth & Marketing, ' +
+      'AI Agents & Automation, and Security & Protection. The website is usually the front door — ' +
+      'we can also run the marketing behind it, build AI agents, and protect your brand.',
+  },
+  {
+    q: 'What can your AI agents actually do?',
+    a:
+      'We build custom AI agents for voice, customer care, research, lead generation, and document ' +
+      'automation — wired into your existing tools. See the /ai-agents page for capabilities. We are ' +
+      'honest about scope and frame figures as what’s possible, not guaranteed outcomes.',
+  },
+  {
+    q: 'What does “digital security” cover?',
+    a:
+      'Our security pillar covers identity protection, social media security management, and ' +
+      'intellectual property management — account hardening, threat monitoring, incident response, ' +
+      'and takedown support. See the /security page for detail. We keep claims defensible and never ' +
+      'promise to make you “unhackable.”',
+  },
+  {
+    q: 'How does pricing work for marketing, AI, or security?',
+    a:
+      'Our fixed web packages start at $2,500. Marketing, AI agents, and security are scoped per ' +
+      'engagement and custom-quoted on a free call — you always get a clear price before any work begins.',
+  },
 ];
 
 // ── FINAL CTA ──────────────────────────────────────────────────────────
 export const FINAL_CTA = {
   eyebrow: 'Ready when you are',
-  headline: 'Let’s build a website that grows your business.',
+  headline: 'Let’s build something that grows your business.',
   body:
     'Book a free 30-minute call. We’ll talk through your goals, show you what’s possible, ' +
     'and give you a clear plan and price — whether you work with us or not.',
   note: 'No pressure. No jargon. Just honest advice from people who build for a living.',
+};
+
+// ── ABOUT ──────────────────────────────────────────────────────────────
+export const ABOUT = {
+  heading: 'A small studio that does serious work.',
+  intro:
+    'Lumora is a full-service digital studio. We design and build the website, run the growth ' +
+    'behind it, ship the AI that takes work off your team, and protect the brand you’re growing — ' +
+    'all under one roof, so the pieces actually work together.',
+  founderNote:
+    'We started Lumora because most businesses are forced to stitch together a web agency, a ' +
+    'marketing agency, an AI shop, and a security consultant — none of whom talk to each other. ' +
+    'We’d rather be the one team that owns the whole picture, ships fast, and tells you the honest ' +
+    'truth about what will and won’t move your numbers.',
+  values: [
+    { title: 'Honest over impressive', body: 'Real, modest claims beat impressive, fabricated ones — every time.' },
+    { title: 'One team, one picture', body: 'Web, growth, AI, and security that are designed to work together, not in silos.' },
+    { title: 'Fixed quotes', body: 'Every project scoped and priced upfront on a free call. No surprise invoices.' },
+    { title: 'Build for a living', body: 'We ship real products with modern tech — not slide decks and retainers.' },
+  ],
 };

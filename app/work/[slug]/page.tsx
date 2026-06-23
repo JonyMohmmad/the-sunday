@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { ArrowUpRight, Zap, Check } from 'lucide-react';
+import { ArrowUpRight, Check } from 'lucide-react';
 import Nav from '@/components/layout/Nav';
 import Footer from '@/components/layout/Footer';
 import CtaSection from '@/components/sections/CtaSection';
@@ -65,7 +65,6 @@ export default async function CaseStudyPage({ params }: Props) {
   const project = getWorkBySlug(slug);
   if (!project) notFound();
 
-  const lhGood = project.lighthouse >= 90;
   const others = WORK.filter((w) => w.slug !== project.slug).slice(0, 3);
 
   return (
@@ -171,12 +170,6 @@ export default async function CaseStudyPage({ params }: Props) {
                       }}
                     />
                   )}
-                  <span
-                    className="absolute top-5 right-5 inline-flex items-center gap-1.5 text-sm font-semibold px-3 py-1.5 rounded-full"
-                    style={{ background: 'rgba(0,0,0,0.45)', color: lhGood ? '#4ade80' : '#fcd34d', backdropFilter: 'blur(4px)' }}
-                  >
-                    <Zap size={14} fill="currentColor" /> Lighthouse {project.lighthouse}
-                  </span>
                 </div>
               </div>
             </RevealOnScroll>
@@ -246,7 +239,7 @@ export default async function CaseStudyPage({ params }: Props) {
           <div className="max-w-5xl mx-auto">
             <RevealOnScroll>
               <div
-                className="rounded-2xl p-8 flex flex-col md:flex-row md:items-center justify-between gap-8"
+                className="rounded-2xl p-8"
                 style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
               >
                 <div>
@@ -261,19 +254,6 @@ export default async function CaseStudyPage({ params }: Props) {
                         {t}
                       </span>
                     ))}
-                  </div>
-                </div>
-                <div className="flex items-center gap-4 md:flex-shrink-0">
-                  <div
-                    className="flex flex-col items-center justify-center w-20 h-20 rounded-full"
-                    style={{ border: `3px solid ${lhGood ? '#22c55e' : '#f59e0b'}`, color: lhGood ? '#22c55e' : '#f59e0b' }}
-                  >
-                    <span className="text-2xl font-bold leading-none">{project.lighthouse}</span>
-                    <span className="text-[9px] uppercase tracking-wider mt-0.5" style={{ color: 'var(--text-3)' }}>score</span>
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold" style={{ color: 'var(--text)' }}>Lighthouse performance</p>
-                    <p className="text-[13px]" style={{ color: 'var(--text-2)' }}>Fast sites rank and convert better.</p>
                   </div>
                 </div>
               </div>

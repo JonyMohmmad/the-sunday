@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef } from 'react';
+import Link from 'next/link';
 import { motion, useInView } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { useMotionVariants } from '@/lib/animations';
@@ -49,13 +50,13 @@ export default function Work() {
               Real projects. Real growth.
             </h2>
           </div>
-          <a
+          <Link
             href="/work"
             className="inline-flex items-center gap-1.5 text-sm font-semibold transition-colors duration-150 hover:text-[var(--text)]"
             style={{ color: 'var(--text-2)' }}
           >
             View all work <ArrowUpRight size={16} />
-          </a>
+          </Link>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

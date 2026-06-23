@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { ArrowUpRight, Zap } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { INDUSTRIES, type WorkProject } from '@/lib/site';
 import { useMounted } from '@/lib/use-mounted';
 
@@ -19,8 +19,6 @@ interface WorkCardProps {
 }
 
 export default function WorkCard({ project, index = 0, reveal = 'inView' }: WorkCardProps) {
-  const lhGood = project.lighthouse >= 90;
-
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-60px' });
   const mounted = useMounted();
@@ -111,19 +109,6 @@ export default function WorkCard({ project, index = 0, reveal = 'inView' }: Work
               style={{ background: 'rgba(0,0,0,0.4)', color: '#fff', backdropFilter: 'blur(4px)' }}
             >
               {industryLabel(project.industry)}
-            </span>
-
-            {/* Lighthouse performance badge */}
-            <span
-              className="absolute top-3 right-3 inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-1 rounded-full"
-              title={`Lighthouse performance: ${project.lighthouse}/100`}
-              style={{
-                background: 'rgba(0,0,0,0.45)',
-                color: lhGood ? '#4ade80' : '#fcd34d',
-                backdropFilter: 'blur(4px)',
-              }}
-            >
-              <Zap size={11} fill="currentColor" /> {project.lighthouse}
             </span>
 
             {/* Hover affordance */}

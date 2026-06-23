@@ -32,7 +32,7 @@ export default function Metrics() {
             className="font-bold tracking-tight"
             style={{ fontSize: 'clamp(36px, 4vw, 52px)', letterSpacing: '-0.02em', color: 'var(--text)' }}
           >
-            Results that speak for themselves.
+Real numbers from real projects.
           </h2>
         </motion.div>
 

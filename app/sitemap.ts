@@ -10,9 +10,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: SEO.siteUrl, lastModified: now, changeFrequency: 'weekly', priority: 1.0 },
     { url: `${SEO.siteUrl}/work`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${SEO.siteUrl}/ai-agents`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${SEO.siteUrl}/security`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${SEO.siteUrl}/pricing`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${SEO.siteUrl}/process`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${SEO.siteUrl}/about`, lastModified: now, changeFrequency: 'monthly', priority: 0.6 },
     { url: `${SEO.siteUrl}/faq`, lastModified: now, changeFrequency: 'monthly', priority: 0.6 },
+    { url: `${SEO.siteUrl}/contact`, lastModified: now, changeFrequency: 'monthly', priority: 0.6 },
     { url: `${SEO.siteUrl}/blog`, lastModified: now, changeFrequency: 'weekly', priority: 0.7 },
   ];
 

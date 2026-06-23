@@ -5,7 +5,7 @@ import { motion, useInView } from 'framer-motion';
 import { Check } from 'lucide-react';
 import { useMotionVariants } from '@/lib/animations';
 import { useMounted } from '@/lib/use-mounted';
-import { PRICING, SITE } from '@/lib/site';
+import { PRICING, PRICING_NOTE, SITE } from '@/lib/site';
 
 export default function PricingSection() {
   const ref = useRef(null);
@@ -24,7 +24,7 @@ export default function PricingSection() {
           className="text-center mb-4"
         >
           <p className="text-xs font-semibold uppercase tracking-[0.2em] mb-4" style={{ color: '#93c5fd' }}>
-            Transparent pricing
+            Web project pricing
           </p>
           <h2
             id="pricing-heading"
@@ -34,8 +34,9 @@ export default function PricingSection() {
             Clear pricing. Fixed quotes.
           </h2>
           <p className="text-base max-w-xl mx-auto" style={{ color: 'var(--text-2)' }}>
-            Every project is scoped and priced upfront on a free call — you will never
-            get a surprise invoice. Prices in USD; we work with clients worldwide.
+            These are our website packages. Every project is scoped and priced upfront on
+            a free call — you will never get a surprise invoice. Prices in USD; we work
+            with clients worldwide.
           </p>
         </motion.div>
 
@@ -102,6 +103,27 @@ export default function PricingSection() {
             </motion.div>
           ))}
         </div>
+
+        <motion.p
+          variants={v.fadeUp}
+          initial={false}
+          animate={!mounted || inView ? 'visible' : 'hidden'}
+          transition={{ delay: 0.5 }}
+          className="text-center text-sm mt-10 max-w-2xl mx-auto"
+          style={{ color: 'var(--text-2)' }}
+        >
+          {PRICING_NOTE.split('custom quote')[0]}
+          <a
+            href={SITE.bookingUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold"
+            style={{ color: '#93c5fd' }}
+          >
+            custom quote, book a call
+          </a>
+          .
+        </motion.p>
       </div>
     </section>
   );
