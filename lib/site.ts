@@ -522,6 +522,108 @@ export const WORK: WorkProject[] = [
     lighthouse: 98,
     accent: 'linear-gradient(135deg,#fa709a,#fee140)',
   },
+  {
+    slug: 'cala-nera',
+    client: 'Cala Nera',
+    industry: 'brand',
+    category: 'Hospitality · Brand & Web',
+    url: 'cala-nera.vercel.app',
+    liveUrl: 'https://cala-nera.vercel.app/',
+    year: '2025',
+    duration: '5 weeks',
+    summary: 'An immersive site for a clifftop luxury hotel on the Amalfi Coast.',
+    overview:
+      'Cala Nera is an ultra-premium, 24-suite hotel carved into the limestone cliffs of Positano. ' +
+      'They needed a digital presence as restrained and considered as the property itself — one that ' +
+      'sells silence, stone, and sea air to high-net-worth travellers.',
+    challenge:
+      'Luxury hospitality lives or dies on atmosphere. The brand needed a site that conveyed quiet ' +
+      'exclusivity, showcased eight room categories and Michelin-starred dining, and turned browsing ' +
+      'into direct bookings without feeling like a template booking engine.',
+    approach: [
+      'Designed a minimal, image-led experience built around restraint and negative space.',
+      'Built cinematic suite, dining, spa, and experiences sections with buttery scroll interactions.',
+      'Integrated a frictionless reservation flow and optimised imagery for instant loads.',
+    ],
+    result: 'Direct bookings',
+    metric: 'a reservation-first experience',
+    results: [
+      { value: '24', label: 'Suites showcased end-to-end' },
+      { value: '1★', label: 'Michelin dining featured' },
+      { value: '<1s', label: 'Optimised image loads' },
+    ],
+    stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel'],
+    lighthouse: 99,
+    accent: 'linear-gradient(135deg,#0b486b,#2c7873)',
+  },
+  {
+    slug: 'agentforge',
+    client: 'AgentForge',
+    industry: 'saas',
+    category: 'SaaS · AI automation',
+    url: 'agent-forge-phi-puce.vercel.app',
+    liveUrl: 'https://agent-forge-phi-puce.vercel.app/',
+    year: '2026',
+    duration: '3 weeks',
+    summary: 'A launch site for an AI agency deploying custom agents into business workflows.',
+    overview:
+      'AgentForge is an AI automation agency that deploys custom AI agents into existing tools — ' +
+      'Slack, Notion, HubSpot, Salesforce, and Gmail — to automate complex work in days, not months. ' +
+      'They needed a sharp launch site to build a waitlist and convert founding clients.',
+    challenge:
+      'As an early-stage agency, AgentForge needed to explain a technical, abstract product clearly, ' +
+      'establish credibility fast, and capture high-intent signups behind a founding-client offer ' +
+      'before public launch.',
+    approach: [
+      'Built a conversion-first landing page around a single, sharp value proposition.',
+      'Designed clear sections for sales, ops, support, research, and content agents.',
+      'Wired up waitlist capture and a founding-client offer with live signup proof.',
+    ],
+    result: '247 signups',
+    metric: 'on the pre-launch waitlist',
+    results: [
+      { value: '247', label: 'Waitlist signups pre-launch' },
+      { value: '40%', label: 'Founding-client offer' },
+      { value: 'Days', label: 'Agent deployment, not months' },
+    ],
+    stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel'],
+    lighthouse: 99,
+    accent: 'linear-gradient(135deg,#6a11cb,#2575fc)',
+  },
+  {
+    slug: 'savageon',
+    client: 'Savageon',
+    industry: 'ecommerce',
+    category: 'E-commerce · Marketplace',
+    url: 'savageon.com',
+    liveUrl: 'https://www.savageon.com/',
+    year: '2025',
+    duration: '7 weeks',
+    summary: 'A bold streetwear store and multi-seller marketplace for Bangladesh.',
+    overview:
+      'Savageon is Bangladesh’s boldest anime and urban streetwear label — and a multi-seller ' +
+      'marketplace. Beyond its own drops it hosts independent vendor stalls, aggregating their ' +
+      'inventory into one fast, distinctive shopping experience.',
+    challenge:
+      'Savageon needed to be two things at once: a brand store with attitude and a marketplace for ' +
+      'nine independent sellers. It had to handle eight product categories, limited drops, and local ' +
+      'delivery while still loading fast and converting on mobile.',
+    approach: [
+      'Built a bold, anime-inspired storefront with limited-drop merchandising.',
+      'Architected a multi-seller marketplace with individual vendor stalls.',
+      'Added an AI support chatbot and localised 2–7 day delivery across Bangladesh.',
+    ],
+    result: '9 seller stalls',
+    metric: 'on one marketplace',
+    results: [
+      { value: '8', label: 'Product categories live' },
+      { value: '9', label: 'Independent vendor stalls' },
+      { value: 'AI', label: '“Savage AI” support chat' },
+    ],
+    stack: ['Next.js', 'React', 'Tailwind CSS', 'Vercel'],
+    lighthouse: 96,
+    accent: 'linear-gradient(135deg,#16161a,#e63946)',
+  },
 ];
 
 // ── PROCESS ────────────────────────────────────────────────────────────
