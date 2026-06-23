@@ -8,11 +8,19 @@ import { useMounted } from '@/lib/use-mounted';
 import { WORK, SITE } from '@/lib/site';
 import WorkCard from './WorkCard';
 
+// Projects featured on the homepage grid, in display order.
+// The full catalogue still lives on /work — edit slugs here to re-feature.
+const FEATURED_SLUGS = ['cala-nera', 'agentforge', 'savageon'];
+
 export default function Work() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
   const mounted = useMounted();
   const v = useMotionVariants();
+
+  const featured = FEATURED_SLUGS
+    .map((slug) => WORK.find((w) => w.slug === slug))
+    .filter((w): w is (typeof WORK)[number] => Boolean(w));
 
   return (
     <section
@@ -51,7 +59,7 @@ export default function Work() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {WORK.slice(0, 3).map((w, i) => (
+          {featured.map((w, i) => (
             <WorkCard key={w.slug} project={w} index={i} />
           ))}
         </div>
