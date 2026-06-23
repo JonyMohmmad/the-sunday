@@ -78,6 +78,7 @@ export default function WorkCard({ project, index = 0, reveal = 'inView' }: Work
                 alt={`${project.client} homepage`}
                 fill
                 sizes="(max-width: 768px) 100vw, 400px"
+                unoptimized
                 className="object-cover object-top transition-transform duration-300 group-hover:scale-[1.04]"
               />
             ) : (

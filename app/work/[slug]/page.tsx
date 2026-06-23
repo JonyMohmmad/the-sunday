@@ -159,6 +159,7 @@ export default async function CaseStudyPage({ params }: Props) {
                       fill
                       sizes="(max-width: 1024px) 100vw, 1024px"
                       priority
+                      unoptimized
                       className="object-cover object-top"
                     />
                   ) : (
