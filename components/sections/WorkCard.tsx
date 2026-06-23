@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { ArrowUpRight, Zap } from 'lucide-react';
@@ -69,19 +70,39 @@ export default function WorkCard({ project, index = 0, reveal = 'inView' }: Work
             </div>
           </div>
 
-          {/* Mock viewport */}
+          {/* Real homepage screenshot when available, gradient mock otherwise */}
           <div data-cursor="view" className="relative h-40 overflow-hidden" style={{ background: project.accent }}>
-            <div
-              className="absolute inset-0"
-              style={{
-                backgroundImage:
-                  'linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.32)), radial-gradient(circle at 30% 25%, rgba(255,255,255,0.22), transparent 60%)',
-              }}
-            />
-            <div className="absolute inset-0 p-5 flex flex-col justify-end gap-2">
-              <div className="h-2.5 rounded-full" style={{ width: '55%', background: 'rgba(255,255,255,0.85)' }} />
-              <div className="h-2 rounded-full" style={{ width: '38%', background: 'rgba(255,255,255,0.55)' }} />
-            </div>
+            {project.image ? (
+              <Image
+                src={project.image}
+                alt={`${project.client} homepage`}
+                fill
+                sizes="(max-width: 768px) 100vw, 400px"
+                className="object-cover object-top transition-transform duration-300 group-hover:scale-[1.04]"
+              />
+            ) : (
+              <>
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    backgroundImage:
+                      'linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.32)), radial-gradient(circle at 30% 25%, rgba(255,255,255,0.22), transparent 60%)',
+                  }}
+                />
+                <div className="absolute inset-0 p-5 flex flex-col justify-end gap-2">
+                  <div className="h-2.5 rounded-full" style={{ width: '55%', background: 'rgba(255,255,255,0.85)' }} />
+                  <div className="h-2 rounded-full" style={{ width: '38%', background: 'rgba(255,255,255,0.55)' }} />
+                </div>
+              </>
+            )}
+
+            {/* Top scrim keeps the badges legible over any screenshot */}
+            {project.image && (
+              <div
+                className="absolute inset-x-0 top-0 h-16 pointer-events-none"
+                style={{ background: 'linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0))' }}
+              />
+            )}
 
             {/* Industry label */}
             <span

@@ -1,6 +1,7 @@
 // app/work/[slug]/page.tsx
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { ArrowUpRight, Zap, Check } from 'lucide-react';
 import Nav from '@/components/layout/Nav';
@@ -151,13 +152,24 @@ export default async function CaseStudyPage({ params }: Props) {
                   </div>
                 </div>
                 <div className="relative" style={{ height: 'clamp(260px, 38vw, 460px)', background: project.accent }}>
-                  <div
-                    className="absolute inset-0"
-                    style={{
-                      backgroundImage:
-                        'linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.3)), radial-gradient(circle at 28% 22%, rgba(255,255,255,0.22), transparent 60%)',
-                    }}
-                  />
+                  {project.image ? (
+                    <Image
+                      src={project.image}
+                      alt={`${project.client} homepage`}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 1024px"
+                      priority
+                      className="object-cover object-top"
+                    />
+                  ) : (
+                    <div
+                      className="absolute inset-0"
+                      style={{
+                        backgroundImage:
+                          'linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.3)), radial-gradient(circle at 28% 22%, rgba(255,255,255,0.22), transparent 60%)',
+                      }}
+                    />
+                  )}
                   <span
                     className="absolute top-5 right-5 inline-flex items-center gap-1.5 text-sm font-semibold px-3 py-1.5 rounded-full"
                     style={{ background: 'rgba(0,0,0,0.45)', color: lhGood ? '#4ade80' : '#fcd34d', backdropFilter: 'blur(4px)' }}

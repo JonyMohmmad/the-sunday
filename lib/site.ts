@@ -324,6 +324,7 @@ export type WorkProject = {
   stack: string[];        // tech transparency card
   lighthouse: number;     // performance score badge (0–100)
   accent: string;         // gradient used in the browser-frame preview
+  image?: string;         // real homepage screenshot (in /public); falls back to accent mock
 };
 
 export const getWorkBySlug = (slug: string): WorkProject | undefined =>
@@ -555,6 +556,7 @@ export const WORK: WorkProject[] = [
     stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel'],
     lighthouse: 99,
     accent: 'linear-gradient(135deg,#0b486b,#2c7873)',
+    image: '/work/cala-nera.webp',
   },
   {
     slug: 'agentforge',
@@ -589,6 +591,7 @@ export const WORK: WorkProject[] = [
     stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel'],
     lighthouse: 99,
     accent: 'linear-gradient(135deg,#6a11cb,#2575fc)',
+    image: '/work/agentforge.webp',
   },
   {
     slug: 'savageon',
@@ -623,6 +626,7 @@ export const WORK: WorkProject[] = [
     stack: ['Next.js', 'React', 'Tailwind CSS', 'Vercel'],
     lighthouse: 96,
     accent: 'linear-gradient(135deg,#16161a,#e63946)',
+    image: '/work/savageon.webp',
   },
 ];
 
