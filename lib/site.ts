@@ -58,7 +58,7 @@ export const HERO = {
 // Honest trust strip — only real, shipped projects.
 export const TRUST_LINE =
   'Trusted by founders and teams building across e-commerce, hospitality, and SaaS.';
-export const TRUST_PROJECTS = ['Savageon', 'AgentForge', 'Cala Nera', 'Cura', 'Cadence', 'VANTA'];
+export const TRUST_PROJECTS = ['Savageon', 'AgentForge', 'Cala Nera', 'Cura', 'Cadence', 'VANTA', 'Meridian'];
 
 // ── SERVICES — FOUR PILLARS ────────────────────────────────────────────
 // Web/design is the front door; marketing, AI, and security are the deeper
@@ -305,7 +305,7 @@ export const SECURITY_AREAS: SecurityArea[] = [
 
 // ── METRICS (real / verifiable — Option A from the brief) ──────────────
 export const METRICS = [
-  { prefix: '', target: 6, suffix: '', decimals: 0, label: 'Products shipped', sub: 'web & AI, live in production' },
+  { prefix: '', target: 7, suffix: '', decimals: 0, label: 'Products shipped', sub: 'web & AI, live in production' },
   { prefix: '', target: 3, suffix: '', decimals: 0, label: 'Countries served', sub: 'clients across 3 continents' },
   { prefix: '', target: 247, suffix: '', decimals: 0, label: 'Waitlist signups', sub: 'driven for AgentForge pre-launch' },
   { prefix: '', target: 9, suffix: '', decimals: 0, label: 'Seller stalls', sub: 'on the Savageon marketplace' },
@@ -562,6 +562,41 @@ export const WORK: WorkProject[] = [
     stack: ['Next.js', 'React', 'Tailwind CSS', 'Vercel'],
     accent: 'linear-gradient(135deg,#6d28d9,#a78bfa)',
     image: '/work/vanta.webp',
+  },
+  {
+    slug: 'meridian',
+    client: 'Meridian',
+    industry: 'brand',
+    category: 'Agency · Brand & Web',
+    url: 'meridian-studio-gamma.vercel.app',
+    liveUrl: 'https://meridian-studio-gamma.vercel.app/',
+    year: '2026',
+    duration: '5 weeks',
+    summary: 'A studio site for a design, engineering, and growth agency for ambitious brands.',
+    overview:
+      'Meridian is a digital studio that designs, engineers, and grows websites for ambitious ' +
+      'brands — keeping strategy, design, engineering, and growth under one roof so nothing gets ' +
+      'lost in the handoff. They needed a site that was, itself, proof of the work: fast, refined, ' +
+      'and clearly structured around their disciplines.',
+    challenge:
+      'For an agency, the website is the portfolio. Meridian needed a site polished enough to win ' +
+      'discerning clients, communicate six distinct service disciplines without clutter, and tell a ' +
+      'clear end-to-end process story from discovery to ongoing growth.',
+    approach: [
+      'Designed a confident, typographic brand with a bold “Design, build and grow” hero and dark/light modes.',
+      'Structured six service disciplines and a six-phase process so the studio’s offer is easy to grasp.',
+      'Built a fast, refined, scroll-led experience that demonstrates the build quality it sells.',
+    ],
+    result: '6 disciplines',
+    metric: 'design to growth, one roof',
+    results: [
+      { value: '6', label: 'Service disciplines' },
+      { value: '6', label: 'Phase delivery process' },
+      { value: 'Dark', label: '& light theming built in' },
+    ],
+    stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel'],
+    accent: 'linear-gradient(135deg,#2563eb,#22d3ee)',
+    image: '/work/meridian.webp',
   },
 ];
 
