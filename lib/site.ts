@@ -58,7 +58,7 @@ export const HERO = {
 // Honest trust strip — only real, shipped projects.
 export const TRUST_LINE =
   'Trusted by founders and teams building across e-commerce, hospitality, and SaaS.';
-export const TRUST_PROJECTS = ['Savageon', 'AgentForge', 'Cala Nera'];
+export const TRUST_PROJECTS = ['Savageon', 'AgentForge', 'Cala Nera', 'Cura', 'Cadence', 'VANTA'];
 
 // ── SERVICES — FOUR PILLARS ────────────────────────────────────────────
 // Web/design is the front door; marketing, AI, and security are the deeper
@@ -305,7 +305,7 @@ export const SECURITY_AREAS: SecurityArea[] = [
 
 // ── METRICS (real / verifiable — Option A from the brief) ──────────────
 export const METRICS = [
-  { prefix: '', target: 3, suffix: '', decimals: 0, label: 'Products shipped', sub: 'web & AI, live in production' },
+  { prefix: '', target: 6, suffix: '', decimals: 0, label: 'Products shipped', sub: 'web & AI, live in production' },
   { prefix: '', target: 3, suffix: '', decimals: 0, label: 'Countries served', sub: 'clients across 3 continents' },
   { prefix: '', target: 247, suffix: '', decimals: 0, label: 'Waitlist signups', sub: 'driven for AgentForge pre-launch' },
   { prefix: '', target: 9, suffix: '', decimals: 0, label: 'Seller stalls', sub: 'on the Savageon marketplace' },
@@ -457,6 +457,111 @@ export const WORK: WorkProject[] = [
     stack: ['Next.js', 'React', 'Tailwind CSS', 'Vercel'],
     accent: 'linear-gradient(135deg,#16161a,#e63946)',
     image: '/work/savageon.webp',
+  },
+  {
+    slug: 'cura',
+    client: 'Cura',
+    industry: 'saas',
+    category: 'Healthcare · SaaS platform',
+    url: 'cura-nine-fawn.vercel.app',
+    liveUrl: 'https://cura-nine-fawn.vercel.app/',
+    year: '2026',
+    duration: '6 weeks',
+    summary: 'A marketing site for an AI-powered telemedicine and patient-management platform.',
+    overview:
+      'Cura is an AI-powered telemedicine and patient-management platform for modern healthcare ' +
+      'providers — virtual consultations, automated scheduling, and AI triage in one HIPAA-ready ' +
+      'ecosystem. They needed a marketing site that explained a complex clinical product clearly ' +
+      'and earned the trust of hospitals, clinics, and telehealth teams.',
+    challenge:
+      'Healthcare software has to feel credible and secure before anything else. Cura needed to ' +
+      'communicate a broad platform — patient, doctor, and admin dashboards plus an AI assistant — ' +
+      'without overwhelming visitors, while making compliance and security obvious at a glance.',
+    approach: [
+      'Designed a calm, clinical brand with a live patient-monitoring hero to make the product tangible.',
+      'Structured the platform around four dashboards and an eight-step patient care journey.',
+      'Built clear solution, integration, and pricing sections aimed at providers of every size.',
+    ],
+    result: '4 dashboards',
+    metric: 'patient, doctor, admin & AI',
+    results: [
+      { value: '4', label: 'Role-based dashboards' },
+      { value: '8', label: 'Step patient care journey' },
+      { value: 'HIPAA', label: 'Compliance-ready architecture' },
+    ],
+    stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel'],
+    accent: 'linear-gradient(135deg,#0ea5b7,#2563eb)',
+    image: '/work/cura.webp',
+  },
+  {
+    slug: 'cadence',
+    client: 'Cadence',
+    industry: 'saas',
+    category: 'SaaS · Sales automation',
+    url: 'cadence-nine-lyart.vercel.app',
+    liveUrl: 'https://cadence-nine-lyart.vercel.app/',
+    year: '2026',
+    duration: '4 weeks',
+    summary: 'A launch site for an AI revenue engine that qualifies leads and books meetings 24/7.',
+    overview:
+      'Cadence is an AI revenue engine that engages, qualifies, and nurtures leads, then books ' +
+      'meetings straight into a sales rep’s calendar — working around the clock with no manual ' +
+      'follow-up. They needed a sharp, high-contrast launch site to sell an abstract automation ' +
+      'product to B2B sales teams.',
+    challenge:
+      'AI sales tooling is a crowded, sceptical market. Cadence needed a site that made a 24/7 ' +
+      'automated funnel feel concrete and trustworthy, spoke to multiple industries, and pushed ' +
+      'visitors toward a strategy call without sounding like hype.',
+    approach: [
+      'Built a bold, dark-mode landing page around a single promise: more qualified meetings, automatically.',
+      'Mapped an eight-step funnel from first visit to closed deal so the automation is easy to grasp.',
+      'Designed industry-specific solution sections and a tiered pricing path to a strategy call.',
+    ],
+    result: '8-step funnel',
+    metric: 'visitor to closed deal',
+    results: [
+      { value: '8', label: 'Step automated funnel' },
+      { value: '6', label: 'Industry solution tracks' },
+      { value: '24/7', label: 'Always-on lead engagement' },
+    ],
+    stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel'],
+    accent: 'linear-gradient(135deg,#1e1b4b,#7c3aed)',
+    image: '/work/cadence.webp',
+  },
+  {
+    slug: 'vanta',
+    client: 'VANTA',
+    industry: 'ecommerce',
+    category: 'E-commerce · Marketplace',
+    url: 'vanta-marketplace.vercel.app',
+    liveUrl: 'https://vanta-marketplace.vercel.app/',
+    year: '2026',
+    duration: '6 weeks',
+    summary: 'A premium technology marketplace for curated, verified consumer electronics.',
+    overview:
+      'VANTA is a premium technology marketplace for high-end consumer electronics — smartphones, ' +
+      'laptops, audio, gaming, cameras, and smart home — sold as genuine, verified products with ' +
+      'warranty backing. They needed a storefront that felt as premium as the gear, with fast, ' +
+      'confident browsing across a deep catalogue.',
+    challenge:
+      'Premium electronics buyers expect a flagship-grade experience and proof of authenticity. ' +
+      'VANTA had to organise eight product categories and multiple brand partners into a fast, ' +
+      'distinctive storefront that signalled trust and converted high-ticket purchases.',
+    approach: [
+      'Designed a high-end, image-led storefront with a floating-product hero and dark/light modes.',
+      'Architected eight curated categories with featured, trending, and limited-edition collections.',
+      'Built trust into the journey — authorized-retailer brand partners, warranty, and secure checkout.',
+    ],
+    result: '8 categories',
+    metric: 'curated electronics catalogue',
+    results: [
+      { value: '8', label: 'Curated product categories' },
+      { value: '8', label: 'Authorized brand partners' },
+      { value: '30d', label: 'Returns & warranty backing' },
+    ],
+    stack: ['Next.js', 'React', 'Tailwind CSS', 'Vercel'],
+    accent: 'linear-gradient(135deg,#6d28d9,#a78bfa)',
+    image: '/work/vanta.webp',
   },
 ];
 
