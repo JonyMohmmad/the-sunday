@@ -1,0 +1,112 @@
+/* ImageMaskText — CSS module
+   Base layout + the image/text clipping primitive + optional animations. */
+
+.root {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* The clipped text. Typography + the background image are applied inline so
+   the component stays fully data-driven; this class owns the clip mechanics. */
+.clip {
+  margin: 0;
+  display: block;
+  width: 100%;
+  /* prevent overflow, allow wrapping / multi-line */
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  /* the masking trick */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Plain-text fallback (image empty / failed / not provided). */
+.fallback {
+  margin: 0;
+  display: block;
+  width: 100%;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* ── Video-in-text (bonus) ─────────────────────────────────────────────── */
+.videoWrap {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+/* invisible text that establishes the box size + provides selectable/SEO text */
+.sizer {
+  margin: 0;
+  display: block;
+  width: 100%;
+  white-space: nowrap;
+  visibility: hidden;
+}
+
+.videoSvg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.videoEl {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── Animations (bonus) ────────────────────────────────────────────────── */
+.animPan {
+  animation: imt-pan 22s linear infinite alternate;
+}
+.animZoom {
+  background-position: center center;
+  animation: imt-zoom 24s ease-in-out infinite;
+}
+.parallax {
+  background-attachment: fixed;
+}
+
+@keyframes imt-pan {
+  from {
+    background-position: 0% center;
+  }
+  to {
+    background-position: 100% center;
+  }
+}
+
+@keyframes imt-zoom {
+  0% {
+    background-size: 110%;
+  }
+  50% {
+    background-size: 145%;
+  }
+  100% {
+    background-size: 110%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animPan,
+  .animZoom {
+    animation: none;
+  }
+  .parallax {
+    background-attachment: scroll;
+  }
+}
