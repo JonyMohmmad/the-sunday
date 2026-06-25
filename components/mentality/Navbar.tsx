@@ -9,7 +9,7 @@ import ThemeToggle from '@/components/ui/ThemeToggle';
 /** Geometric four-petal clover / flower mark. */
 function CloverMark() {
   return (
-    <svg viewBox="0 0 24 24" className="w-6 h-6 shrink-0" fill="currentColor" style={{ color: 'var(--text)' }} aria-hidden="true">
+    <svg viewBox="0 0 24 24" className="w-6 h-6 shrink-0" fill="currentColor" style={{ color: '#f3effb' }} aria-hidden="true">
       <circle cx="12" cy="6.5" r="5" />
       <circle cx="12" cy="17.5" r="5" />
       <circle cx="6.5" cy="12" r="5" />
@@ -24,13 +24,13 @@ export default function Navbar() {
   return (
     <header
       className="fixed top-0 left-0 w-full z-50 py-6 md:py-10 backdrop-blur-[2px]"
-      style={{ background: 'linear-gradient(to bottom, var(--nav-fade), transparent)' }}
+      style={{ background: 'linear-gradient(to bottom, rgba(10,10,12,0.85), transparent)' }}
     >
       <nav className="grid grid-cols-12 items-center max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
         {/* Left — brand (cols 1–3) */}
         <Link href="/" className="col-span-6 md:col-span-3 flex items-center gap-2" aria-label={`${SITE.brand} home`}>
           <CloverMark />
-          <span className="font-display text-xl md:text-2xl font-semibold tracking-tight" style={{ color: 'var(--text)' }}>
+          <span className="font-display text-xl md:text-2xl font-semibold tracking-tight" style={{ color: '#f3effb' }}>
             {SITE.brand}
           </span>
         </Link>
@@ -42,7 +42,7 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               className="text-sm lowercase opacity-70 hover:opacity-100 transition-opacity duration-200"
-              style={{ color: 'var(--text)' }}
+              style={{ color: '#f3effb' }}
             >
               {link.label}
             </a>
@@ -54,7 +54,7 @@ export default function Navbar() {
           <a
             href="#faq"
             className="hidden sm:inline text-sm lowercase opacity-70 hover:opacity-100 transition-opacity duration-200"
-            style={{ color: 'var(--text)' }}
+            style={{ color: '#f3effb' }}
           >
             find help
           </a>
@@ -66,7 +66,7 @@ export default function Navbar() {
             target="_blank"
             rel="noopener noreferrer"
             className="hidden sm:inline-flex items-center gap-1.5 text-sm rounded-full px-4 py-2 hover:opacity-90 transition-opacity duration-200"
-            style={{ background: 'var(--text)', color: 'var(--bg)' }}
+            style={{ background: '#ffffff', color: '#0a0a0c' }}
           >
             get started <span aria-hidden="true">→</span>
           </a>
@@ -81,13 +81,13 @@ export default function Navbar() {
           >
             <motion.span
               className="block h-[2px] w-5 rounded-full"
-              style={{ background: 'var(--text)' }}
+              style={{ background: '#f3effb' }}
               animate={open ? { rotate: 45, y: 3.5 } : { rotate: 0, y: 0 }}
               transition={{ duration: 0.25, ease: 'easeInOut' }}
             />
             <motion.span
               className="block h-[2px] w-5 rounded-full"
-              style={{ background: 'var(--text)' }}
+              style={{ background: '#f3effb' }}
               animate={open ? { rotate: -45, y: -3.5 } : { rotate: 0, y: 0 }}
               transition={{ duration: 0.25, ease: 'easeInOut' }}
             />
@@ -116,7 +116,7 @@ export default function Navbar() {
                   transition={{ delay: 0.08 + i * 0.05 }}
                   onClick={() => setOpen(false)}
                   className="text-base lowercase opacity-80 hover:opacity-100 py-2 border-b"
-                  style={{ color: 'var(--text)', borderColor: 'var(--border)' }}
+                  style={{ color: '#f3effb', borderColor: 'var(--border)' }}
                 >
                   {link.label}
                 </motion.a>
@@ -127,7 +127,7 @@ export default function Navbar() {
                 rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
                 className="mt-3 inline-flex items-center justify-center gap-1.5 text-sm rounded-full px-4 py-2.5"
-                style={{ background: 'var(--text)', color: 'var(--bg)' }}
+                style={{ background: '#ffffff', color: '#0a0a0c' }}
               >
                 get started <span aria-hidden="true">→</span>
               </a>
