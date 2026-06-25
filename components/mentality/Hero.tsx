@@ -5,10 +5,20 @@ export default function Hero() {
   return (
     <section
       className="relative w-full flex flex-col items-center justify-start overflow-hidden"
-      style={{ background: '#0a0a0c' }}
+      style={{ background: '#130a22' }}
     >
-      {/* Luminous aurora backdrop */}
-      <AuroraDrift />
+      {/* Luminous aurora backdrop — brand dark-mode palette (--bg #130a22,
+          accent --primary #a78bfa) so it reads as the site's own dark color. */}
+      <AuroraDrift
+        baseColor="#130a22"
+        intensity={0.38}
+        blobs={[
+          { x: 0.3, y: 0.34, color: '167,139,250' }, // brand violet (--primary)
+          { x: 0.7, y: 0.4, color: '139,92,246' }, // violet-600
+          { x: 0.5, y: 0.72, color: '99,102,241' }, // indigo
+          { x: 0.22, y: 0.74, color: '168,85,247' }, // purple-500
+        ]}
+      />
 
       {/* Hero content */}
       <div className="max-w-7xl w-full mx-auto px-8 md:px-16 lg:px-20 relative z-10 grid grid-cols-12 gap-x-4 md:gap-x-8 pt-36 md:pt-44 pb-28 md:pb-36">
