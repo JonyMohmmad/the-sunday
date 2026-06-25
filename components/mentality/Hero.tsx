@@ -40,11 +40,6 @@ export default function Hero() {
             <span style={{ color: '#ffffff' }}>and protect the brand you’re growing.</span>
           </h1>
 
-          {/* Subhead */}
-          <p className="mt-7 max-w-2xl text-base md:text-lg" style={{ color: 'rgba(255,255,255,0.72)' }}>
-            {HERO.body}
-          </p>
-
           {/* CTAs */}
           <div className="mt-9 flex flex-wrap items-center gap-3">
             <a
