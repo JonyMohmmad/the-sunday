@@ -6,7 +6,6 @@ import { motion, useInView } from 'framer-motion';
 import { Check, Layers, TrendingUp, Bot, ShieldCheck, ArrowRight } from 'lucide-react';
 import { useMotionVariants } from '@/lib/animations';
 import { useMounted } from '@/lib/use-mounted';
-import MagneticGrid from '@/components/MagneticGrid';
 import { PILLARS, SITE } from '@/lib/site';
 
 const pillarIcons: Record<string, React.ReactNode> = {
@@ -34,13 +33,6 @@ export default function Services() {
           background:
             'radial-gradient(110% 90% at 72% 0%, rgba(167,139,250,0.28) 0%, rgba(139,92,246,0.12) 34%, rgba(19,10,34,0) 64%), radial-gradient(80% 70% at 18% 100%, rgba(124,92,246,0.10) 0%, rgba(19,10,34,0) 55%), #130a22',
         }}
-      />
-      <MagneticGrid
-        dotColor="rgba(99,102,241,VALUE)"
-        baseOpacity={0.22}
-        dotRadius={1.8}
-        maxDisplacement={48}
-        influence={2400}
       />
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
