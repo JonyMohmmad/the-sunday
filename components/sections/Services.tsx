@@ -6,6 +6,7 @@ import { motion, useInView } from 'framer-motion';
 import { Check, Layers, TrendingUp, Bot, ShieldCheck, ArrowRight } from 'lucide-react';
 import { useMotionVariants } from '@/lib/animations';
 import { useMounted } from '@/lib/use-mounted';
+import MagneticGrid from '@/components/MagneticGrid';
 import { PILLARS, SITE } from '@/lib/site';
 
 const pillarIcons: Record<string, React.ReactNode> = {
@@ -22,8 +23,15 @@ export default function Services() {
   const v = useMotionVariants();
 
   return (
-    <section id="services" aria-labelledby="services-heading" className="py-24 relative z-10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="services" aria-labelledby="services-heading" className="py-24 relative z-10 overflow-hidden">
+      <MagneticGrid
+        dotColor="rgba(99,102,241,VALUE)"
+        baseOpacity={0.22}
+        dotRadius={1.8}
+        maxDisplacement={48}
+        influence={2400}
+      />
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
           variants={v.fadeUp}
