@@ -30,7 +30,7 @@ export default function Work() {
       className="py-24 relative z-10"
       style={{ background: 'var(--surface)' }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-[95%] mx-auto px-4 sm:px-6">
         <motion.div
           ref={ref}
           variants={v.fadeUp}

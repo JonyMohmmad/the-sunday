@@ -17,7 +17,7 @@ export default function WorkGallery() {
 
   return (
     <section aria-label="Project gallery" className="py-16 relative z-10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-[95%] mx-auto px-4 sm:px-6">
         {/* Industry filter */}
         <div className="flex flex-wrap gap-2 justify-center mb-12">
           {available.map((ind) => {

@@ -673,50 +673,55 @@ export const PROCESS_NOTE =
   'running growth, shipping an AI agent, or hardening your security.';
 
 // ── PRICING (web project packages) ─────────────────────────────────────
+// Master feature checklist. Plans are cumulative tiers — each plan includes
+// the first `includes` features below. The interactive pricing card renders
+// this list once and highlights included vs. excluded rows per selected plan.
+export const PRICING_FEATURES = [
+  'Custom-designed pages',
+  'Mobile-first, responsive build',
+  'On-page SEO setup',
+  'Contact form & analytics',
+  'Bespoke design & brand system',
+  'CMS / Shopify you can edit',
+  'Integrations (payments, CRM, email)',
+  'Performance & conversion tuning',
+  '30 days post-launch support',
+  'Dedicated design + dev team',
+  'Advanced integrations & auth',
+  'Ongoing care & growth retainer',
+];
+
 export const PRICING = [
   {
     tier: 'Launch',
-    price: '$2,500',
+    priceValue: 2500,
+    priceLabel: '$2,500',
     per: 'one-time project',
-    description: 'A polished marketing site to get your business online and converting.',
-    features: [
-      'Up to 5 custom-designed pages',
-      'Mobile-first, responsive build',
-      'On-page SEO setup',
-      'Contact form & analytics',
-      'Launch in ~2 weeks',
-    ],
+    description: 'A polished marketing site to get you online and converting.',
+    badge: null as string | null,
+    includes: 4,
     cta: 'Book a call',
     popular: false,
   },
   {
     tier: 'Growth',
-    price: '$6,000',
+    priceValue: 6000,
+    priceLabel: '$6,000',
     per: 'one-time project',
     description: 'A custom site or online store designed to scale your business.',
-    features: [
-      'Up to 12 pages or full store',
-      'Bespoke design & brand system',
-      'CMS or Shopify you can edit',
-      'Integrations (payments, CRM, email)',
-      'Performance & conversion tuning',
-      '30 days post-launch support',
-    ],
+    badge: 'Most popular' as string | null,
+    includes: 9,
     cta: 'Book a call',
     popular: true,
   },
   {
     tier: 'Scale',
-    price: "Let's talk",
+    priceValue: null as number | null,
+    priceLabel: "Let's talk",
     per: 'custom quote',
-    description: 'Web apps, SaaS, and large e-commerce builds with an ongoing partnership.',
-    features: [
-      'Custom web app / SaaS build',
-      'Dedicated design + dev team',
-      'Advanced integrations & auth',
-      'Ongoing care & growth retainer',
-      'Priority support & SLA',
-    ],
+    description: 'Web apps, SaaS, and large e-commerce builds with a partnership.',
+    badge: null as string | null,
+    includes: 12,
     cta: 'Request a quote',
     popular: false,
   },

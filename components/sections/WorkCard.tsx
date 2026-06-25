@@ -48,37 +48,62 @@ export default function WorkCard({ project, index = 0, reveal = 'inView' }: Work
       <Link
         href={`/work/${project.slug}`}
         data-cursor="view"
-        className="relative block aspect-[3/4] h-full rounded-[26px] overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
-        style={{ background: project.accent }}
+        className="relative flex aspect-[4/3] h-full flex-col rounded-2xl overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+        style={{ background: project.accent, border: '1px solid var(--border)' }}
       >
-        {/* ── Full-bleed homepage preview ── */}
-        {project.image ? (
-          <Image
-            src={project.image}
-            alt={`${project.client} homepage`}
-            fill
-            sizes="(max-width: 768px) 100vw, 400px"
-            unoptimized
-            className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.05]"
-          />
-        ) : (
+        {/* ── MacBook window title bar ── */}
+        <div
+          className="flex flex-shrink-0 items-center gap-3 px-4 py-2.5"
+          style={{ background: 'var(--surface)', borderBottom: '1px solid var(--border)' }}
+        >
+          {/* Traffic lights — close / minimize / fullscreen */}
+          <div className="flex items-center gap-1.5">
+            <span className="w-3 h-3 rounded-full" style={{ background: '#ff5f57' }} />
+            <span className="w-3 h-3 rounded-full" style={{ background: '#febc2e' }} />
+            <span className="w-3 h-3 rounded-full" style={{ background: '#28c840' }} />
+          </div>
+          {/* Address pill */}
           <div
-            className="absolute inset-0"
+            className="flex-1 truncate text-center text-[11px] px-3 py-1 rounded-md"
             style={{
-              backgroundImage:
-                'linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.4)), radial-gradient(circle at 30% 25%, rgba(255,255,255,0.22), transparent 60%)',
+              background: 'var(--surface-2)',
+              color: 'var(--text-3)',
+              fontFamily: 'var(--font-geist-mono)',
             }}
+          >
+            {project.url}
+          </div>
+        </div>
+
+        {/* ── Full-width website preview ── */}
+        <div className="relative flex-1 overflow-hidden">
+          {project.image ? (
+            <Image
+              src={project.image}
+              alt={`${project.client} homepage`}
+              fill
+              sizes="(max-width: 768px) 100vw, 480px"
+              unoptimized
+              className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.05]"
+            />
+          ) : (
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage:
+                  'linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.4)), radial-gradient(circle at 30% 25%, rgba(255,255,255,0.22), transparent 60%)',
+              }}
+            />
+          )}
+
+          {/* Bottom legibility scrim under the glass panel */}
+          <div
+            className="absolute inset-x-0 bottom-0 h-1/2 pointer-events-none"
+            style={{ background: 'linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.45))' }}
           />
-        )}
 
-        {/* Bottom legibility scrim under the glass panel */}
-        <div
-          className="absolute inset-x-0 bottom-0 h-1/2 pointer-events-none"
-          style={{ background: 'linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.45))' }}
-        />
-
-        {/* ── Floating glass info panel ── */}
-        <div
+          {/* ── Floating glass info panel ── */}
+          <div
           className="absolute inset-x-3 bottom-3 rounded-2xl overflow-hidden"
           style={{
             border: '1px solid rgba(255,255,255,0.12)',
@@ -115,6 +140,7 @@ export default function WorkCard({ project, index = 0, reveal = 'inView' }: Work
             >
               <Search size={12} /> Explore
             </span>
+          </div>
           </div>
         </div>
       </Link>
