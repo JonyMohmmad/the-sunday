@@ -58,7 +58,7 @@ export const HERO = {
 // Honest trust strip — only real, shipped projects.
 export const TRUST_LINE =
   'Trusted by founders and teams building across e-commerce, hospitality, and SaaS.';
-export const TRUST_PROJECTS = ['Savageon', 'AgentForge', 'Cala Nera', 'Cura', 'Cadence', 'VANTA', 'Meridian'];
+export const TRUST_PROJECTS = ['Savageon', 'AgentForge', 'Cala Nera', 'Cura', 'Cadence', 'VANTA', 'Meridian', 'Marlowe'];
 
 // ── SERVICES — FOUR PILLARS ────────────────────────────────────────────
 // Web/design is the front door; marketing, AI, and security are the deeper
@@ -305,7 +305,7 @@ export const SECURITY_AREAS: SecurityArea[] = [
 
 // ── METRICS (real / verifiable — Option A from the brief) ──────────────
 export const METRICS = [
-  { prefix: '', target: 7, suffix: '', decimals: 0, label: 'Products shipped', sub: 'web & AI, live in production' },
+  { prefix: '', target: 8, suffix: '', decimals: 0, label: 'Products shipped', sub: 'web & AI, live in production' },
   { prefix: '', target: 3, suffix: '', decimals: 0, label: 'Countries served', sub: 'clients across 3 continents' },
   { prefix: '', target: 247, suffix: '', decimals: 0, label: 'Waitlist signups', sub: 'driven for AgentForge pre-launch' },
   { prefix: '', target: 9, suffix: '', decimals: 0, label: 'Seller stalls', sub: 'on the Savageon marketplace' },
@@ -597,6 +597,41 @@ export const WORK: WorkProject[] = [
     stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel'],
     accent: 'linear-gradient(135deg,#2563eb,#22d3ee)',
     image: '/work/meridian.webp',
+  },
+  {
+    slug: 'marlowe',
+    client: 'Marlowe',
+    industry: 'brand',
+    category: 'Real Estate · Marketplace',
+    url: 'marlowe-mu.vercel.app',
+    liveUrl: 'https://marlowe-mu.vercel.app/',
+    year: '2026',
+    duration: '6 weeks',
+    summary: 'A luxury real-estate marketplace connecting buyers with high-end properties.',
+    overview:
+      'Marlowe is a luxury real-estate marketplace connecting affluent buyers and renters with ' +
+      'high-end homes, commercial spaces, and investment opportunities across premium global ' +
+      'markets. They needed a refined, trustworthy platform where browsing exceptional property ' +
+      'feels effortless and a search turns into a consultation.',
+    challenge:
+      'Luxury real estate sells on confidence and atmosphere. Marlowe needed a marketplace that felt ' +
+      'as premium as its inventory, handled buy, rent, and commercial search cleanly, and surfaced ' +
+      'immersive tours, market data, and agents without overwhelming high-net-worth buyers.',
+    approach: [
+      'Designed an editorial, dark-toned brand with a confident search-led hero across buy, rent, and commercial.',
+      'Built immersive property presentation — 360° tours, drone footage, and interactive floor plans.',
+      'Added a market-intelligence layer, an agent directory, and a 24/7 AI concierge for tours and financing.',
+    ],
+    result: 'Immersive tours',
+    metric: '360°, drone & floor plans',
+    results: [
+      { value: '3', label: 'Buy · rent · commercial search' },
+      { value: '360°', label: 'Immersive property tours' },
+      { value: 'AI', label: '24/7 booking concierge' },
+    ],
+    stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel'],
+    accent: 'linear-gradient(135deg,#2a1a2e,#b08d57)',
+    image: '/work/marlowe.webp',
   },
 ];
 
