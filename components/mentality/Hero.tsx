@@ -31,7 +31,10 @@ export default function Hero() {
             {HERO.eyebrow}
           </p>
 
-          <h1 className="font-display font-medium tracking-tight leading-[1.06] text-[clamp(30px,5vw,68px)] max-w-5xl">
+          <h1
+            className="tracking-tight leading-[1.06] text-[clamp(32px,5.4vw,72px)] max-w-5xl"
+            style={{ fontFamily: 'var(--font-okta)', fontWeight: 200 }}
+          >
             <span style={{ color: '#ffffff' }}>We build your website, </span>
             <span style={{ color: 'rgba(255,255,255,0.5)' }}>run the marketing behind it, </span>
             <span style={{ color: '#ffffff' }}>and protect the brand you’re growing.</span>

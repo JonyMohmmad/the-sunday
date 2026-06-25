@@ -1,7 +1,19 @@
 import type { Metadata } from 'next';
 import { Poppins, Inter, Outfit } from 'next/font/google';
+import localFont from 'next/font/local';
 import { GeistMono } from 'geist/font/mono';
 import { SEO } from '@/lib/seo-config';
+
+// Okta — geometric grotesk (free styles: ExtraLight + BoldItalic). Used for
+// the homepage hero headline.
+const okta = localFont({
+  src: [
+    { path: './fonts/Okta-ExtraLight.woff', weight: '200', style: 'normal' },
+    { path: './fonts/Okta-BoldItalic.woff', weight: '700', style: 'italic' },
+  ],
+  variable: '--font-okta',
+  display: 'swap',
+});
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -76,7 +88,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${poppins.variable} ${inter.variable} ${outfit.variable} ${GeistMono.variable}`}
+      className={`${poppins.variable} ${inter.variable} ${outfit.variable} ${okta.variable} ${GeistMono.variable}`}
     >
       <head>
         {/* Apply the saved (or system) theme before first paint to avoid a
