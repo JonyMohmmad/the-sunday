@@ -24,6 +24,17 @@ export default function Services() {
 
   return (
     <section id="services" aria-labelledby="services-heading" className="py-24 relative z-10 overflow-hidden">
+      {/* Gradient backdrop — luminous purple bloom over the dark-mode base
+          (Aura-inspired glow, kept to the brand dark color: --bg #130a22,
+          glow --primary #a78bfa). Sits behind the MagneticGrid dots. */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-0 pointer-events-none"
+        style={{
+          background:
+            'radial-gradient(110% 90% at 72% 0%, rgba(167,139,250,0.28) 0%, rgba(139,92,246,0.12) 34%, rgba(19,10,34,0) 64%), radial-gradient(80% 70% at 18% 100%, rgba(124,92,246,0.10) 0%, rgba(19,10,34,0) 55%), #130a22',
+        }}
+      />
       <MagneticGrid
         dotColor="rgba(99,102,241,VALUE)"
         baseOpacity={0.22}
