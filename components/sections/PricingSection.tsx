@@ -66,7 +66,13 @@ export default function PricingSection() {
 
   return (
     <section id="pricing" aria-labelledby="pricing-heading" className="py-24 relative z-10 overflow-hidden">
-      <MagneticGrid />
+      <MagneticGrid
+        dotColor="rgba(99,102,241,VALUE)"
+        baseOpacity={0.22}
+        dotRadius={1.8}
+        maxDisplacement={48}
+        influence={2400}
+      />
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
